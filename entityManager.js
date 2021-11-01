@@ -45,6 +45,10 @@ _generateRocks : function() {
     }
 },
 
+_generateFloors : function() {
+    this.generateFloor();
+},
+
 _findNearestShip : function(posX, posY) {
     var closestShip = null,
         closestIndex = -1,
@@ -88,12 +92,13 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._rocks, this._bullets, this._ships];
+    this._categories = [this._rocks, this._bullets, this._ships, this._floors];
 },
 
 init: function() {
     this._generateRocks();
     //this._generateShip();
+    //this._generateFloors();
 },
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
@@ -113,6 +118,10 @@ generateRock : function(descr) {
 
 generateShip : function(descr) {
     this._ships.push(new Ship(descr));
+},
+
+generateFloor : function(descr) {
+    this._floors.push(new Floor(descr));
 },
 
 killNearestShip : function(xPos, yPos) {

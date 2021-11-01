@@ -55,12 +55,13 @@ function createInitialShips() {
     
 }
 
-function createInitialFloor() {
+function createInitialFloors() {
 
     entityManager.generateFloor({
         cx:300,
         cy:550
     });
+
 }
 
 // =============
@@ -207,7 +208,9 @@ function preloadDone() {
     g_sprites.bullet.scale = 0.25;
 
     entityManager.init();
+    createInitialFloors();
     createInitialShips();
+    
 
     main.init();
 }
