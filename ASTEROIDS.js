@@ -220,7 +220,7 @@ function preloadDone() {
 
     entityManager.init();
     createInitialFloors();
-    createInitialShips();
+    createInitialPlayer();
     
 
     main.init();

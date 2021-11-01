@@ -16,17 +16,15 @@ function Player(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
-
-    this.rememberResets();
     
     // Default sprite, if not otherwise specified
     this.sprite = this.sprite || g_sprites.player;
     
     // Set normal drawing scale, and warp state off
-    this._scale = 1;
+    this._scale = 0.5;
 };
 
-Player.prototype = new Entitiy();
+Player.prototype = new Entity();
 
 Player.prototype.KEY_LEFT   = 'A'.charCodeAt(0);
 Player.prototype.KEY_RIGHT  = 'D'.charCodeAt(0);
@@ -40,12 +38,32 @@ Player.prototype.velY = 0;
 
 Player.prototype.jumpVel = 3;
 
-Player.prototype._isJumping = function (du){
-
-};
+Player.prototype._isJumping = false;
 
 Player.prototype.update = function (du){
     spatialManager.unregister(this);
+
+    if(keys[this.KEY_RIGHT]){
+        this.cx += 5
+    }
+
+    if(keys[this.KEY_LEFT]){
+        this.cx -= 5
+    }
+
+    this.velY += 5;
+
+    // if colliding...
+    if(spatialManager.findEntityInRange(this.cx,this.cy,50).cy > this.cy){
+        // if going down...
+        if(0 < this.velY){this.velY = 0}
+
+    }
+
+    if(keys[this.KEY_JUMP] && (this.velY == 0)){
+        this.velY -= 50*du
+        this._isJumping = true;
+    }
 
     if(this._isDeadNow){
         return entityManager.KILL_ME_NOW;
@@ -57,7 +75,11 @@ Player.prototype.update = function (du){
      * DO something 
     } */
 
+    this.cy += this.velY * du;
+
     spatialManager.register(this);
+
+    console.log(this.velY);
 };
 
 Player.prototype.render = function (ctx){

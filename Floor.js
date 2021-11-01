@@ -23,8 +23,8 @@ Floor.prototype.update = function(du) {
         return entityManager.KILL_ME_NOW;
     }
 
-    this.cx  * du;
-    this.cy  * du;
+    this.cx * du;
+    this.cy * du;
 
     this.wrapPosition();
 

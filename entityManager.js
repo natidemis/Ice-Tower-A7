@@ -152,7 +152,7 @@ haltShips: function() {
 },	
 
 toggleRocks: function() {
-    this._bShowRocks = !this._bShowRocks;
+    this._bShowRocks =! this._bShowRocks;
 },
 
 update: function(du) {
