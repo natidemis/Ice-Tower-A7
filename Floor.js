@@ -34,7 +34,7 @@ Floor.prototype.update = function(du) {
 Floor.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
 
-    this.sprite.scale = this._scale;
+    this.sprite.scale = 1.5
     this.sprite.drawWrappedCentredAt(
         ctx, this.cx, this.cy, 0
     );

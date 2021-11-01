@@ -64,6 +64,15 @@ function createInitialFloors() {
 
 }
 
+function createInitialPlayer() {
+
+    entityManager.generatePlayer({
+
+        cx : 300,
+        cy : 500
+    })
+}
+
 // =============
 // GATHER INPUTS
 // =============
@@ -189,7 +198,8 @@ function requestPreloads() {
         ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
         rock   : "https://notendur.hi.is/~pk/308G/images/rock.png",
-        floor  : "https://notendur.hi.is/~tht40/icy/images/floor.png"
+        floor  : "https://notendur.hi.is/~tht40/icy/images/floor.png",
+        player : "https://notendur.hi.is/~tht40/icy/images/player.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -203,6 +213,7 @@ function preloadDone() {
     g_sprites.ship2 = new Sprite(g_images.ship2);
     g_sprites.rock  = new Sprite(g_images.rock);
     g_sprites.floor = new Sprite(g_images.floor);
+    g_sprites.player = new Sprite(g_images.player);
 
     g_sprites.bullet = new Sprite(g_images.ship);
     g_sprites.bullet.scale = 0.25;
