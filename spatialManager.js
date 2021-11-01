@@ -35,6 +35,8 @@ getNewSpatialID : function() {
 
     // TODO: YOUR STUFF HERE!
 
+    return this._nextSpatialID++;
+
 },
 
 register: function(entity) {
@@ -43,19 +45,51 @@ register: function(entity) {
     
     // TODO: YOUR STUFF HERE!
 
+    var entityDetails = {
+        posX : pos.posX,
+        posY : pos.posY,
+        radius : entity.getRadius(),
+        entity : entity
+    }
+
+    this._entities[spatialID] = entityDetails;
 },
 
 unregister: function(entity) {
     var spatialID = entity.getSpatialID();
 
     // TODO: YOUR STUFF HERE!
+    
+    delete this._entities[spatialID];
 
 },
+
 
 findEntityInRange: function(posX, posY, radius) {
 
     // TODO: YOUR STUFF HERE!
 
+    for (var ID in this._entities) {
+
+        var tempent = this._entities[ID];
+
+        var wrapDistanceSq = util.wrappedDistSq(
+            tempent.posX,
+            tempent.posY,
+            posX,
+            posY,
+            g_canvas.width,
+            g_canvas.height
+            );
+
+        var limitSq = util.square(radius + tempent.radius);
+
+        //check if entities collide or not
+        if (wrapDistanceSq < limitSq && wrapDistanceSq > 0)
+            return tempent.entity;
+    }
+
+    return false;
 },
 
 render: function(ctx) {

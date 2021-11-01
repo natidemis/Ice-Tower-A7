@@ -30,6 +30,7 @@ var entityManager = {
 _rocks   : [],
 _bullets : [],
 _ships   : [],
+_floors  : [],
 
 _bShowRocks : true,
 
