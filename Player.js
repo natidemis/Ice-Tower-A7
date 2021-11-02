@@ -21,7 +21,7 @@ function Player(descr) {
     this.sprite = this.sprite || g_sprites.player;
     
     // Set normal drawing scale, and warp state off
-    this._scale = 0.5;
+    this._scale = 0.2;
 
     this.width = this.sprite.width*this._scale;
     this.height = this.sprite.height*this._scale;
