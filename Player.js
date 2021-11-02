@@ -41,7 +41,9 @@ Player.prototype.velY = 0;
 
 Player.prototype.accelX = 0.3;
 Player.prototype.maxVelX = 15;
+Player.prototype.maxFallingVel = 25;
 Player.prototype.friction = 0.9;
+Player.prototype.gAccel = 0.8;
 
 Player.prototype.jumpVel = 3;
 
@@ -77,10 +79,7 @@ Player.prototype.wallcollide = function (du){
     else if(this.cx < 40){
         this.cx = 40;
         this.velX *= -1;
-    }
-
-    
-    
+    }    
 }
 
 Player.prototype.update = function (du){
@@ -97,8 +96,8 @@ Player.prototype.update = function (du){
         this._isJumping = true;
     }
 
-    if(this.velY < 25){
-        this.velY += 0.8*du;
+    if(this.velY < this.maxFallingVel){
+        this.velY += gAccel*du;
     }
 
     this.wallcollide();
