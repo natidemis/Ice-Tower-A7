@@ -68,10 +68,15 @@ Player.prototype.applyAccelX = function () {
 }
 
 Player.prototype.wallcollide = function (du){
-    if((this.cx > 860) || this.cx < 40){
+    if(this.cx > 860){
+        this.cx = 860;
         this.velX *= -1;
-
         console.log("wall");
+    }
+
+    else if(this.cx < 40){
+        this.cx = 40;
+        this.velX *= -1;
     }
 
     
