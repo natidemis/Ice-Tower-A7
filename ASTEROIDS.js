@@ -204,7 +204,7 @@ function requestPreloads() {
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
         rock   : "https://notendur.hi.is/~pk/308G/images/rock.png",
         floor  : "https://notendur.hi.is/~tht40/icy/images/floor.png",
-        player : "https://notendur.hi.is/~tht40/icy/images/player.png",
+        player : "images/player.png",
         wall   : "https://notendur.hi.is/~tht40/icy/images/wall.png"
     };
 
