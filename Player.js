@@ -91,13 +91,18 @@ Player.prototype.update = function (du){
     this.applyAccelX(du);
         
 
-    if(keys[this.KEY_JUMP] && (this.velY == 0)){
-        this.velY -= 20;
+    if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX < (0.2*this.maxVelX)){
+        this.velY -= 20*du;
+        this._isJumping = true;
+    }
+
+    if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX > (0.8*this.maxVelX)){
+        this.velY -= 30*du;
         this._isJumping = true;
     }
 
     if(this.velY < this.maxFallingVel){
-        this.velY += gAccel*du;
+        this.velY += this.gAccel*du;
     }
 
     this.wallcollide();
