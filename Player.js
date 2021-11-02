@@ -53,18 +53,23 @@ Player.prototype.update = function (du){
     if(keys[this.KEY_LEFT]){
         this.cx -= 5*du;
     }
-
-    this.velY += 0.8;
-
-    // if colliding...
-    if(spatialManager.findEntityInRange(this.cx, this.cy, this.width, this.height)){
-        // if going down, stop.
-        if(0 < this.velY){this.velY = 0}
-    }
+        
 
     if(keys[this.KEY_JUMP] && (this.velY == 0)){
         this.velY -= 20;
         this._isJumping = true;
+    }
+
+    // if colliding...
+    var floorY = spatialManager.findEntityInRange(this.cx, this.cy, this.width, this.height)
+    if (floorY){
+        // if going down, stop and match height.
+        if(0 < this.velY){
+            this.cy = floorY;
+            this.velY = 0;
+        }
+    } else {
+        this.velY += 0.8*du;
     }
 
     if(this._isDeadNow){
