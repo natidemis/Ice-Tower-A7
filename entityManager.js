@@ -27,53 +27,15 @@ var entityManager = {
 
 // "PRIVATE" DATA
 
-_rocks   : [],
-_bullets : [],
-_ships   : [],
 _floors  : [],
 _players : [],
 
-_bShowRocks : true,
-
 // "PRIVATE" METHODS
-
-_generateRocks : function() {
-    //var i,
-    //    NUM_ROCKS = 4;
-
-    //for (i = 0; i < NUM_ROCKS; ++i) {
-    //    this.generateRock();
-},
 
 _generateFloors : function() {
     this.generateFloor();
 },
 
-_findNearestShip : function(posX, posY) {
-    var closestShip = null,
-        closestIndex = -1,
-        closestSq = 1000 * 1000;
-
-    for (var i = 0; i < this._ships.length; ++i) {
-
-        var thisShip = this._ships[i];
-        var shipPos = thisShip.getPos();
-        var distSq = util.wrappedDistSq(
-            shipPos.posX, shipPos.posY, 
-            posX, posY,
-            g_canvas.width, g_canvas.height);
-
-        if (distSq < closestSq) {
-            closestShip = thisShip;
-            closestIndex = i;
-            closestSq = distSq;
-        }
-    }
-    return {
-        theShip : closestShip,
-        theIndex: closestIndex
-    };
-},
 
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
@@ -92,13 +54,10 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._rocks, this._bullets, this._ships, this._floors, this._players];
+    this._categories = [this._floors, this._players];
 },
 
 init: function() {
-    this._generateRocks();
-    //this._generateShip();
-    //this._generateFloors();
 },
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
