@@ -60,16 +60,18 @@ Player.prototype.update = function (du){
         this._isJumping = true;
     }
 
-    // if colliding...
-    var floorY = spatialManager.findEntityInRange(this.cx, this.cy, this.width, this.height)
-    if (floorY){
-        // if going down, stop and match height.
-        if(0 < this.velY){
+    if(this.velY < 25){
+        this.velY += 0.8*du;
+    }
+
+    // if falling
+    if(0 < this.velY){
+        var floorY = spatialManager.findEntityInRange(this.cx, this.cy, this.width, this.height)
+        // is colliding?
+        if (floorY){
             this.cy = floorY;
             this.velY = 0;
-        }
-    } else {
-        this.velY += 0.8*du;
+        }    
     }
 
     if(this._isDeadNow){

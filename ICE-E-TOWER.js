@@ -30,7 +30,7 @@ function createInitialFloors() {
     });
 
     entityManager.generateFloor({
-        cx:200,
+        cx:500,
         cy:800
     });
 
@@ -147,9 +147,9 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        floor  : "https://notendur.hi.is/~tht40/icy/images/floor.png",
+        floor  : "images/floor.png",
         player : "images/player.png",
-        wall   : "https://notendur.hi.is/~tht40/icy/images/wall.png"
+        wall   : "images/wall.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
