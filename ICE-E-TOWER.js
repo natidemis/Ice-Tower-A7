@@ -59,14 +59,16 @@ function createInitialPlayer() {
 function createInitialWalls(){
 
     entityManager.generateWall({
-
-        cx:850,
+        
+        align: "right",
+        cx:880,
         cy:450
     });
 
     entityManager.generateWall({
 
-        cx:50,
+        align: "left",
+        cx:20,
         cy:450
     });
 
@@ -192,7 +194,9 @@ function preloadDone() {
     g_sprites.wall = new Sprite(g_images.wall);
 
     entityManager.init();
+    createInitialWalls();
     createInitialFloors();
+    
     createInitialPlayer();
 
     main.init();

@@ -37,6 +37,10 @@ _generateFloors : function() {
     this.generateFloor();
 },
 
+_generateWalls : function() {
+    this.generateWall();
+},
+
 
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
@@ -67,6 +71,10 @@ generatePlayer : function(descr){
 
 generateFloor : function(descr) {
     this._floors.push(new Floor(descr));
+},
+
+generateWall : function(descr) {
+    this._walls.push(new Wall(descr));
 },
 
 update: function(du) {
