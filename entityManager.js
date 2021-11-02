@@ -60,57 +60,12 @@ deferredSetup : function () {
 init: function() {
 },
 
-fireBullet: function(cx, cy, velX, velY, rotation) {
-    this._bullets.push(new Bullet({
-        cx   : cx,
-        cy   : cy,
-        velX : velX,
-        velY : velY,
-
-        rotation : rotation
-    }));
-},
-
-generateRock : function(descr) {
-    this._rocks.push(new Rock(descr));
-},
-
-generateShip : function(descr) {
-    this._ships.push(new Ship(descr));
-},
-
 generatePlayer : function(descr){
     this._players.push(new Player(descr));
 },
 
 generateFloor : function(descr) {
     this._floors.push(new Floor(descr));
-},
-
-killNearestShip : function(xPos, yPos) {
-    var theShip = this._findNearestShip(xPos, yPos).theShip;
-    if (theShip) {
-        theShip.kill();
-    }
-},
-
-yoinkNearestShip : function(xPos, yPos) {
-    var theShip = this._findNearestShip(xPos, yPos).theShip;
-    if (theShip) {
-        theShip.setPos(xPos, yPos);
-    }
-},
-
-resetShips: function() {
-    this._forEachOf(this._ships, Ship.prototype.reset);
-},
-
-haltShips: function() {
-    this._forEachOf(this._ships, Ship.prototype.halt);
-},	
-
-toggleRocks: function() {
-    this._bShowRocks =! this._bShowRocks;
 },
 
 update: function(du) {
