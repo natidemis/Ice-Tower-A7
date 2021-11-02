@@ -26,13 +26,24 @@ function createInitialFloors() {
 
     entityManager.generateFloor({
         cx:300,
-        cy:570
+        cy:670
+    });
+
+    entityManager.generateFloor({
+        cx:210,
+        cy:875
     });
 
     entityManager.generateFloor({
         cx:500,
-        cy:800
+        cy:875
     });
+
+    entityManager.generateFloor({
+        cx:800,
+        cy:875
+    });
+
 
 }
 
@@ -43,6 +54,23 @@ function createInitialPlayer() {
         cx : 300,
         cy : 500
     })
+}
+
+function createInitialWalls(){
+
+    entityManager.generateWall({
+
+        cx:850,
+        cy:450
+    });
+
+    entityManager.generateWall({
+
+        cx:50,
+        cy:450
+    });
+
+    
 }
 
 // =============
@@ -161,6 +189,7 @@ function preloadDone() {
 
     g_sprites.floor = new Sprite(g_images.floor);
     g_sprites.player = new Sprite(g_images.player);
+    g_sprites.wall = new Sprite(g_images.wall);
 
     entityManager.init();
     createInitialFloors();
