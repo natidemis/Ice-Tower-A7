@@ -25,6 +25,14 @@ function Player(descr) {
 
     this.width = this.sprite.width*this._scale;
     this.height = this.sprite.height*this._scale;
+
+    this.landingSound = new Audio(
+        "sounds/domm(landing).ogg"
+    );
+
+    this.yo = new Audio(
+        "sounds/yo.ogg"
+    );
 };
 
 Player.prototype = new Entity();
@@ -48,6 +56,10 @@ Player.prototype.gAccel = 0.8;
 Player.prototype.jumpVel = 3;
 
 Player.prototype._isJumping = false;
+
+//sound managers
+Player.prototype._landed = true;
+Player.prototype._initState = true;
 
 // þarf líklegast að tweaka gildin sem eru notuð her
 Player.prototype.applyAccelX = function (du) {
@@ -112,9 +124,15 @@ Player.prototype.update = function (du){
         var floorY = spatialManager.findEntityInRange(this.cx, this.cy, this.width, this.height)
         // is colliding?
         if (floorY){
-            this.cy = floorY;
+            if(this._landed){
+                this.landingSound.play();
+                this._landed = false;
+            }
+            this.cy = floorY; 
             this.velY = 0;
-        }    
+        }else{
+            this._landed = true;
+        }
     }
 
     if(this._isDeadNow){
