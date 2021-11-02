@@ -45,9 +45,15 @@ function createInitialFloors() {
     });
 
     entityManager.generateFloor({
-        cx:700,
+        cx:600,
         cy:465
     });
+
+    entityManager.generateFloor({
+        cx:340,
+        cy:300
+    });
+
 
 
 }
