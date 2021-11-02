@@ -29,6 +29,7 @@ var entityManager = {
 
 _floors  : [],
 _players : [],
+_walls   : [],
 
 // "PRIVATE" METHODS
 
@@ -54,7 +55,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._floors, this._players];
+    this._categories = [this._floors, this._players, this._walls];
 },
 
 init: function() {
