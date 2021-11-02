@@ -39,7 +39,7 @@ Player.prototype.cy = 50;
 Player.prototype.velX = 0;
 Player.prototype.velY = 0;
 
-Player.prototype.accelX = 0.5;
+Player.prototype.accelX = 0.3;
 Player.prototype.maxVelX = 15;
 Player.prototype.friction = 0.9;
 
@@ -67,6 +67,17 @@ Player.prototype.applyAccelX = function () {
     
 }
 
+Player.prototype.wallcollide = function (du){
+    if((this.cx > 860) || this.cx < 40){
+        this.velX *= -1;
+
+        console.log("wall");
+    }
+
+    
+    
+}
+
 Player.prototype.update = function (du){
     spatialManager.unregister(this);
 
@@ -84,6 +95,8 @@ Player.prototype.update = function (du){
     if(this.velY < 25){
         this.velY += 0.8*du;
     }
+
+    this.wallcollide();
 
     // if falling
     if(0 < this.velY){

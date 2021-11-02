@@ -92,6 +92,7 @@ findEntityInRange: function(aX, aY, aW, aH) {
 
     return false;
 },
+ 
 
 render: function(ctx) {
     var oldStyle = ctx.strokeStyle;
