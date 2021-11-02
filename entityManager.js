@@ -41,7 +41,6 @@ _generateWalls : function() {
     this.generateWall();
 },
 
-
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
         fn.call(aCategory[i]);

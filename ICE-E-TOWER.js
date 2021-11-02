@@ -57,22 +57,52 @@ function createInitialPlayer() {
 }
 
 function createInitialWalls(){
-
     entityManager.generateWall({
-        
         align: "right",
         cx:880,
-        cy:450
+        cy:135
+    });
+    entityManager.generateWall({
+        align: "right",
+        cx:880,
+        cy:405
+    });
+    entityManager.generateWall({
+        align: "right",
+        cx:880,
+        cy:675
+    });
+    entityManager.generateWall({
+        align: "right",
+        cx:880,
+        cy:945
     });
 
     entityManager.generateWall({
 
         align: "left",
         cx:20,
-        cy:450
+        cy:135
+    });
+    entityManager.generateWall({
+
+        align: "left",
+        cx:20,
+        cy:405
+    });
+    entityManager.generateWall({
+
+        align: "left",
+        cx:20,
+        cy:675
+    });
+    entityManager.generateWall({
+
+        align: "left",
+        cx:20,
+        cy:945
     });
 
-    
 }
 
 // =============
