@@ -22,6 +22,9 @@ function Player(descr) {
     
     // Set normal drawing scale, and warp state off
     this._scale = 0.5;
+
+    this.width = this.sprite.width;
+    this.height = this.sprite.height;
 };
 
 Player.prototype = new Entity();
@@ -44,24 +47,23 @@ Player.prototype.update = function (du){
     spatialManager.unregister(this);
 
     if(keys[this.KEY_RIGHT]){
-        this.cx += 5
+        this.cx += 5*du;
     }
 
     if(keys[this.KEY_LEFT]){
-        this.cx -= 5
+        this.cx -= 5*du;
     }
 
-    this.velY += 5;
+    this.velY += 5*du;
 
     // if colliding...
     if(spatialManager.findEntityInRange(this.cx,this.cy,50).cy > this.cy){
-        // if going down...
+        // if going down, stop.
         if(0 < this.velY){this.velY = 0}
-
     }
 
     if(keys[this.KEY_JUMP] && (this.velY == 0)){
-        this.velY -= 50*du
+        this.velY -= 50*du;
         this._isJumping = true;
     }
 
@@ -78,8 +80,6 @@ Player.prototype.update = function (du){
     this.cy += this.velY * du;
 
     spatialManager.register(this);
-
-    console.log(this.velY);
 };
 
 Player.prototype.render = function (ctx){

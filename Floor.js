@@ -3,12 +3,13 @@ function Floor(descr) {
     // Common inherited setup logic from Entity
     this.setup(descr);
 
-    
-    // Default sprite, if not otherwise specified
-    this.sprite = this.sprite || g_sprites.floor;
+    this.sprite = g_sprites.floor;
     
     // Set normal drawing scale, and warp state off
-    this._scale = this.scale || 1;
+    this._scale = 1.5;
+
+    this.width = this.sprite.width;
+    this.height = this.sprite.height;
 };
 
 Floor.prototype = new Entity();
@@ -16,8 +17,11 @@ Floor.prototype = new Entity();
 Floor.prototype.cx = 300;
 Floor.prototype.cy = 550;
 
+
 Floor.prototype.update = function(du) {
     spatialManager.unregister(this);
+    w = this.sprite.width;
+    h = this.sprite.height;
 
     if(this._isDeadNow){
         return entityManager.KILL_ME_NOW;
@@ -34,7 +38,7 @@ Floor.prototype.update = function(du) {
 Floor.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
 
-    this.sprite.scale = 1.5
+    this.sprite.scale = 1.5;
     this.sprite.drawWrappedCentredAt(
         ctx, this.cx, this.cy, 0
     );

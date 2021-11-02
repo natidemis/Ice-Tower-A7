@@ -221,7 +221,6 @@ function preloadDone() {
     entityManager.init();
     createInitialFloors();
     createInitialPlayer();
-    
 
     main.init();
 }
