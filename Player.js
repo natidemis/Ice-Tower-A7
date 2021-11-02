@@ -49,20 +49,22 @@ Player.prototype._isJumping = false;
 
 // þarf líklegast að tweaka gildin sem eru notuð her
 Player.prototype.applyAccelX = function () {
-    if (Math.abs(this.velX) < this.maxVelX) {
-        if(keys[this.KEY_RIGHT]){
-            this.velX += this.accelX;
-        }
     
-        if(keys[this.KEY_LEFT]){
-            this.velX -= this.accelX;
-        }
-        // friction if both or neither are pressed
-        if (!(keys[this.KEY_RIGHT] || keys[this.KEY_LEFT]) ||
-            (keys[this.KEY_RIGHT] && keys[this.KEY_LEFT])) {
-            this.velX *= this.friction;
-        }
+    if(keys[this.KEY_RIGHT]){
+        if (this.velX < this.maxVelX) 
+            this.velX += this.accelX;
     }
+
+    if(keys[this.KEY_LEFT]){
+        if (this.velX > -this.maxVelX)
+            this.velX -= this.accelX;
+    }
+    // friction if both or neither are pressed
+    if (!(keys[this.KEY_RIGHT] || keys[this.KEY_LEFT]) ||
+        (keys[this.KEY_RIGHT] && keys[this.KEY_LEFT])) {
+        this.velX *= this.friction;
+    }
+    
 }
 
 Player.prototype.update = function (du){
