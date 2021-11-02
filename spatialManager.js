@@ -48,7 +48,8 @@ register: function(entity) {
     var entityDetails = {
         posX : pos.posX,
         posY : pos.posY,
-        radius : entity.getRadius(),
+        height : entity.height,
+        width : entity.width,
         entity : entity
     }
 
@@ -65,28 +66,28 @@ unregister: function(entity) {
 },
 
 
-findEntityInRange: function(posX, posY, radius) {
+findEntityInRange: function(aX, aY, aW, aH) {
 
-    // TODO: YOUR STUFF HERE!
+    aX -= aH/2;
+    aY -= aH/2;
 
     for (var ID in this._entities) {
-
-        var tempent = this._entities[ID];
-
-        var wrapDistanceSq = util.wrappedDistSq(
-            tempent.posX,
-            tempent.posY,
-            posX,
-            posY,
-            g_canvas.width,
-            g_canvas.height
-            );
-
-        var limitSq = util.square(radius + tempent.radius);
-
+        var b = this._entities[ID];
+        var bW = b.width;
+        var bH = b.height;
+        var bX = b.posX-bW/2;
+        var bY = b.posY-bH/2;
         //check if entities collide or not
-        if (wrapDistanceSq < limitSq && wrapDistanceSq > 0)
-            return tempent.entity;
+        if (aX < (bX + bW) &&
+            (aX + aW) > bX &&
+            aY < (bY + bH) &&
+            (aH + aY) > bY) {
+            // collision detected!
+            if (aY+aH/2 < bY-(bH/2)/2){
+                return true;
+            }
+            
+        }
     }
 
     return false;

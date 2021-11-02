@@ -38,12 +38,11 @@ _bShowRocks : true,
 // "PRIVATE" METHODS
 
 _generateRocks : function() {
-    var i,
-        NUM_ROCKS = 4;
+    //var i,
+    //    NUM_ROCKS = 4;
 
-    for (i = 0; i < NUM_ROCKS; ++i) {
-        this.generateRock();
-    }
+    //for (i = 0; i < NUM_ROCKS; ++i) {
+    //    this.generateRock();
 },
 
 _generateFloors : function() {
@@ -176,8 +175,6 @@ update: function(du) {
             }
         }
     }
-    
-    if (this._rocks.length === 0) this._generateRocks();
 
 },
 
