@@ -199,7 +199,8 @@ function requestPreloads() {
         ship2  : "https://notendur.hi.is/~pk/308G/images/ship_2.png",
         rock   : "https://notendur.hi.is/~pk/308G/images/rock.png",
         floor  : "https://notendur.hi.is/~tht40/icy/images/floor.png",
-        player : "https://notendur.hi.is/~tht40/icy/images/player.png"
+        player : "https://notendur.hi.is/~tht40/icy/images/player.png",
+        wall   : "https://notendur.hi.is/~tht40/icy/images/wall.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -214,6 +215,7 @@ function preloadDone() {
     g_sprites.rock  = new Sprite(g_images.rock);
     g_sprites.floor = new Sprite(g_images.floor);
     g_sprites.player = new Sprite(g_images.player);
+    g_sprites.wall  = new Sprite(g_images.wall);
 
     g_sprites.bullet = new Sprite(g_images.ship);
     g_sprites.bullet.scale = 0.25;
