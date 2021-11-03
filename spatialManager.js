@@ -75,18 +75,17 @@ findEntityInRange: function(aX, aY, aW, aH) {
         var b = this._entities[ID];
         var bW = b.width;
         var bH = b.height;
-        var bX = b.posX-bW/2;
-        var bY = b.posY-bH/2;
+        var bX = b.posX-(bW/2);
+        var bY = b.posY-(bH/2);
         //check if entities collide or not
         if (aX < (bX + bW) &&
             (aX + aW) > bX &&
             aY < (bY + bH) &&
             (aH + aY) > bY) {
             // collision detected!
-            if (aY+aH/2 < bY-(bH/2)){
-                return bY-bH+20;
-            }
-            
+            if (aY < bY-(bH/2)){
+                return bY-bH;
+            }  
         }
     }
 
@@ -102,6 +101,8 @@ render: function(ctx) {
         var e = this._entities[ID];
         util.strokeCircle(ctx, e.posX, e.posY, e.radius);
     }
+
+
     ctx.strokeStyle = oldStyle;
 }
 
