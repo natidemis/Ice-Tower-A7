@@ -220,7 +220,8 @@ function requestPreloads() {
     var requiredImages = {
         floor  : "images/floor.png",
         player : "images/player.png",
-        wall   : "images/wall.png"
+        wall   : "images/wall.png",
+        spritesheet : "images/icespreadsheet.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -233,6 +234,7 @@ function preloadDone() {
     g_sprites.floor = new Sprite(g_images.floor);
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
+    g_sprites.spritesheet = new Sprite(g_images.spritesheet);
 
     entityManager.init();
     createInitialWalls();
