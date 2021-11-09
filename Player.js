@@ -19,6 +19,7 @@ function Player(descr) {
     
     // Default sprite, if not otherwise specified
     this.sprite = this.sprite || g_sprites.player;
+    this.spriteArray = g_spritessheetsprite;
     
     // Set normal drawing scale, and warp state off
     this._scale = 0.2;
@@ -57,7 +58,7 @@ Player.prototype.jumpVel = 3;
 
 Player.prototype._isJumping = false;
 
-//sound managers
+// sound managers
 Player.prototype._landed = false;
 Player.prototype._initState = true;
 
@@ -143,12 +144,17 @@ Player.prototype.update = function (du){
     spatialManager.register(this);
 };
 
+var cellIdx = 0;
 Player.prototype.render = function (ctx){
+    var spritePlayer = this.spriteArray[cellIdx];
+
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
-    this.sprite.scale = this._scale;
-    this.sprite.drawCentredAt(
+    spritePlayer.scale = this._scale;
+    spritePlayer.drawAt(
 	ctx, this.cx, this.cy, this.rotation
     );
     this.sprite.scale = origScale;
+    cellIdx += 1;
+    cellIdx %= 7;
 };

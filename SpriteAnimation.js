@@ -1,10 +1,9 @@
-function SpriteAnimation(image) {
+function SpriteAnimation(sx, sy, width, height) {
     this.sx = sx;
     this.sy = sy;
-    this.image = image;
-    this.width = image.width;
-    this.height = image.height;
-    this.scale = 1;
+    this.width = width;
+    this.height = height;
+    this.image = g_images.spritesheet;
 }
 
 SpriteAnimation.prototype.drawAt = function (ctx, x, y) {
@@ -12,6 +11,7 @@ SpriteAnimation.prototype.drawAt = function (ctx, x, y) {
          this.sx, this.sy, this.width, this.height,
          x , y , this.width, this.height);
 }
+
 
 SpriteAnimation.prototype.drawCentredAt = function (ctx, cx, cy, rotation) {
     if (rotation === undefined) rotation = 0;

@@ -218,7 +218,7 @@ function requestPreloads() {
 
 var g_sprites = {};
 var g_spritesheet = {};
-
+var g_spritessheetsprite = [];
 
 function preloadDone() {
 
@@ -228,18 +228,19 @@ function preloadDone() {
     g_sprites.background = new Sprite(g_images.background);
     g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
-    var celWidth  = 34;
-    var celHeight  = 57;
+    // var celWidth  = 34;
+    // var celHeight  = 57;
+    var celWidth  = 37;
+    var celHeight  = 65;
     var numCols = 15;
     var numRows = 1;
     var numCels = 15;
 
-    g_spritessheetsprite = [];
     var sprite;
 
     for ( var row = 0; row < numRows; ++row){
         for( var col = 0; col < numCols; ++col){
-            sprite = new Sprite(col *celWidth, row* celHeight, celWidth, celHeight)
+            sprite = new SpriteAnimation(col *celWidth, row* celHeight, celWidth, celHeight)
             g_spritessheetsprite.push(sprite)
         }
     }
