@@ -202,6 +202,7 @@ function requestPreloads() {
         floor  : "images/floor.png",
         player : "images/player.png",
         wall   : "images/wall.png",
+        background : "images/background.png",
         spritesheet : "images/icespreadsheet.png"
     };
 
@@ -217,6 +218,7 @@ function preloadDone() {
     g_sprites.floor = new Sprite(g_images.floor);
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
+    g_sprites.background = new Sprite(g_images.background);
     g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
     var celWidth  = 34;
