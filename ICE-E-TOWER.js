@@ -43,7 +43,7 @@ function createInitialPlayer() {
 
     entityManager.generatePlayer({
         cx : 300,
-        cy : 700
+        cy : 600
     })
 }
 
