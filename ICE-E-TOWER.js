@@ -20,7 +20,7 @@ var g_ctx = g_canvas.getContext("2d");
 // ====================
 // CREATE INITIAL SHIPS
 // ====================
-
+var g_sprites;
 
 function createInitialFloors() {
     entityManager.generateFloor({
@@ -194,7 +194,7 @@ function renderSimulation(ctx) {
 // =============
 
 var g_images = {};
-var g_sounds = {};
+
 function requestPreloads() {
 
     var requiredImages = {
@@ -204,28 +204,11 @@ function requestPreloads() {
         spritesheet : "images/icespreadsheet.png"
     };
 
-    var requiredSounds = {
-        landing: "sounds/domm(landing).ogg",
-        edge: "sounds/edge-sound.ogg",
-        gameOver: "sounds/gameover.ogg",
-        jump: "sounds/hop.ogg",
-        tryAgain: "sounds/try-again.ogg",
-        weee: "sounds/weee.ogg",
-        weeeoh: "sounds/weeeoh.ogg",
-        whoopdedo1: "sounds/whoopdedo1.ogg",
-        yo: "sounds/yo.ogg"
-    }
-
-    //audioPreload(requiredSounds, g_audios, audioPreloadDone);
-    imagesPreload(requiredImages,g_images,preloadDone)
+    imagesPreload(requiredImages, g_images, preloadDone);
 }
 
 var g_sprites = {};
-var g_audios = {};
-function audioPreloadDone() {
-
-    g_audios.landing = new Audio(g_sounds.landing);
-}
+var g_spritesheet = {};
 
 
 function preloadDone() {
@@ -233,7 +216,29 @@ function preloadDone() {
     g_sprites.floor = new Sprite(g_images.floor);
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
-    g_sprites.spritesheet = new Sprite(g_images.spritesheet);
+    g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
+
+    var celWidth  = 34;
+    var celHeight  = 57;
+    var numCols = 15;
+    var numRows = 1;
+    var numCels = 15;
+
+    g_spritessheetsprite = [];
+    var sprite;
+
+    for ( var row = 0; row < numRows; ++row){
+        for( var col = 0; col < numCols; ++col){
+            sprite = new Sprite(col *celWidth, row* celHeight, celWidth, celHeight)
+            g_spritessheetsprite.push(sprite)
+        }
+    }
+    g_spritessheetsprite.splice(numCels);
+    console.log(g_spritessheetsprite);
+    console.dir(g_sprites);
+
+    
+
 
     entityManager.init();
     createInitialWalls();

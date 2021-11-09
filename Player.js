@@ -84,7 +84,6 @@ Player.prototype.applyAccelX = function (du) {
 Player.prototype.wallcollide = function (du){
     if(this.cx > 860){
         this.velX *= -1;
-        console.log("wall");
     }
 
     else if(this.cx < 40){
@@ -128,6 +127,7 @@ Player.prototype.update = function (du){
             if(this._landed){
                 this.landingSound.play();
                 this._landed = false;
+                
             }
         }else{
             this._landed = true;
