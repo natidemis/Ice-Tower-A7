@@ -69,7 +69,7 @@ unregister: function(entity) {
 findEntityInRange: function(aX, aY, aW, aH) {
 
     aX -= aW/2;
-    aY -= aH/2;
+    aY -= (aH/2)/2;
 
     for (var ID in this._entities) {
         var b = this._entities[ID];

@@ -80,8 +80,8 @@ update: function(du) {
     var topfloor = this._floors[this._floors.length-1]
     if(topfloor.cy+1000 > 0){
         this.generateFloor({
-            cx: g_canvas.width*(Math.random()*(0.8 - 0.2)+0.2),
-            cy: topfloor.cy-200
+            cx: g_canvas.width*(Math.random()*(0.75 - 0.25)+0.25),
+            cy: topfloor.cy-180
         });
     }
 

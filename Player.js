@@ -102,13 +102,13 @@ Player.prototype.update = function (du){
         
 
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX < (0.79*this.maxVelX)){
-        this.velY -= 20*du;
+        this.velY -= 20;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
 
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX > (0.8*this.maxVelX)){
-        this.velY -= 30*du;
+        this.velY -= 30;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
@@ -140,8 +140,6 @@ Player.prototype.update = function (du){
     }
 
     this.cy += this.velY * du;
-
-    console.log(this.velY);
 
     spatialManager.register(this);
 };
