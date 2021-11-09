@@ -145,12 +145,26 @@ Player.prototype.update = function (du){
 };
 
 var cellIdx = 0;
+var fallInit = 11;
+var factor = 7;
+// ... veiða úr sprite
 Player.prototype.render = function (ctx){
+    // if is falling
+
+    // if is landing
+
+    // if is jumping
+
+    // if is running
+
+    // if is stationary
+
+    // spegla fyrir vinstri
     var spritePlayer = this.spriteArray[cellIdx];
 
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
-    spritePlayer.scale = this._scale;
+    spritePlayer.scale = 0.8;
     spritePlayer.drawAt(
 	ctx, this.cx, this.cy, this.rotation
     );
