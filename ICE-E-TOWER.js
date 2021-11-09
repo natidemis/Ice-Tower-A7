@@ -258,7 +258,7 @@ function preloadDone() {
     createInitialFloors();
     
     createInitialPlayer();
-    //renderMenu(g_ctx);
+    renderMenu(g_ctx);
     main.init();
 }
 
