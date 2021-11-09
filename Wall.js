@@ -20,6 +20,9 @@ Wall.prototype.cy = 450;
 Wall.prototype.update = function(du){
     spatialManager.unregister(this);
 
+    var velY = ((g_canvas.height-entityManager._players[0].cy)/50);
+    this.cy = this.cy + velY;
+
     if(this._isDeadNow){
         return entityManager.KILL_ME_NOW;
     }

@@ -14,18 +14,18 @@ function Floor(descr) {
 
 Floor.prototype = new Entity();
 
-Floor.prototype.cx = 300;
-Floor.prototype.cy = 800;
+Floor.prototype.cx = 0;
+Floor.prototype.cy = 0;
 
 
 Floor.prototype.update = function(du) {
     spatialManager.unregister(this);
+    var velY = ((g_canvas.height-entityManager._players[0].cy)/50);
+    this.cy = this.cy + velY;
 
-    if(this._isDeadNow){
+    if(this.cy > g_canvas.height+500){
         return entityManager.KILL_ME_NOW;
     }
-
-    this.wrapPosition();
 
     spatialManager.register(this);
 };
@@ -34,7 +34,7 @@ Floor.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
 
     this.sprite.scale = this._scale;
-    this.sprite.drawWrappedCentredAt(
+    this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, 0
     );
     this.sprite.scale = origScale;

@@ -77,6 +77,13 @@ generateWall : function(descr) {
 },
 
 update: function(du) {
+    var topfloor = this._floors[this._floors.length-1]
+    if(topfloor.cy+1000 > 0){
+        this.generateFloor({
+            cx: g_canvas.width*(Math.random()*(0.8 - 0.2)+0.2),
+            cy: topfloor.cy-200
+        });
+    }
 
     for (var c = 0; c < this._categories.length; ++c) {
 

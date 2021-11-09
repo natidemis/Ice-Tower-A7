@@ -58,7 +58,7 @@ Player.prototype.jumpVel = 3;
 Player.prototype._isJumping = false;
 
 //sound managers
-Player.prototype._landed = true;
+Player.prototype._landed = false;
 Player.prototype._initState = true;
 
 // þarf líklegast að tweaka gildin sem eru notuð her
@@ -83,13 +83,11 @@ Player.prototype.applyAccelX = function (du) {
 
 Player.prototype.wallcollide = function (du){
     if(this.cx > 860){
-        this.cx = 860;
         this.velX *= -1;
         console.log("wall");
     }
 
     else if(this.cx < 40){
-        this.cx = 40;
         this.velX *= -1;
     }    
 }
@@ -106,11 +104,13 @@ Player.prototype.update = function (du){
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX < (0.79*this.maxVelX)){
         this.velY -= 20*du;
         this._isJumping = true;
+        keys[this.KEY_JUMP] = false;
     }
 
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX > (0.8*this.maxVelX)){
         this.velY -= 30*du;
         this._isJumping = true;
+        keys[this.KEY_JUMP] = false;
     }
 
     if(this.velY < this.maxFallingVel){
@@ -124,12 +124,12 @@ Player.prototype.update = function (du){
         var floorY = spatialManager.findEntityInRange(this.cx, this.cy, this.width, this.height)
         // is colliding?
         if (floorY){
+            this.velY = 0;
+            this.cy = floorY; 
             if(this._landed){
                 this.landingSound.play();
                 this._landed = false;
             }
-            this.cy = floorY; 
-            this.velY = 0;
         }else{
             this._landed = true;
         }
@@ -140,6 +140,8 @@ Player.prototype.update = function (du){
     }
 
     this.cy += this.velY * du;
+
+    console.log(this.velY);
 
     spatialManager.register(this);
 };

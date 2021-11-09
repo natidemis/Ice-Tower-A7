@@ -23,12 +23,6 @@ var g_ctx = g_canvas.getContext("2d");
 
 
 function createInitialFloors() {
-
-    entityManager.generateFloor({
-        cx:300,
-        cy:670
-    });
-
     entityManager.generateFloor({
         cx:210,
         cy:875
@@ -43,19 +37,6 @@ function createInitialFloors() {
         cx:800,
         cy:875
     });
-
-    entityManager.generateFloor({
-        cx:600,
-        cy:465
-    });
-
-    entityManager.generateFloor({
-        cx:340,
-        cy:300
-    });
-
-
-
 }
 
 function createInitialPlayer() {
