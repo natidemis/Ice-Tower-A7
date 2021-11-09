@@ -195,7 +195,7 @@ function renderSimulation(ctx) {
 // =============
 
 var g_images = {};
-
+var g_sounds = {};
 function requestPreloads() {
 
     var requiredImages = {
@@ -205,10 +205,29 @@ function requestPreloads() {
         spritesheet : "images/icespreadsheet.png"
     };
 
-    imagesPreload(requiredImages, g_images, preloadDone);
+    var requiredSounds = {
+        landing: "sounds/domm(landing).ogg",
+        edge: "sounds/edge-sound.ogg",
+        gameOver: "sounds/gameover.ogg",
+        jump: "sounds/hop.ogg",
+        tryAgain: "sounds/try-again.ogg",
+        weee: "sounds/weee.ogg",
+        weeeoh: "sounds/weeeoh.ogg",
+        whoopdedo1: "sounds/whoopdedo1.ogg",
+        yo: "sounds/yo.ogg"
+    }
+
+    //audioPreload(requiredSounds, g_audios, audioPreloadDone);
+    imagesPreload(requiredImages,g_images,preloadDone)
 }
 
 var g_sprites = {};
+var g_audios = {};
+function audioPreloadDone() {
+
+    g_audios.landing = new Audio(g_sounds.landing);
+}
+
 
 function preloadDone() {
 
