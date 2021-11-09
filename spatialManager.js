@@ -69,7 +69,7 @@ unregister: function(entity) {
 findEntityInRange: function(aX, aY, aW, aH) {
 
     aX -= aW/2;
-    aY -= (aH/2)/2;
+    aH -= (aH/2);
 
     for (var ID in this._entities) {
         var b = this._entities[ID];
@@ -84,7 +84,7 @@ findEntityInRange: function(aX, aY, aW, aH) {
             (aH + aY) > bY) {
             // collision detected!
             if (aY < bY-(bH/2)){
-                return bY-bH;
+                return (bY-(aH/2)-(bH/2)+5);
             }  
         }
     }
