@@ -100,7 +100,7 @@ Player.prototype.update = function (du){
     this.cx += this.velX;   
 
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX < (0.79*this.maxVelX)){
-        this.velY -= 20;
+        this.velY -= 14;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
