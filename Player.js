@@ -51,7 +51,7 @@ Player.prototype.accelX = 0.3;
 Player.prototype.maxVelX = 15;
 Player.prototype.maxFallingVel = 25;
 Player.prototype.friction = 0.9;
-Player.prototype.gAccel = 0.8;
+Player.prototype.gAccel = 0.7;
 
 Player.prototype.jumpVel = 3;
 
@@ -95,11 +95,10 @@ Player.prototype.wallcollide = function (du){
 Player.prototype.update = function (du){
     spatialManager.unregister(this);
 
-    // update position
-    this.cx += this.velX * du;
     // apply acceleration
     this.applyAccelX(du);
-        
+    // update position
+    this.cx += this.velX;   
 
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX < (0.79*this.maxVelX)){
         this.velY -= 20;

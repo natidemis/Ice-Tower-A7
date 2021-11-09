@@ -24,27 +24,26 @@ var g_ctx = g_canvas.getContext("2d");
 
 function createInitialFloors() {
     entityManager.generateFloor({
-        cx:210,
-        cy:875
+        cx:200,
+        cy:800
     });
 
     entityManager.generateFloor({
         cx:500,
-        cy:875
+        cy:800
     });
 
     entityManager.generateFloor({
         cx:800,
-        cy:875
+        cy:800
     });
 }
 
 function createInitialPlayer() {
 
     entityManager.generatePlayer({
-
         cx : 300,
-        cy : 800
+        cy : 700
     })
 }
 
