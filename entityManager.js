@@ -30,6 +30,7 @@ var entityManager = {
 _floors  : [],
 _players : [],
 _walls   : [],
+_backgrounds : [],
 
 // "PRIVATE" METHODS
 
@@ -39,6 +40,10 @@ _generateFloors : function() {
 
 _generateWalls : function() {
     this.generateWall();
+},
+
+_generateBackgrounds : function() {
+    this.generateBackground();
 },
 
 _forEachOf: function(aCategory, fn) {
@@ -58,7 +63,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._floors, this._players, this._walls];
+    this._categories = [this._backgrounds, this._floors, this._players, this._walls];
 },
 
 init: function() {
@@ -74,6 +79,10 @@ generateFloor : function(descr) {
 
 generateWall : function(descr) {
     this._walls.push(new Wall(descr));
+},
+
+generateBackground: function(descr) {
+    this._backgrounds.push(new Background(descr));
 },
 
 update: function(du) {

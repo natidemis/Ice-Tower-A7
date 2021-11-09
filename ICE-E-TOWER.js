@@ -95,6 +95,14 @@ function createInitialWalls(){
     });
 
 }
+function createInitialBackgrounds(){
+    entityManager.generateBackground({
+        cx:450,
+        cy:450
+    });
+    
+
+};
 
 // =============
 // GATHER INPUTS
@@ -238,11 +246,13 @@ function preloadDone() {
     g_spritessheetsprite.splice(numCels);
     console.log(g_spritessheetsprite);
     console.dir(g_sprites);
+    console.dir(g_spritessheetsprite);
 
     
 
 
     entityManager.init();
+    createInitialBackgrounds();
     createInitialWalls();
     createInitialFloors();
     
