@@ -210,7 +210,8 @@ function requestPreloads() {
         player : "images/player.png",
         wall   : "images/wall.png",
         background : "images/background.png",
-        spritesheet : "images/icespreadsheet.png"
+        spritesheet : "images/icespreadsheet.png",
+        menuBackground : "images/menuImage.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -257,7 +258,7 @@ function preloadDone() {
     createInitialFloors();
     
     createInitialPlayer();
-
+    //renderMenu(g_ctx);
     main.init();
 }
 
