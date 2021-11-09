@@ -20,7 +20,7 @@ var g_ctx = g_canvas.getContext("2d");
 // ====================
 // CREATE INITIAL SHIPS
 // ====================
-
+var g_sprites;
 
 function createInitialFloors() {
     entityManager.generateFloor({
@@ -209,13 +209,37 @@ function requestPreloads() {
 }
 
 var g_sprites = {};
+var g_spritesheet = {};
+
 
 function preloadDone() {
 
     g_sprites.floor = new Sprite(g_images.floor);
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
-    g_sprites.spritesheet = new Sprite(g_images.spritesheet);
+    g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
+
+    var celWidth  = 34;
+    var celHeight  = 57;
+    var numCols = 15;
+    var numRows = 1;
+    var numCels = 15;
+
+    g_spritessheetsprite = [];
+    var sprite;
+
+    for ( var row = 0; row < numRows; ++row){
+        for( var col = 0; col < numCols; ++col){
+            sprite = new Sprite(col *celWidth, row* celHeight, celWidth, celHeight)
+            g_spritessheetsprite.push(sprite)
+        }
+    }
+    g_spritessheetsprite.splice(numCels);
+    console.log(g_spritessheetsprite);
+    console.dir(g_sprites);
+
+    
+
 
     entityManager.init();
     createInitialWalls();
