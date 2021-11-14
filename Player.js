@@ -20,12 +20,24 @@ function Player(descr) {
     // Default sprite, if not otherwise specified
     this.sprite = this.sprite || g_sprites.player;
     this.spriteArray = g_spritessheetsprite;
+
+    // this.stationaryArray = g_stationaryArray;
+    // this.runningArray = g_runningArray;
+    // this.jumpingStationaryArray = g_jumpingStationary;
+    // this.jumpingArray = g_jumping;
+    // this.fallingArray = g_fallingArray;
+    // this.boostJumpArray = g_boostJumpArray;
+    // this.landingArray = g_landingArray;
+    let player1 = false;
+    this.player = player1 ? g_players.player1 : g_players.player2;
     
     // Set normal drawing scale, and warp state off
     this._scale = 1.4;
 
-    this.width = this.sprite.width*this._scale;
-    this.height = this.sprite.height*this._scale;
+    // this.width = this.sprite.width*this._scale;
+    // this.height = this.sprite.height*this._scale;
+    this.width = 30 * this._scale;
+    this.height = 58 * this._scale;
 
     this.landingSound = new Audio(
         "sounds/domm(landing).ogg"
@@ -144,13 +156,15 @@ Player.prototype.update = function (du){
     spatialManager.register(this);
 };
 
-var cellIdx = 14;
+var cellIdx = 0;
 // ... veiða úr sprite
 Player.prototype.render = function (ctx){
-    
+  var spritePlayer;  
   // if is stationary
   console.log("stationary", this.isStationary());
+  spritePlayer = this.player.stationaryArray[0];
     // if is running
+    
     // if is jumping stationary (xvel = 0)
     // if is jumping
     // if is falling
@@ -163,7 +177,7 @@ Player.prototype.render = function (ctx){
 
 
     // spegla fyrir vinstri
-    var spritePlayer = this.spriteArray[cellIdx];
+    //spritePlayer = this.spriteArray[cellIdx];
 
     // pass my scale into the sprite, for drawing
     spritePlayer.scale = this._scale;
@@ -183,7 +197,7 @@ Player.prototype.isStationary = function() {
 
 Player.prototype.isRunning = function() {};
 Player.prototype.isJumpingStationary = function() {
-  
+
 };
 Player.prototype.isJumping = function() {};
 Player.prototype.isFalling = function() {};

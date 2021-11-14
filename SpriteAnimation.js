@@ -12,10 +12,7 @@ SpriteAnimation.prototype.drawAt = function (ctx, cx, cy, rotation) {
     ctx.scale(this.scale, this.scale);
     ctx.rotate(rotation)
     ctx.translate(-cx,-cy);
-    ctx.drawImage(this.image,
-         this.sx + 3, this.sy + 8, this.width, this.height,
-         cx , cy , this.width, this.height);
+    ctx.drawImage(this.image, this.sx, this.sy, this.width, this.height,
+        cx , cy , this.width, this.height);
     ctx.restore();
 }
-
-

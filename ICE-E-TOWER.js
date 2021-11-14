@@ -235,6 +235,27 @@ var g_boostJumpArray = [];
 // 13-15
 var g_landingArray = [];
 
+var g_players = {
+  player1: {
+    stationaryArray: [],
+    runningArray: [],
+    jumpingStationary: [],
+    jumping: [],
+    fallingArray: [],
+    boostJumpArray: [],
+    landingArray: []
+  },
+  player2: {
+    stationaryArray: [],
+    runningArray: [],
+    jumpingStationary: [],
+    jumping: [],
+    fallingArray: [],
+    boostJumpArray: [],
+    landingArray: []
+  }
+}
+
 
 function preloadDone() {
 
@@ -246,8 +267,8 @@ function preloadDone() {
 
     //var celWidth  = 34;
     //var celHeight  = 57;
-    var celWidth  = 34;
-    var celHeight  = 70;
+    var celWidth  = 30;
+    var celHeight  = 58;
     var numCols = 15;
     var numRows = 1;
     var numCels = 15;
@@ -255,19 +276,18 @@ function preloadDone() {
     var sprite;
 
 
-    for ( var row = 0; row < numRows; ++row){
-        for( var col = 0; col < numCols; ++col){
-            sprite = new SpriteAnimation(col *celWidth, row* celHeight, celWidth, celHeight)
-            g_spritessheetsprite.push(sprite)
-        }
-    }
-    g_spritessheetsprite.splice(numCels);
-    console.log(g_spritessheetsprite);
-    console.dir(g_sprites);
-    console.dir(g_spritessheetsprite);
+    //for ( var row = 0; row < numRows; ++row){
+    //    for( var col = 0; col < numCols; ++col){
+    //        sprite = new SpriteAnimation(col *celWidth, row* celHeight, celWidth, celHeight)
+    //        g_spritessheetsprite.push(sprite)
+    //    }
+    //}
+    //g_spritessheetsprite.splice(numCels);
+    var p1y = 7;
+    var p2y = 75;
 
-    
-
+    g_players.player1 = cutOutPlayers(g_players.player1, p1y);
+    g_players.player2 = cutOutPlayers(g_players.player2, p2y);
 
     entityManager.init();
     createInitialBackgrounds();
@@ -277,6 +297,20 @@ function preloadDone() {
     createInitialPlayer();
 
     main.init();
+}
+
+function cutOutPlayers(player, y) {
+  var celWidth  = 30;
+  var celHeight  = 58;
+  player.stationaryArray.push(new SpriteAnimation(5, y, celWidth, celHeight));
+  player.stationaryArray.push(new SpriteAnimation(42, y, celWidth, celHeight));
+  player.stationaryArray.push(new SpriteAnimation(80, y, celWidth, celHeight));
+
+  player.runningArray.push(new SpriteAnimation(117, y, celWidth, celHeight));
+  player.runningArray.push(new SpriteAnimation(154, y, celWidth, celHeight));
+  player.runningArray.push(new SpriteAnimation(191, y, celWidth, celHeight));
+  player.runningArray.push(new SpriteAnimation(229, y, celWidth, celHeight));
+  return player;
 }
 
 // Kick it off
