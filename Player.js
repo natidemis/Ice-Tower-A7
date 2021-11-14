@@ -145,19 +145,21 @@ Player.prototype.update = function (du){
 };
 
 var cellIdx = 14;
-var fallInit = 11;
-var factor = 7;
 // ... veiða úr sprite
 Player.prototype.render = function (ctx){
+    
+    // if is stationary
+    // if is running
+    // if is jumping stationary (xvel = 0)
+    // if is jumping
     // if is falling
+    // if is boostjump
+        // setja rotation ?
 
     // if is landing
 
-    // if is jumping
 
-    // if is running
 
-    // if is stationary
 
     // spegla fyrir vinstri
     var spritePlayer = this.spriteArray[cellIdx];
