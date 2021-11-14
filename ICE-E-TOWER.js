@@ -217,8 +217,24 @@ function requestPreloads() {
 }
 
 var g_sprites = {};
-var g_spritesheet = {};
+// beila a thennan?
 var g_spritessheetsprite = [];
+
+// 1-3
+var g_stationaryArray = [];
+// 4-7
+var g_runningArray = [];
+// 8
+var g_jumpingStationary = [];
+// 9-10
+var g_jumping = [];
+// 11
+var g_fallingArray = [];
+// 12
+var g_boostJumpArray = [];
+// 13-15
+var g_landingArray = [];
+
 
 function preloadDone() {
 
@@ -226,17 +242,18 @@ function preloadDone() {
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
-    g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
+    //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
+    //var celWidth  = 34;
+    //var celHeight  = 57;
     var celWidth  = 34;
-    var celHeight  = 57;
-    //var celWidth  = 37;
-    //var celHeight  = 65;
+    var celHeight  = 70;
     var numCols = 15;
     var numRows = 1;
     var numCels = 15;
 
     var sprite;
+
 
     for ( var row = 0; row < numRows; ++row){
         for( var col = 0; col < numCols; ++col){

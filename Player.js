@@ -162,13 +162,11 @@ Player.prototype.render = function (ctx){
     // spegla fyrir vinstri
     var spritePlayer = this.spriteArray[cellIdx];
 
-    var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
     spritePlayer.scale = this._scale;
     spritePlayer.drawAt(
 	    ctx, this.cx, this.cy, this.rotation
     );
-    this.sprite.scale = origScale;
     //cellIdx += 1;
     //cellIdx %= 1;
 };
