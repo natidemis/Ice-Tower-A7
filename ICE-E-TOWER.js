@@ -142,6 +142,8 @@ var g_allowMixedActions = true;
 var g_useGravity = false;
 var g_useAveVel = true;
 var g_renderSpatialDebug = false;
+var g_runGame = false;
+
 
 var KEY_MIXED   = keyCode('M');;
 var KEY_GRAVITY = keyCode('G');
@@ -189,11 +191,17 @@ function processDiagnostics() {
 
 // GAME-SPECIFIC RENDERING
 
+
+
 function renderSimulation(ctx) {
-
-    entityManager.render(ctx);
-
+    //TODO: setja menuManager.startGame = false þegar leikur klárast.
+    if(menuManager.startGame){
+        entityManager.render(ctx);
+    }else{
+        menuManager.renderMenu(ctx);
+    }
     if (g_renderSpatialDebug) spatialManager.render(ctx);
+
 }
 
 
@@ -260,7 +268,7 @@ function preloadDone() {
     createInitialFloors();
     
     createInitialPlayer();
-    renderMenu(g_ctx);
+    
     main.init();
 }
 
