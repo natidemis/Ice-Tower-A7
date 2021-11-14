@@ -1,0 +1,43 @@
+batch 1 : 30x 58y   (idle)
+
+sprite 0 : 1 (x = 5 y =65) 2 (x= 35 y = 7)
+
+sprite 1 : 1 (x = 42 y =65) 2 (x= 72 y = 7)
+
+sprite 3 : 1 (x = 80 y =65) 2 (x= 110 y = 7)
+
+batch 2 : 30x 58y   (running)
+
+sprite 4 : 1 (x = 117 y =65) 2 (x= 147 y = 7)
+
+sprite 5 : 1 (x = 154 y =65) 2 (x= 184 y = 7)
+
+sprite 6 : 1 (x = 191 y =65) 2 (x= 221 y = 7)
+
+sprite 7 : 1 (x = 229 y =65) 2 (x= 259 y = 7)
+
+batch 3 : 30x 58y    (jumping straight)
+
+sprite 9 : 1 (x = 268 y =65) 2 (x= 298 y = 7)
+
+batch 4 : 30x 58y    (jumping side)
+
+sprite 10 : 1 (x = 307 y =65) 2 (x= 337 y = 7) 
+
+sprite 11 : 1 (x = 346 y =65) 2 (x= 376 y = 7) 
+
+sprite 12 : 1 (x = 387 y =65) 2 (x= 417 y = 7) 
+
+batch 5 : 44x 58y   (jumping spin)
+
+sprite 13 : 1 (x = 431 y =65) 2 (x= 475 y = 7) 
+
+batch 6 : 39x 58y   (edge fall)
+
+sprite 14 : 1 (x = 486 y =65) 2 (x= 525 y = 7) 
+
+sprite 15 : 1 (x = 533 y =65) 2 (x= 572 y = 7) 
+
+batch 7 : 30x 58y  (player gasp)
+
+sprite 16 : 1 (x = 583 y =65) 2 (x= 613 y = 7) 
