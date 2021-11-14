@@ -112,13 +112,19 @@ Player.prototype.update = function (du){
     // update position
     this.cx += this.velX;   
 
-    if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX < (0.79*this.maxVelX)){
-        this.velY -= 14;
+    if((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79*this.maxVelX) && (this.velX > 0.79*(-this.maxVelX)))){
+        this.velY -= 17;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
 
-    if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX > (0.8*this.maxVelX)){
+    if((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8*this.maxVelX)){
+        this.velY -= 30;
+        this._isJumping = true;
+        keys[this.KEY_JUMP] = false;
+    }
+
+    if((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8*(-this.maxVelX))){
         this.velY -= 30;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
@@ -151,7 +157,7 @@ Player.prototype.update = function (du){
         return entityManager.KILL_ME_NOW;
     }
 
-    this.cy += this.velY * du;
+    this.cy += (this.velY+entityManager._speed) * du;
 
     spatialManager.register(this);
 };

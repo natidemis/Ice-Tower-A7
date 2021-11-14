@@ -21,6 +21,7 @@ var g_ctx = g_canvas.getContext("2d");
 // CREATE INITIAL SHIPS
 // ====================
 var g_sprites;
+var g_score = 0;
 
 function createInitialFloors() {
     entityManager.generateFloor({
@@ -43,7 +44,7 @@ function createInitialPlayer() {
 
     entityManager.generatePlayer({
         cx : 300,
-        cy : 700
+        cy : 600
     })
 }
 
@@ -134,6 +135,8 @@ function updateSimulation(du) {
     
     entityManager.update(du);
 
+    g_score += ((entityManager._speed*du)/180)*10;
+
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
@@ -142,6 +145,8 @@ var g_allowMixedActions = true;
 var g_useGravity = false;
 var g_useAveVel = true;
 var g_renderSpatialDebug = false;
+var g_runGame = false;
+
 
 var KEY_MIXED   = keyCode('M');;
 var KEY_GRAVITY = keyCode('G');
@@ -189,11 +194,20 @@ function processDiagnostics() {
 
 // GAME-SPECIFIC RENDERING
 
+
+
 function renderSimulation(ctx) {
-
+    //TODO: setja menuManager.startGame = false þegar leikur klárast.
     entityManager.render(ctx);
-
-    if (g_renderSpatialDebug) spatialManager.render(ctx);
+    //if(menuManager.startGame){
+    //    entityManager.render(ctx);
+    //}else{
+    //    menuManager.renderMenu(ctx);
+    //}
+    //if (g_renderSpatialDebug) spatialManager.render(ctx);
+    ctx.font = "40px Brush Bold";
+    ctx.fillStyle = "purple";
+    ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
 }
 
 
@@ -210,7 +224,9 @@ function requestPreloads() {
         player : "images/player.png",
         wall   : "images/wall.png",
         background : "images/background.png",
-        spritesheet : "images/icespreadsheet.png"
+        spritesheet : "images/icespreadsheet.png",
+        menuBackground : "images/menuImage.png",
+        floorboard : "images/floorlvl.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -265,8 +281,9 @@ function preloadDone() {
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
-    
-    //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
+
+    g_sprites.floorboard = new Sprite(g_images.floorboard);
+    g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
     //var celWidth  = 34;
     //var celHeight  = 57;
@@ -302,7 +319,7 @@ function preloadDone() {
     createInitialFloors();
     
     createInitialPlayer();
-
+    
     main.init();
 }
 
