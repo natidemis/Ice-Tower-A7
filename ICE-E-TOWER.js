@@ -302,10 +302,12 @@ function preloadDone() {
 function cutOutPlayers(player, y) {
   var celWidth  = 30;
   var celHeight  = 58;
+  // stationary
   player.stationaryArray.push(new SpriteAnimation(5, y, celWidth, celHeight));
   player.stationaryArray.push(new SpriteAnimation(42, y, celWidth, celHeight));
   player.stationaryArray.push(new SpriteAnimation(80, y, celWidth, celHeight));
 
+  // running
   player.runningArray.push(new SpriteAnimation(117, y, celWidth, celHeight));
   player.runningArray.push(new SpriteAnimation(154, y, celWidth, celHeight));
   player.runningArray.push(new SpriteAnimation(191, y, celWidth, celHeight));
