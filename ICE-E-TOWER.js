@@ -211,7 +211,8 @@ function requestPreloads() {
         wall   : "images/wall.png",
         background : "images/background.png",
         spritesheet : "images/icespreadsheet.png",
-        menuBackground : "images/menuImage.png"
+        menuBackground : "images/menuImage.png",
+        floorboard : "images/floorlvl.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -227,6 +228,7 @@ function preloadDone() {
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
+    g_sprites.floorboard = new Sprite(g_images.floorboard);
     g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
     var celWidth  = 34;
