@@ -21,7 +21,7 @@ Background.prototype.update = function(du){
 
     spatialManager.unregister(this);
 
-    var velY = ((g_canvas.height-entityManager._players[0].cy)/1000);
+    var velY = entityManager._speed/10;
     this.cy = this.cy + velY*du;
 
     if(this._isDeadNow){

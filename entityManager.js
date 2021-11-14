@@ -31,6 +31,7 @@ _floors  : [],
 _players : [],
 _walls   : [],
 _backgrounds : [],
+_speed: 0,
 
 // "PRIVATE" METHODS
 
@@ -86,6 +87,10 @@ generateBackground: function(descr) {
 },
 
 update: function(du) {
+    if(this._players[0]){
+        this._speed = ((g_canvas.height-entityManager._players[0].cy)/100);
+    }
+
     var topfloor = this._floors[this._floors.length-1]
     if(topfloor.cy+1000 > 0){
         this.generateFloor({

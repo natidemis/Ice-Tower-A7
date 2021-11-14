@@ -144,7 +144,7 @@ Player.prototype.update = function (du){
         return entityManager.KILL_ME_NOW;
     }
 
-    this.cy += (this.velY+((g_canvas.height-entityManager._players[0].cy)/100)) * du;
+    this.cy += (this.velY+entityManager._speed) * du;
 
     spatialManager.register(this);
 };

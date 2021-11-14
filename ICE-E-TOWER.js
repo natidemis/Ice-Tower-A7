@@ -21,6 +21,7 @@ var g_ctx = g_canvas.getContext("2d");
 // CREATE INITIAL SHIPS
 // ====================
 var g_sprites;
+var g_score = 0;
 
 function createInitialFloors() {
     entityManager.generateFloor({
@@ -134,6 +135,8 @@ function updateSimulation(du) {
     
     entityManager.update(du);
 
+    g_score += ((entityManager._speed*du)/180)*10;
+
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
@@ -195,13 +198,16 @@ function processDiagnostics() {
 
 function renderSimulation(ctx) {
     //TODO: setja menuManager.startGame = false þegar leikur klárast.
-    if(menuManager.startGame){
-        entityManager.render(ctx);
-    }else{
-        menuManager.renderMenu(ctx);
-    }
-    if (g_renderSpatialDebug) spatialManager.render(ctx);
-
+    entityManager.render(ctx);
+    //if(menuManager.startGame){
+    //    entityManager.render(ctx);
+    //}else{
+    //    menuManager.renderMenu(ctx);
+    //}
+    //if (g_renderSpatialDebug) spatialManager.render(ctx);
+    ctx.font = "40px Brush Bold";
+    ctx.fillStyle = "purple";
+    ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
 }
 
 
