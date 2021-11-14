@@ -98,15 +98,21 @@ Player.prototype.update = function (du){
     this.applyAccelX(du);
     // update position
     this.cx += this.velX;   
-
-    if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX < (0.79*this.maxVelX)){
+    console.log(this.velX);
+    if((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79*this.maxVelX) && (this.velX > 0.79*(-this.maxVelX)))){
         this.velY -= 14;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
 
-    if((keys[this.KEY_JUMP] && (this.velY == 0)) && this.velX > (0.8*this.maxVelX)){
-        this.velY -= 30;
+    if((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8*this.maxVelX)){
+        this.velY -= 25;
+        this._isJumping = true;
+        keys[this.KEY_JUMP] = false;
+    }
+
+    if((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8*(-this.maxVelX))){
+        this.velY -= 25;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
