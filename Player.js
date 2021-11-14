@@ -19,12 +19,25 @@ function Player(descr) {
     
     // Default sprite, if not otherwise specified
     this.sprite = this.sprite || g_sprites.player;
+    this.spriteArray = g_spritessheetsprite;
+
+    // this.stationaryArray = g_stationaryArray;
+    // this.runningArray = g_runningArray;
+    // this.jumpingStationaryArray = g_jumpingStationary;
+    // this.jumpingArray = g_jumping;
+    // this.fallingArray = g_fallingArray;
+    // this.boostJumpArray = g_boostJumpArray;
+    // this.landingArray = g_landingArray;
+    let player1 = false;
+    this.player = player1 ? g_players.player1 : g_players.player2;
     
     // Set normal drawing scale, and warp state off
-    this._scale = 0.2;
+    this._scale = 1.4;
 
-    this.width = this.sprite.width*this._scale;
-    this.height = this.sprite.height*this._scale;
+    // this.width = this.sprite.width*this._scale;
+    // this.height = this.sprite.height*this._scale;
+    this.width = 30 * this._scale;
+    this.height = 58 * this._scale;
 
     this.landingSound = new Audio(
         "sounds/domm(landing).ogg"
@@ -57,7 +70,7 @@ Player.prototype.jumpVel = 3;
 
 Player.prototype._isJumping = false;
 
-//sound managers
+// sound managers
 Player.prototype._landed = false;
 Player.prototype._initState = true;
 
@@ -149,12 +162,50 @@ Player.prototype.update = function (du){
     spatialManager.register(this);
 };
 
+var cellIdx = 0;
+// ... veiða úr sprite
 Player.prototype.render = function (ctx){
-    var origScale = this.sprite.scale;
+  var spritePlayer;  
+  // if is stationary
+  console.log("stationary", this.isStationary());
+  spritePlayer = this.player.stationaryArray[0];
+    // if is running
+    
+    // if is jumping stationary (xvel = 0)
+    // if is jumping
+    // if is falling
+    // if is boostjump
+        // setja rotation ?
+
+    // if is landing
+
+
+
+
+    // spegla fyrir vinstri
+    //spritePlayer = this.spriteArray[cellIdx];
+
     // pass my scale into the sprite, for drawing
-    this.sprite.scale = this._scale;
-    this.sprite.drawCentredAt(
-	ctx, this.cx, this.cy, this.rotation
+    spritePlayer.scale = this._scale;
+    spritePlayer.drawAt(
+	    ctx, this.cx, this.cy, this.rotation
     );
-    this.sprite.scale = origScale;
+    //cellIdx += 1;
+    //cellIdx %= 1;
 };
+
+Player.prototype.isStationary = function() {
+    if (Math.abs(this.velX) <= 0.0001 && Math.abs(this.velY) <= 0.0001) {
+      return true;
+    } else
+      return false;
+};
+
+Player.prototype.isRunning = function() {};
+Player.prototype.isJumpingStationary = function() {
+
+};
+Player.prototype.isJumping = function() {};
+Player.prototype.isFalling = function() {};
+Player.prototype.isBoostJumping = function() {};
+Player.prototype.isLanding = function() {};
