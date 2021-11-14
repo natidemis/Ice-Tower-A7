@@ -283,7 +283,7 @@ function preloadDone() {
     g_sprites.background = new Sprite(g_images.background);
 
     g_sprites.floorboard = new Sprite(g_images.floorboard);
-    g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
+    //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
     //var celWidth  = 34;
     //var celHeight  = 57;
