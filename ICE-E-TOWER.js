@@ -221,19 +221,21 @@ var g_sprites = {};
 var g_spritessheetsprite = [];
 
 // 1-3
-var g_stationaryArray = [];
-// 4-7
-var g_runningArray = [];
-// 8
-var g_jumpingStationary = [];
-// 9-10
-var g_jumping = [];
-// 11
-var g_fallingArray = [];
-// 12
-var g_boostJumpArray = [];
-// 13-15
-var g_landingArray = [];
+// var g_stationaryArray = [];
+// // 4-7
+// var g_runningArray = [];
+// // 8
+// var g_jumpingStationary = [];
+// // 9-10
+// var g_jumping = [];
+// // 11
+// var g_fallingArray = [];
+// // 12
+// var g_boostJumpArray = [];
+// // 13-15
+// var g_landingArray = [];
+var model1;
+var model2;
 
 var g_players = {
   player1: {
@@ -263,6 +265,7 @@ function preloadDone() {
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
+    
     //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
     //var celWidth  = 34;
@@ -272,6 +275,10 @@ function preloadDone() {
     var numCols = 15;
     var numRows = 1;
     var numCels = 15;
+
+    // temporary shit fyrir natanel
+    model1 = new SpriteAnimation(5, 7, celWidth, celHeight);
+    model2 = new SpriteAnimation(5, 75, celWidth, celHeight);
 
     var sprite;
 
