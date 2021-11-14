@@ -100,19 +100,19 @@ Player.prototype.update = function (du){
     this.cx += this.velX;   
     console.log(this.velX);
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79*this.maxVelX) && (this.velX > 0.79*(-this.maxVelX)))){
-        this.velY -= 14;
+        this.velY -= 17;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
 
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8*this.maxVelX)){
-        this.velY -= 25;
+        this.velY -= 30;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
 
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8*(-this.maxVelX))){
-        this.velY -= 25;
+        this.velY -= 30;
         this._isJumping = true;
         keys[this.KEY_JUMP] = false;
     }
@@ -144,7 +144,7 @@ Player.prototype.update = function (du){
         return entityManager.KILL_ME_NOW;
     }
 
-    this.cy += this.velY * du;
+    this.cy += (this.velY+((g_canvas.height-entityManager._players[0].cy)/100)) * du;
 
     spatialManager.register(this);
 };
