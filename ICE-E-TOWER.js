@@ -228,10 +228,10 @@ function preloadDone() {
     g_sprites.background = new Sprite(g_images.background);
     g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
-    // var celWidth  = 34;
-    // var celHeight  = 57;
-    var celWidth  = 37;
-    var celHeight  = 65;
+    var celWidth  = 34;
+    var celHeight  = 57;
+    //var celWidth  = 37;
+    //var celHeight  = 65;
     var numCols = 15;
     var numRows = 1;
     var numCels = 15;

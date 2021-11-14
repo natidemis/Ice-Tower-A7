@@ -22,7 +22,7 @@ function Player(descr) {
     this.spriteArray = g_spritessheetsprite;
     
     // Set normal drawing scale, and warp state off
-    this._scale = 0.2;
+    this._scale = 1.4;
 
     this.width = this.sprite.width*this._scale;
     this.height = this.sprite.height*this._scale;
@@ -144,7 +144,7 @@ Player.prototype.update = function (du){
     spatialManager.register(this);
 };
 
-var cellIdx = 0;
+var cellIdx = 14;
 var fallInit = 11;
 var factor = 7;
 // ... veiða úr sprite
@@ -164,11 +164,11 @@ Player.prototype.render = function (ctx){
 
     var origScale = this.sprite.scale;
     // pass my scale into the sprite, for drawing
-    spritePlayer.scale = 0.8;
+    spritePlayer.scale = this._scale;
     spritePlayer.drawAt(
-	ctx, this.cx, this.cy, this.rotation
+	    ctx, this.cx, this.cy, this.rotation
     );
     this.sprite.scale = origScale;
-    cellIdx += 1;
-    cellIdx %= 7;
+    //cellIdx += 1;
+    //cellIdx %= 1;
 };
