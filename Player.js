@@ -148,7 +148,8 @@ var cellIdx = 14;
 // ... veiða úr sprite
 Player.prototype.render = function (ctx){
     
-    // if is stationary
+  // if is stationary
+  console.log("stationary", this.isStationary());
     // if is running
     // if is jumping stationary (xvel = 0)
     // if is jumping
@@ -172,3 +173,19 @@ Player.prototype.render = function (ctx){
     //cellIdx += 1;
     //cellIdx %= 1;
 };
+
+Player.prototype.isStationary = function() {
+    if (Math.abs(this.velX) <= 0.0001 && Math.abs(this.velY) <= 0.0001) {
+      return true;
+    } else
+      return false;
+};
+
+Player.prototype.isRunning = function() {};
+Player.prototype.isJumpingStationary = function() {
+  
+};
+Player.prototype.isJumping = function() {};
+Player.prototype.isFalling = function() {};
+Player.prototype.isBoostJumping = function() {};
+Player.prototype.isLanding = function() {};
