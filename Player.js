@@ -98,7 +98,7 @@ Player.prototype.update = function (du){
     this.applyAccelX(du);
     // update position
     this.cx += this.velX;   
-    console.log(this.velX);
+
     if((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79*this.maxVelX) && (this.velX > 0.79*(-this.maxVelX)))){
         this.velY -= 17;
         this._isJumping = true;
