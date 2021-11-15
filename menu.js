@@ -127,12 +127,12 @@ var menuManager = {
                     this.isSelectCharMenu = true
                 }
             }
-            if(!this.isSelectCharMenu && !this.startGame && !this.optionsMenu && g_mouseY >= this.options_coord_y && g_mouseY <= this.options_coord_y + this.y_diff){
-                if(g_mouseClick === 1){
-                    g_mouseClick = 0;
-                    this.optionsMenu = true
-                }
-            }
+            // if(!this.isSelectCharMenu && !this.startGame && !this.optionsMenu && g_mouseY >= this.options_coord_y && g_mouseY <= this.options_coord_y + this.y_diff){
+            //     if(g_mouseClick === 1){
+            //         g_mouseClick = 0;
+            //         this.optionsMenu = true
+            //     }
+            // }
         }
     },
 }

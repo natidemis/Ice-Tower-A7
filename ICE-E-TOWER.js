@@ -199,6 +199,7 @@ function processDiagnostics() {
 function renderSimulation(ctx) {
     //TODO: setja menuManager.startGame = false þegar leikur klárast.
     entityManager.render(ctx);
+    
     if(menuManager.startGame){
         entityManager.render(ctx);
     }else{
@@ -239,20 +240,6 @@ var g_sprites = {};
 // beila a thennan?
 var g_spritessheetsprite = [];
 
-// 1-3
-// var g_stationaryArray = [];
-// // 4-7
-// var g_runningArray = [];
-// // 8
-// var g_jumpingStationary = [];
-// // 9-10
-// var g_jumping = [];
-// // 11
-// var g_fallingArray = [];
-// // 12
-// var g_boostJumpArray = [];
-// // 13-15
-// var g_landingArray = [];
 var model1;
 var model2;
 
@@ -262,18 +249,18 @@ var g_players = {
     runningArray: [],
     jumpingStationary: [],
     jumping: [],
-    fallingArray: [],
-    boostJumpArray: [],
-    landingArray: []
+    boostJump: [],
+    edgeFall: [],
+    playerGasp: []
   },
   player2: {
     stationaryArray: [],
     runningArray: [],
     jumpingStationary: [],
     jumping: [],
-    fallingArray: [],
-    boostJumpArray: [],
-    landingArray: []
+    boostJump: [],
+    edgeFall: [],
+    playerGasp: []
   }
 }
 
@@ -289,33 +276,21 @@ function preloadDone() {
     g_sprites.floorboard = new Sprite(g_images.floorboard);
     //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
-    //var celWidth  = 34;
-    //var celHeight  = 57;
     var celWidth  = 30;
     var celHeight  = 58;
-    var numCols = 15;
-    var numRows = 1;
-    var numCels = 15;
-
-    // temporary shit fyrir natanel
+  
+    // for menu
     model1 = new SpriteAnimation(5, 7, celWidth, celHeight);
     model2 = new SpriteAnimation(5, 75, celWidth, celHeight);
-
-    var sprite;
-
-
-    //for ( var row = 0; row < numRows; ++row){
-    //    for( var col = 0; col < numCols; ++col){
-    //        sprite = new SpriteAnimation(col *celWidth, row* celHeight, celWidth, celHeight)
-    //        g_spritessheetsprite.push(sprite)
-    //    }
-    //}
-    //g_spritessheetsprite.splice(numCels);
+;
     var p1y = 7;
     var p2y = 75;
 
     g_players.player1 = cutOutPlayers(g_players.player1, p1y);
     g_players.player2 = cutOutPlayers(g_players.player2, p2y);
+
+    // hot fix because of hole in sprite sheet for player 2:
+    g_players.player2.runningArray[0] = g_players.player2.runningArray[2]; 
 
     entityManager.init();
     createInitialBackgrounds();
@@ -340,6 +315,31 @@ function cutOutPlayers(player, y) {
   player.runningArray.push(new SpriteAnimation(154, y, celWidth, celHeight));
   player.runningArray.push(new SpriteAnimation(191, y, celWidth, celHeight));
   player.runningArray.push(new SpriteAnimation(229, y, celWidth, celHeight));
+
+  // jumping straight
+  player.jumpingStationary.push(new SpriteAnimation(268, y, celWidth, celHeight));
+
+  // jumping side
+  player.jumping.push(new SpriteAnimation(307, y, celWidth, celHeight));
+  player.jumping.push(new SpriteAnimation(346, y, celWidth, celHeight));
+  player.jumping.push(new SpriteAnimation(387, y, celWidth, celHeight));
+
+  // jumping spin
+  celWidth = 44;
+  celHeight = 58;
+  player.boostJump.push(new SpriteAnimation(431, y, celWidth, celHeight));
+
+  // edge fall
+  celWidth = 39;
+  celHeight = 58;
+  player.edgeFall.push(new SpriteAnimation(486, y, celWidth, celHeight));
+  player.edgeFall.push(new SpriteAnimation(533, y, celWidth, celHeight));
+
+  // player gasp
+  celWidth = 38;
+  celWidth = 58;
+  player.playerGasp.push(new SpriteAnimation(583, y, celWidth, celHeight))
+  
   return player;
 }
 
