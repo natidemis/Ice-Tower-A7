@@ -69,7 +69,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._backgrounds, this._floors, this._players, this._walls, this._floorboards];
+    this._categories = [this._backgrounds, this._floors, this._walls, this._floorboards, this._players];
 },
 
 init: function() {
@@ -118,7 +118,8 @@ update: function(du) {
         if (this.spawncounter%10 == 0){
             this.generateFloorboard({
                 cx: cordsx,
-                cy: cordsy+10
+                cy: cordsy+10,
+                level: this.spawncounter
             })
         }
         console.log("spawncnt " + this.spawncounter);

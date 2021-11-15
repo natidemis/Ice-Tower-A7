@@ -30,6 +30,7 @@ var menuManager = {
     drawMenuItem: function(ctx, text, x, y, px){
         ctx.fillStyle = objGradient;
         ctx.font = 'bold '+px+' Cursive';
+        ctx.textAlign = "start";
         ctx.fillText(text, x, y);
         ctx.strokeText(text, x, y);
     },

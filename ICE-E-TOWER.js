@@ -198,16 +198,17 @@ function processDiagnostics() {
 
 function renderSimulation(ctx) {
     //TODO: setja menuManager.startGame = false þegar leikur klárast.
-    //entityManager.render(ctx);
+    entityManager.render(ctx);
     if(menuManager.startGame){
         entityManager.render(ctx);
     }else{
         menuManager.renderMenu(ctx);
     }
     if (g_renderSpatialDebug) spatialManager.render(ctx);
-    //ctx.font = "40px Brush Bold";
-    //ctx.fillStyle = "purple";
-    //ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
+    ctx.font = "40px Brush Bold";
+    ctx.fillStyle = "purple";
+    ctx.textAlign = "start";
+    ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
 }
 
 
@@ -281,7 +282,6 @@ function preloadDone() {
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
-
     g_sprites.floorboard = new Sprite(g_images.floorboard);
     //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 

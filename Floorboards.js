@@ -17,6 +17,7 @@ Floorboards.prototype = new Entity();
 
 Floorboards.prototype.cx = 0;
 Floorboards.prototype.cy = 0;
+Floorboards.prototype.level = 0;
 
 
 Floorboards.prototype.update = function(du) {
@@ -39,4 +40,8 @@ Floorboards.prototype.render = function (ctx) {
         ctx, this.cx, this.cy, 0
     );
     this.sprite.scale = origScale;
+    ctx.font ="bold 14px verdana";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "white";
+    ctx.fillText(this.level,this.cx, this.cy+10);
 };
