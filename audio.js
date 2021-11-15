@@ -21,7 +21,7 @@ var audios = {
         "sounds/try-again.ogg"
     ),
     gamerOver: new Audio(
-        "sounds/gameover.gg"
+        "sounds/gameover.ogg"
     )
 
 }
