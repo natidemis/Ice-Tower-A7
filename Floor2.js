@@ -1,25 +1,25 @@
-function Floor(descr) {
+function Floor2(descr) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
 
-    this.sprite = g_sprites.floor;
+    this.sprite = g_sprites.floor2;
     
     // Set normal drawing scale, and warp state off
-    this._scale = 0.32;
+    this._scale = 0.25;
     
     this.height = this.sprite.height*this._scale;
     this.width = this.sprite.width*this._scale;
     
 };
 
-Floor.prototype = new Entity();
+Floor2.prototype = new Entity();
 
-Floor.prototype.cx = 0;
-Floor.prototype.cy = 0;
+Floor2.prototype.cx = 0;
+Floor2.prototype.cy = 0;
 
 
-Floor.prototype.update = function(du) {
+Floor2.prototype.update = function(du) {
     spatialManager.unregister(this);
     var velY = entityManager._speed;
     this.cy = this.cy + velY*du;
@@ -31,7 +31,7 @@ Floor.prototype.update = function(du) {
     spatialManager.register(this);
 };
 
-Floor.prototype.render = function (ctx) {
+Floor2.prototype.render = function (ctx) {
     var origScale = this.sprite.scale;
 
     this.sprite.scale = this._scale;
