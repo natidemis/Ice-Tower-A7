@@ -225,6 +225,7 @@ function requestPreloads() {
         floor  : "images/floor.png",
         floor1 : "images/floor1.png",
         floor2 : "images/floor2.png",
+        floor3 : "images/floor3.png",
         player : "images/player.png",
         wall   : "images/wall.png",
         background : "images/background.png",
@@ -270,6 +271,7 @@ function preloadDone() {
     g_sprites.floor = new Sprite(g_images.floor);
     g_sprites.floor1 = new Sprite(g_images.floor1);
     g_sprites.floor2 = new Sprite(g_images.floor2);
+    g_sprites.floor3 = new Sprite(g_images.floor3);
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);

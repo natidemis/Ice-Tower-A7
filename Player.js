@@ -68,17 +68,17 @@ Player.prototype.applyAccelX = function (du) {
 
   if (keys[this.KEY_RIGHT]) {
     if (this.velX < this.maxVelX)
-      this.velX += this.accelX * du;
+      this.velX += this.accelX*du;
   }
 
   if (keys[this.KEY_LEFT]) {
     if (this.velX > -this.maxVelX)
-      this.velX -= this.accelX * du;
+      this.velX -= this.accelX*du;
   }
   // friction if both or neither are pressed
   if (!(keys[this.KEY_RIGHT] || keys[this.KEY_LEFT]) ||
     (keys[this.KEY_RIGHT] && keys[this.KEY_LEFT])) {
-    this.velX *= this.friction * du;
+    this.velX *= this.friction;
     if (Math.abs(this.velX) < 0.001) {
       this.velX = 0;
     }
@@ -87,11 +87,11 @@ Player.prototype.applyAccelX = function (du) {
 }
 
 Player.prototype.wallcollide = function (du) {
-  if (this.cx > 860) {
+  if (this.cx+16 > 850 && 0 < this.velX) {
     this.velX *= -1;
   }
 
-  else if (this.cx < 40) {
+  else if (this.cx-16 < 50 && 0 > this.velX) {
     this.velX *= -1;
   }
 }
@@ -102,7 +102,7 @@ Player.prototype.update = function (du) {
   // apply acceleration
   this.applyAccelX(du);
   // update position
-  this.cx += this.velX;
+  this.cx += this.velX*du;
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79 * this.maxVelX) && (this.velX > 0.79 * (-this.maxVelX)))) {
     this.velY -= 17;
@@ -123,7 +123,7 @@ Player.prototype.update = function (du) {
   }
 
   if (this.velY < this.maxFallingVel) {
-    this.velY += this.gAccel * du;
+    this.velY += this.gAccel*du;
   }
 
   this.wallcollide();
@@ -150,7 +150,7 @@ Player.prototype.update = function (du) {
     return entityManager.KILL_ME_NOW;
   }
 
-  this.cy += (this.velY + entityManager._speed) * du;
+  this.cy += this.velY*du + entityManager._speed*du;
 
   spatialManager.register(this);
 };
@@ -216,7 +216,7 @@ Player.prototype.isRunning = function () {
   return (Math.abs(this.velX) > 0 && Math.abs(this.velY <= 0.0001));
 };
 Player.prototype.isJumpingStationary = function () {
-  return (Math.abs(this.velX) < 0.01 && this.velY < 0);
+  return (Math.abs(this.velX) < 0.1 && this.velY < 0);
 };
 Player.prototype.isJumping = function () {
   return (this.velY < 0);

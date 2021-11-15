@@ -48,6 +48,10 @@ _generateFloors : function() {
     this.generateFloor2();
 },
 
+_generateFloors : function() {
+    this.generateFloor3();
+},
+
 _generateWalls : function() {
     this.generateWall();
 },
@@ -99,6 +103,10 @@ generateFloor2 : function(descr) {
     this._floors.push(new Floor2(descr));
 },
 
+generateFloor3 : function(descr) {
+    this._floors.push(new Floor3(descr));
+},
+
 generateFloorboard : function(descr) {
     this._floorboards.push(new Floorboards(descr));
 },
@@ -115,15 +123,18 @@ spawncounter : 0,
 
 update: function(du) {
     if(this._players[0]){
-        this._speed = ((g_canvas.height-entityManager._players[0].cy)/100);
+        this._speed = 2;
+        if(entityManager._players[0].cy < g_canvas.height/2){
+            this._speed += ((g_canvas.height/2-entityManager._players[0].cy)/50);
+        }
     }
 
     var topheight = this._floors.length-1;
     var topfloor = this._floors[topheight];
 
-    if(topfloor.cy+1000 > 0){
+    if(topfloor.cy+g_canvas.height/2 > 0){
 
-        let cx =  g_canvas.width*(Math.random()*(0.75 - 0.25)+0.25);
+        let cx =  g_canvas.width*(Math.random()*(0.78 - 0.22)+0.22);
         let cy =  topfloor.cy-180;
         if(this.spawncounter+1 < 100){
             this.generateFloor({
@@ -137,8 +148,15 @@ update: function(du) {
             });
         }
         
-        else if(this.spawncounter+1 >= 200){
+        else if(this.spawncounter+1 >= 200 && this.spawncounter+1 < 300){
             this.generateFloor2({
+                cx: cx,
+                cy: cy
+            });
+        }
+
+        else if(this.spawncounter+1 >= 300){
+            this.generateFloor3({
                 cx: cx,
                 cy: cy
             });
