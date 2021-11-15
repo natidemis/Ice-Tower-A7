@@ -198,16 +198,16 @@ function processDiagnostics() {
 
 function renderSimulation(ctx) {
     //TODO: setja menuManager.startGame = false þegar leikur klárast.
-    entityManager.render(ctx);
-    //if(menuManager.startGame){
-    //    entityManager.render(ctx);
-    //}else{
-    //    menuManager.renderMenu(ctx);
-    //}
-    //if (g_renderSpatialDebug) spatialManager.render(ctx);
-    ctx.font = "40px Brush Bold";
-    ctx.fillStyle = "purple";
-    ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
+    //entityManager.render(ctx);
+    if(menuManager.startGame){
+        entityManager.render(ctx);
+    }else{
+        menuManager.renderMenu(ctx);
+    }
+    if (g_renderSpatialDebug) spatialManager.render(ctx);
+    //ctx.font = "40px Brush Bold";
+    //ctx.fillStyle = "purple";
+    //ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
 }
 
 
