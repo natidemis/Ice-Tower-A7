@@ -250,9 +250,9 @@ var g_spritessheetsprite = [];
 // // 11
 // var g_fallingArray = [];
 // // 12
-// var g_boostJumpArray = [];
+// var g_boostJump = [];
 // // 13-15
-// var g_landingArray = [];
+// var g_edgeFall = [];
 var model1;
 var model2;
 
@@ -263,8 +263,9 @@ var g_players = {
     jumpingStationary: [],
     jumping: [],
     fallingArray: [],
-    boostJumpArray: [],
-    landingArray: []
+    boostJump: [],
+    edgeFall: [],
+    playerGasp: []
   },
   player2: {
     stationaryArray: [],
@@ -272,8 +273,9 @@ var g_players = {
     jumpingStationary: [],
     jumping: [],
     fallingArray: [],
-    boostJumpArray: [],
-    landingArray: []
+    boostJump: [],
+    edgeFall: [],
+    playerGasp: []
   }
 }
 
@@ -340,6 +342,31 @@ function cutOutPlayers(player, y) {
   player.runningArray.push(new SpriteAnimation(154, y, celWidth, celHeight));
   player.runningArray.push(new SpriteAnimation(191, y, celWidth, celHeight));
   player.runningArray.push(new SpriteAnimation(229, y, celWidth, celHeight));
+
+  // jumping straight
+  player.jumpingStationary.push(new SpriteAnimation(268, y, celWidth, celHeight));
+
+  // jumping side
+  player.jumping.push(new SpriteAnimation(307, y, celWidth, celHeight));
+  player.jumping.push(new SpriteAnimation(346, y, celWidth, celHeight));
+  player.jumping.push(new SpriteAnimation(387, y, celWidth, celHeight));
+
+  // jumping spin
+  celWidth = 44;
+  celHeight = 58;
+  player.boostJump.push(new SpriteAnimation(431, y, celWidth, celHeight));
+
+  // edge fall
+  celWidth = 39;
+  celHeight = 58;
+  player.edgeFall.push(new SpriteAnimation(486, y, celWidth, celHeight));
+  player.edgeFall.push(new SpriteAnimation(533, y, celWidth, celHeight));
+
+  // player gasp
+  celWidth = 38;
+  celWidth = 58;
+  player.playerGasp.push(new SpriteAnimation(583, y, celWidth, celHeight))
+  
   return player;
 }
 
