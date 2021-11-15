@@ -17,19 +17,12 @@ function Player(descr) {
   // Common inherited setup logic from Entity
   this.setup(descr);
 
-  // Default sprite, if not otherwise specified
-  // this.sprite = this.sprite || g_sprites.player;
-  // this.spriteArray = g_spritessheetsprite;
-
-  // fá þessa breytu úr main menu
-  let player1 = false;
+  let player1 = menuManager.characterModel === 1;
   this.player = player1 ? g_players.player1 : g_players.player2;
 
   // Set normal drawing scale, and warp state off
   this._scale = 1.4;
 
-  // this.width = this.sprite.width*this._scale;
-  // this.height = this.sprite.height*this._scale;
   this.width = 30 * this._scale;
   this.height = 58 * this._scale;
 
@@ -162,32 +155,14 @@ Player.prototype.update = function (du) {
   spatialManager.register(this);
 };
 
-
-//    stationaryArray: [],
-//    runningArray: [],
-//    jumpingStationary: [],
-//    jumping: [],
-//    fallingArray: [],
-//    boostJump: [],
-//    edgeFall: [],
-//    playerGasp: []
-
 // interval is tweakable, controls speed of animation
 var interval = 15;
 
 var buffer = 0;
 var cellIdx = 0;
 var spritePlayer;
-Player.prototype.render = function (ctx) {
-  console.log(this._isBoostJumping);
-  //console.log(this.velY < -15);
-  
-  // the sprite to render
+Player.prototype.render = function (ctx) { 
   var spritePlayer = this.player.stationaryArray[0];
-  // if is stationary
-  //console.log("stationary", this.isStationary());
-
-  // function only sets isBoostJumping to true or does nothing
   this.isBoostJumping();
   
   if (this.isStationary()) {
@@ -210,7 +185,6 @@ Player.prototype.render = function (ctx) {
     spritePlayer = this.player.edgeFall[cellIdx % 2];
   }
   if (this._isBoostJumping) {
-    console.log("booooost");
     spritePlayer = this.player.boostJump[0];
   } else {
     this.rotation = 0;
@@ -252,16 +226,11 @@ Player.prototype.isJumping = function () {
 Player.prototype.isFalling = function () {
   return (this.velY > 0);
 };
-
 Player.prototype.isBoostJumping = function () {
-  // væntanlega ehv með að hann nái ákveðnum hraða...
-  // þá setja ehv Player.prototype.isBoostJumping breytu sem true
-  // þegar hann lendir aftur, setja 
   if (this.velY < -20) {
-    //console.log("i do da set");
     this._isBoostJumping = true;
   }
 };
 Player.prototype.edgeFall = function () { 
-  // pls implement
+  // held bail
 };

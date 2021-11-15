@@ -279,7 +279,7 @@ function preloadDone() {
     var celWidth  = 30;
     var celHeight  = 58;
   
-    // temporary shit fyrir natanel
+    // for menu
     model1 = new SpriteAnimation(5, 7, celWidth, celHeight);
     model2 = new SpriteAnimation(5, 75, celWidth, celHeight);
 ;
@@ -289,7 +289,7 @@ function preloadDone() {
     g_players.player1 = cutOutPlayers(g_players.player1, p1y);
     g_players.player2 = cutOutPlayers(g_players.player2, p2y);
 
-    // hot fix utaf gati í spritesheet fyrir player 2:
+    // hot fix because of hole in sprite sheet for player 2:
     g_players.player2.runningArray[0] = g_players.player2.runningArray[2]; 
 
     entityManager.init();
