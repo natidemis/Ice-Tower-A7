@@ -28,6 +28,8 @@ function Player(descr) {
     // this.fallingArray = g_fallingArray;
     // this.boostJumpArray = g_boostJumpArray;
     // this.landingArray = g_landingArray;
+
+    // fá þessa breytu úr main menu
     let player1 = false;
     this.player = player1 ? g_players.player1 : g_players.player2;
     
