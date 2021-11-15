@@ -169,7 +169,7 @@ var cellIdx = 0;
 Player.prototype.render = function (ctx){
   var spritePlayer;  
   // if is stationary
-  console.log("stationary", this.isStationary());
+  //console.log("stationary", this.isStationary());
   spritePlayer = this.player.stationaryArray[0];
     // if is running
     

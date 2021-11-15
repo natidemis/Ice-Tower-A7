@@ -199,14 +199,15 @@ function processDiagnostics() {
 function renderSimulation(ctx) {
     //TODO: setja menuManager.startGame = false þegar leikur klárast.
     entityManager.render(ctx);
-    //if(menuManager.startGame){
-    //    entityManager.render(ctx);
-    //}else{
-    //    menuManager.renderMenu(ctx);
-    //}
-    //if (g_renderSpatialDebug) spatialManager.render(ctx);
+    if(menuManager.startGame){
+        entityManager.render(ctx);
+    }else{
+        menuManager.renderMenu(ctx);
+    }
+    if (g_renderSpatialDebug) spatialManager.render(ctx);
     ctx.font = "40px Brush Bold";
     ctx.fillStyle = "purple";
+    ctx.textAlign = "center";
     ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
 }
 
@@ -221,6 +222,8 @@ function requestPreloads() {
 
     var requiredImages = {
         floor  : "images/floor.png",
+        floor1 : "images/floor1.png",
+        floor2 : "images/floor2.png",
         player : "images/player.png",
         wall   : "images/wall.png",
         background : "images/background.png",
@@ -278,10 +281,11 @@ var g_players = {
 function preloadDone() {
 
     g_sprites.floor = new Sprite(g_images.floor);
+    g_sprites.floor1 = new Sprite(g_images.floor1);
+    g_sprites.floor2 = new Sprite(g_images.floor2);
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
-
     g_sprites.floorboard = new Sprite(g_images.floorboard);
     //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
