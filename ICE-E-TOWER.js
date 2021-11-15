@@ -200,10 +200,6 @@ function renderSimulation(ctx) {
     //TODO: setja menuManager.startGame = false þegar leikur klárast.
     entityManager.render(ctx);
     
-    //////////////////////////////////////////////
-    // eyða þessu
-    menuManager.startGame = true;
-    //////////////////////////////////////////////
     if(menuManager.startGame){
         entityManager.render(ctx);
     }else{
