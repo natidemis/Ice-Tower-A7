@@ -14,48 +14,40 @@
 // A generic contructor which accepts an arbitrary descriptor object
 function Player(descr) {
 
-    // Common inherited setup logic from Entity
-    this.setup(descr);
-    
-    // Default sprite, if not otherwise specified
-    this.sprite = this.sprite || g_sprites.player;
-    this.spriteArray = g_spritessheetsprite;
+  // Common inherited setup logic from Entity
+  this.setup(descr);
 
-    // this.stationaryArray = g_stationaryArray;
-    // this.runningArray = g_runningArray;
-    // this.jumpingStationaryArray = g_jumpingStationary;
-    // this.jumpingArray = g_jumping;
-    // this.fallingArray = g_fallingArray;
-    // this.boostJumpArray = g_boostJumpArray;
-    // this.landingArray = g_landingArray;
+  // Default sprite, if not otherwise specified
+  // this.sprite = this.sprite || g_sprites.player;
+  // this.spriteArray = g_spritessheetsprite;
 
-    // fá þessa breytu úr main menu
-    let player1 = false;
-    this.player = player1 ? g_players.player1 : g_players.player2;
-    
-    // Set normal drawing scale, and warp state off
-    this._scale = 1.4;
+  // fá þessa breytu úr main menu
+  let player1 = false;
+  this.player = player1 ? g_players.player1 : g_players.player2;
 
-    // this.width = this.sprite.width*this._scale;
-    // this.height = this.sprite.height*this._scale;
-    this.width = 30 * this._scale;
-    this.height = 58 * this._scale;
+  // Set normal drawing scale, and warp state off
+  this._scale = 1.4;
 
-    this.landingSound = new Audio(
-        "sounds/domm(landing).ogg"
-    );
+  // this.width = this.sprite.width*this._scale;
+  // this.height = this.sprite.height*this._scale;
+  this.width = 30 * this._scale;
+  this.height = 58 * this._scale;
 
-    this.yo = new Audio(
-        "sounds/yo.ogg"
-    );
+  this.landingSound = new Audio(
+    "sounds/domm(landing).ogg"
+  );
+
+  this.yo = new Audio(
+    "sounds/yo.ogg"
+  );
 };
 
 Player.prototype = new Entity();
 
-Player.prototype.KEY_LEFT   = 'A'.charCodeAt(0);
-Player.prototype.KEY_RIGHT  = 'D'.charCodeAt(0);
+Player.prototype.KEY_LEFT = 'A'.charCodeAt(0);
+Player.prototype.KEY_RIGHT = 'D'.charCodeAt(0);
 
-Player.prototype.KEY_JUMP   = ' '.charCodeAt(0);
+Player.prototype.KEY_JUMP = ' '.charCodeAt(0);
 
 Player.prototype.cx = 300;
 Player.prototype.cy = 50;
@@ -71,6 +63,8 @@ Player.prototype.gAccel = 0.7;
 Player.prototype.jumpVel = 3;
 
 Player.prototype._isJumping = false;
+Player.prototype._isBoostJumping = false;
+Player.prototype.rotation = 0;
 
 // sound managers
 Player.prototype._landed = false;
@@ -78,136 +72,196 @@ Player.prototype._initState = true;
 
 // þarf líklegast að tweaka gildin sem eru notuð her
 Player.prototype.applyAccelX = function (du) {
-     
-    if(keys[this.KEY_RIGHT]){
-        if (this.velX < this.maxVelX) 
-            this.velX += this.accelX * du;
-    }
 
-    if(keys[this.KEY_LEFT]){
-        if (this.velX > -this.maxVelX)
-            this.velX -= this.accelX * du;
+  if (keys[this.KEY_RIGHT]) {
+    if (this.velX < this.maxVelX)
+      this.velX += this.accelX * du;
+  }
+
+  if (keys[this.KEY_LEFT]) {
+    if (this.velX > -this.maxVelX)
+      this.velX -= this.accelX * du;
+  }
+  // friction if both or neither are pressed
+  if (!(keys[this.KEY_RIGHT] || keys[this.KEY_LEFT]) ||
+    (keys[this.KEY_RIGHT] && keys[this.KEY_LEFT])) {
+    this.velX *= this.friction * du;
+    if (Math.abs(this.velX) < 0.001) {
+      this.velX = 0;
     }
-    // friction if both or neither are pressed
-    if (!(keys[this.KEY_RIGHT] || keys[this.KEY_LEFT]) ||
-        (keys[this.KEY_RIGHT] && keys[this.KEY_LEFT])) {
-        this.velX *= this.friction * du;
-    }
-    
+  }
+
 }
 
-Player.prototype.wallcollide = function (du){
-    if(this.cx > 860){
-        this.velX *= -1;
-    }
+Player.prototype.wallcollide = function (du) {
+  if (this.cx > 860) {
+    this.velX *= -1;
+  }
 
-    else if(this.cx < 40){
-        this.velX *= -1;
-    }    
+  else if (this.cx < 40) {
+    this.velX *= -1;
+  }
 }
 
-Player.prototype.update = function (du){
-    spatialManager.unregister(this);
+Player.prototype.update = function (du) {
+  spatialManager.unregister(this);
 
-    // apply acceleration
-    this.applyAccelX(du);
-    // update position
-    this.cx += this.velX;   
+  // apply acceleration
+  this.applyAccelX(du);
+  // update position
+  this.cx += this.velX;
 
-    if((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79*this.maxVelX) && (this.velX > 0.79*(-this.maxVelX)))){
-        this.velY -= 17;
-        this._isJumping = true;
-        keys[this.KEY_JUMP] = false;
+  if ((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79 * this.maxVelX) && (this.velX > 0.79 * (-this.maxVelX)))) {
+    this.velY -= 17;
+    this._isJumping = true;
+    keys[this.KEY_JUMP] = false;
+  }
+
+  if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8 * this.maxVelX)) {
+    this.velY -= 30;
+    this._isJumping = true;
+    keys[this.KEY_JUMP] = false;
+  }
+
+  if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8 * (-this.maxVelX))) {
+    this.velY -= 30;
+    this._isJumping = true;
+    keys[this.KEY_JUMP] = false;
+  }
+
+  if (this.velY < this.maxFallingVel) {
+    this.velY += this.gAccel * du;
+  }
+
+  this.wallcollide();
+
+  // if falling
+  if (0 < this.velY) {
+    var floorY = spatialManager.findEntityInRange(this.cx, this.cy, this.width, this.height)
+    // is colliding?
+    if (floorY) {
+      this._isBoostJumping = false;
+      this.velY = 0;
+      this.cy = floorY;
+      if (this._landed) {
+        this.landingSound.play();
+        this._landed = false;
+
+      }
+    } else {
+      this._landed = true;
     }
+  }
 
-    if((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8*this.maxVelX)){
-        this.velY -= 30;
-        this._isJumping = true;
-        keys[this.KEY_JUMP] = false;
-    }
+  if (this._isDeadNow) {
+    return entityManager.KILL_ME_NOW;
+  }
 
-    if((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8*(-this.maxVelX))){
-        this.velY -= 30;
-        this._isJumping = true;
-        keys[this.KEY_JUMP] = false;
-    }
+  this.cy += (this.velY + entityManager._speed) * du;
 
-    if(this.velY < this.maxFallingVel){
-        this.velY += this.gAccel*du;
-    }
-
-    this.wallcollide();
-
-    // if falling
-    if(0 < this.velY){
-        var floorY = spatialManager.findEntityInRange(this.cx, this.cy, this.width, this.height)
-        // is colliding?
-        if (floorY){
-            this.velY = 0;
-            this.cy = floorY; 
-            if(this._landed){
-                this.landingSound.play();
-                this._landed = false;
-                
-            }
-        }else{
-            this._landed = true;
-        }
-    }
-
-    if(this._isDeadNow){
-        return entityManager.KILL_ME_NOW;
-    }
-
-    this.cy += (this.velY+entityManager._speed) * du;
-
-    spatialManager.register(this);
+  spatialManager.register(this);
 };
 
+
+//    stationaryArray: [],
+//    runningArray: [],
+//    jumpingStationary: [],
+//    jumping: [],
+//    fallingArray: [],
+//    boostJump: [],
+//    edgeFall: [],
+//    playerGasp: []
+
+// interval is tweakable, controls speed of animation
+var interval = 15;
+
+var buffer = 0;
 var cellIdx = 0;
-// ... veiða úr sprite
-Player.prototype.render = function (ctx){
-  var spritePlayer;  
+var spritePlayer;
+Player.prototype.render = function (ctx) {
+  console.log(this._isBoostJumping);
+  //console.log(this.velY < -15);
+  
+  // the sprite to render
+  var spritePlayer = this.player.stationaryArray[0];
   // if is stationary
   //console.log("stationary", this.isStationary());
-  spritePlayer = this.player.stationaryArray[0];
-    // if is running
-    
-    // if is jumping stationary (xvel = 0)
-    // if is jumping
-    // if is falling
-    // if is boostjump
-        // setja rotation ?
 
-    // if is landing
+  // function only sets isBoostJumping to true or does nothing
+  this.isBoostJumping();
+  
+  if (this.isStationary()) {
+    //this._isBoostJumping = false;
+    spritePlayer = this.player.stationaryArray[cellIdx % 3];
+  }
+  else if (this.isRunning()) {
+    //this._isBoostJumping = false;
+    spritePlayer = this.player.runningArray[cellIdx % 4];
+  }
 
+  if (this.isJumpingStationary()) {
+    //this._isBoostJumping = false;
+    spritePlayer = this.player.jumpingStationary[0];
+  }
+  else if (this.isJumping()) {
+    spritePlayer = this.player.jumping[cellIdx % 3];
+  }
+  else if (this.isFalling()) {
+    spritePlayer = this.player.edgeFall[cellIdx % 2];
+  }
+  if (this._isBoostJumping) {
+    console.log("booooost");
+    spritePlayer = this.player.boostJump[0];
+  } else {
+    this.rotation = 0;
+  }
+  
+  // flip the duude
+  var flip = this.velX < 0;
 
+  spritePlayer.scale = this._scale;
+  spritePlayer.drawAt(
+    ctx, this.cx, this.cy, this.rotation, flip
+  );
 
-
-    // spegla fyrir vinstri
-    //spritePlayer = this.spriteArray[cellIdx];
-
-    // pass my scale into the sprite, for drawing
-    spritePlayer.scale = this._scale;
-    spritePlayer.drawAt(
-	    ctx, this.cx, this.cy, this.rotation
-    );
-    //cellIdx += 1;
-    //cellIdx %= 1;
+  buffer += 1;
+  if (buffer % interval == 0) {
+    if (cellIdx > 100) {
+      cellIdx -= 100;
+    }
+    cellIdx += 1;
+  }
+  if (this._isBoostJumping) {
+    this.rotation = (this.rotation + 0.1) % (2 * Math.PI);
+  }
 };
 
-Player.prototype.isStationary = function() {
-    if (Math.abs(this.velX) <= 0.0001 && Math.abs(this.velY) <= 0.0001) {
-      return true;
-    } else
-      return false;
+Player.prototype.isStationary = function () {
+  return (Math.abs(this.velX) <= 0.1 && Math.abs(this.velY) <= 0.01);
 };
 
-Player.prototype.isRunning = function() {};
-Player.prototype.isJumpingStationary = function() {
-
+Player.prototype.isRunning = function () {
+  return (Math.abs(this.velX) > 0 && Math.abs(this.velY <= 0.0001));
 };
-Player.prototype.isJumping = function() {};
-Player.prototype.isFalling = function() {};
-Player.prototype.isBoostJumping = function() {};
-Player.prototype.isLanding = function() {};
+Player.prototype.isJumpingStationary = function () {
+  return (Math.abs(this.velX) < 0.01 && this.velY < 0);
+};
+Player.prototype.isJumping = function () {
+  return (this.velY < 0);
+};
+Player.prototype.isFalling = function () {
+  return (this.velY > 0);
+};
+
+Player.prototype.isBoostJumping = function () {
+  // væntanlega ehv með að hann nái ákveðnum hraða...
+  // þá setja ehv Player.prototype.isBoostJumping breytu sem true
+  // þegar hann lendir aftur, setja 
+  if (this.velY < -20) {
+    //console.log("i do da set");
+    this._isBoostJumping = true;
+  }
+};
+Player.prototype.edgeFall = function () { 
+  // pls implement
+};

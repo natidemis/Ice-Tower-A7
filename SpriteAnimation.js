@@ -6,10 +6,13 @@ function SpriteAnimation(sx, sy, width, height) {
     this.image = g_images.spritesheet;
 }
 
-SpriteAnimation.prototype.drawAt = function (ctx, cx, cy, rotation) {
+SpriteAnimation.prototype.drawAt = function (ctx, cx, cy, rotation, flip) {
     ctx.save();
     ctx.translate(cx, cy);
-    ctx.scale(this.scale, this.scale);
+    if (flip) {
+      ctx.scale(-this.scale, this.scale)
+    } else
+      ctx.scale(this.scale, this.scale);
     ctx.rotate(rotation)
     ctx.translate(-cx,-cy);
     ctx.drawImage(this.image, this.sx, this.sy, this.width, this.height,

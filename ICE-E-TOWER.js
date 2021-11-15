@@ -199,6 +199,11 @@ function processDiagnostics() {
 function renderSimulation(ctx) {
     //TODO: setja menuManager.startGame = false þegar leikur klárast.
     entityManager.render(ctx);
+    
+    //////////////////////////////////////////////
+    // eyða þessu
+    menuManager.startGame = true;
+    //////////////////////////////////////////////
     if(menuManager.startGame){
         entityManager.render(ctx);
     }else{
@@ -239,20 +244,6 @@ var g_sprites = {};
 // beila a thennan?
 var g_spritessheetsprite = [];
 
-// 1-3
-// var g_stationaryArray = [];
-// // 4-7
-// var g_runningArray = [];
-// // 8
-// var g_jumpingStationary = [];
-// // 9-10
-// var g_jumping = [];
-// // 11
-// var g_fallingArray = [];
-// // 12
-// var g_boostJump = [];
-// // 13-15
-// var g_edgeFall = [];
 var model1;
 var model2;
 
@@ -262,7 +253,6 @@ var g_players = {
     runningArray: [],
     jumpingStationary: [],
     jumping: [],
-    fallingArray: [],
     boostJump: [],
     edgeFall: [],
     playerGasp: []
@@ -272,7 +262,6 @@ var g_players = {
     runningArray: [],
     jumpingStationary: [],
     jumping: [],
-    fallingArray: [],
     boostJump: [],
     edgeFall: [],
     playerGasp: []
@@ -291,33 +280,21 @@ function preloadDone() {
     g_sprites.floorboard = new Sprite(g_images.floorboard);
     //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
-    //var celWidth  = 34;
-    //var celHeight  = 57;
     var celWidth  = 30;
     var celHeight  = 58;
-    var numCols = 15;
-    var numRows = 1;
-    var numCels = 15;
-
+  
     // temporary shit fyrir natanel
     model1 = new SpriteAnimation(5, 7, celWidth, celHeight);
     model2 = new SpriteAnimation(5, 75, celWidth, celHeight);
-
-    var sprite;
-
-
-    //for ( var row = 0; row < numRows; ++row){
-    //    for( var col = 0; col < numCols; ++col){
-    //        sprite = new SpriteAnimation(col *celWidth, row* celHeight, celWidth, celHeight)
-    //        g_spritessheetsprite.push(sprite)
-    //    }
-    //}
-    //g_spritessheetsprite.splice(numCels);
+;
     var p1y = 7;
     var p2y = 75;
 
     g_players.player1 = cutOutPlayers(g_players.player1, p1y);
     g_players.player2 = cutOutPlayers(g_players.player2, p2y);
+
+    // hot fix utaf gati í spritesheet fyrir player 2:
+    g_players.player2.runningArray[0] = g_players.player2.runningArray[2]; 
 
     entityManager.init();
     createInitialBackgrounds();
