@@ -40,6 +40,14 @@ _generateFloors : function() {
     this.generateFloor();
 },
 
+_generateFloors : function() {
+    this.generateFloor1();
+},
+
+_generateFloors : function() {
+    this.generateFloor2();
+},
+
 _generateWalls : function() {
     this.generateWall();
 },
@@ -83,6 +91,14 @@ generateFloor : function(descr) {
     this._floors.push(new Floor(descr));
 },
 
+generateFloor1 : function(descr) {
+    this._floors.push(new Floor1(descr));
+},
+
+generateFloor2 : function(descr) {
+    this._floors.push(new Floor2(descr));
+},
+
 generateFloorboard : function(descr) {
     this._floorboards.push(new Floorboards(descr));
 },
@@ -102,23 +118,37 @@ update: function(du) {
         this._speed = ((g_canvas.height-entityManager._players[0].cy)/100);
     }
 
-    var topfloor = this._floors[this._floors.length-1]
-    
+    var topheight = this._floors.length-1;
+    var topfloor = this._floors[topheight];
 
     if(topfloor.cy+1000 > 0){
 
-        let cordsx =  g_canvas.width*(Math.random()*(0.75 - 0.25)+0.25);
-        let cordsy =  topfloor.cy-180;
-        this.generateFloor({
-            cx: cordsx,
-            cy: cordsy
-        });
+        let cx =  g_canvas.width*(Math.random()*(0.75 - 0.25)+0.25);
+        let cy =  topfloor.cy-180;
+        if(this.spawncounter+1 < 100){
+            this.generateFloor({
+                cx: cx,
+                cy: cy
+            });
+        } else if(100 <= this.spawncounter+1 && this.spawncounter+1 < 200){
+            this.generateFloor1({
+                cx: cx,
+                cy: cy
+            });
+        }
+        
+        else if(this.spawncounter+1 >= 200){
+            this.generateFloor2({
+                cx: cx,
+                cy: cy
+            });
+        }
         
         this.spawncounter++;
         if (this.spawncounter%10 == 0){
             this.generateFloorboard({
-                cx: cordsx,
-                cy: cordsy+10,
+                cx: cx,
+                cy: cy+10,
                 level: this.spawncounter
             })
         }
