@@ -163,19 +163,17 @@ var cellIdx = 0;
 var spritePlayer;
 Player.prototype.render = function (ctx) { 
   var spritePlayer = this.player.stationaryArray[0];
+  
   this.isBoostJumping();
   
   if (this.isStationary()) {
-    //this._isBoostJumping = false;
     spritePlayer = this.player.stationaryArray[cellIdx % 3];
   }
   else if (this.isRunning()) {
-    //this._isBoostJumping = false;
     spritePlayer = this.player.runningArray[cellIdx % 4];
   }
 
   if (this.isJumpingStationary()) {
-    //this._isBoostJumping = false;
     spritePlayer = this.player.jumpingStationary[0];
   }
   else if (this.isJumping()) {
