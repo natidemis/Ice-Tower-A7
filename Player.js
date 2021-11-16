@@ -146,14 +146,13 @@ Player.prototype.update = function (du) {
   if (this._isDeadNow) {
     return entityManager.KILL_ME_NOW;
   }
-  //remove
-  this.velY = -20;
+ 
   this.cy += this.velY*du + entityManager._speed*du;
 
   spatialManager.register(this);
 };
 
-// interval is tweakable, controls speed of animation
+// interval is tweakable, controls speed of player animation
 var interval = 15;
 
 var buffer = 0;

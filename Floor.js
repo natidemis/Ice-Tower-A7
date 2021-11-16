@@ -6,9 +6,9 @@ function Floor(descr, idx, xScale = 0.32) {
     // Set normal drawing scale, and warp state off
     this._scale = 0.32;
     this._xScale = xScale;
-    
+
     this.height = this.floor.height*this._scale;
-    this.width = this.floor.width*this._scale;
+    this.width = this.floor.width*xScale;
     
 };
 
@@ -31,12 +31,8 @@ Floor.prototype.update = function(du) {
 };
 
 Floor.prototype.render = function (ctx) {
-    // var floorUsed = this.sprite.floorArray[0];
-    // var origScale = this.sprite.scale;
-
     this.floor.scale = this._scale;
     this.floor.drawAt(
         ctx, this.cx, this.cy, 0, this._xScale
     );
-    //this.sprite.scale = origScale;
 };
