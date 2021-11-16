@@ -122,9 +122,9 @@ var menuManager = {
 
     _handleMainMenuInput: function(){
 
-            if(eatKey(KEY_W))
+            if(eatKey(KEY_W) || eatKey(KEY_UP_ARROW))
                 this._scrollUp();
-            if(eatKey(KEY_S))
+            if(eatKey(KEY_S) || eatKey(KEY_DOWN_ARROW))
                 this._scrollDown();
             if(eatKey(KEY_ENTER))
                 if(this._menuIdx === 0)
@@ -137,14 +137,15 @@ var menuManager = {
     
     },
     _handleSelectMenuInputs: function(){
-        if(eatKey(KEY_D))
+        if(eatKey(KEY_D) || eatKey(KEY_RIGHT_ARROW))
             this._selectMenuIdx = 1 - this._selectMenuIdx;
-        if(eatKey(KEY_A))
+        if(eatKey(KEY_A) || eatKey(KEY_LEFT_ARROW))
             this._selectMenuIdx = 1 - this._selectMenuIdx;
         
         if(eatKey(KEY_ENTER)){
             this.characterModel = this._selectMenuIdx + 1
             this._is_SelectCharMenu = false;
+            entityManager._players[0].selectCharacter(this.characterModel);
         }
     }
 }

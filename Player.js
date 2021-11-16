@@ -17,8 +17,7 @@ function Player(descr) {
   // Common inherited setup logic from Entity
   this.setup(descr);
 
-  let player1 = menuManager.characterModel === 1;
-  this.player = player1 ? g_players.player1 : g_players.player2;
+  this.selectCharacter(menuManager.characterModel);
 
   // Set normal drawing scale, and warp state off
   this._scale = 1.4;
@@ -29,6 +28,11 @@ function Player(descr) {
 };
 
 Player.prototype = new Entity();
+
+Player.prototype.selectCharacter = function(model = 1) {
+  let player1 = model === 1;
+  this.player = player1 ? g_players.player1 : g_players.player2;
+}
 
 Player.prototype.KEY_LEFT = 'A'.charCodeAt(0);
 Player.prototype.KEY_RIGHT = 'D'.charCodeAt(0);
@@ -156,7 +160,7 @@ var cellIdx = 0;
 var spritePlayer;
 Player.prototype.render = function (ctx) { 
   var spritePlayer = this.player.stationaryArray[0];
-  21
+  
   this.isBoostJumping();
   
   if (this.isStationary()) {
