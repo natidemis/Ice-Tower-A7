@@ -379,14 +379,16 @@ function cutOutFloors(floors){
     var celWidth = 1046;
     var celHeight = 126;
 
-    floors.push(new SpriteFloor(0,2,celWidth,celHeight));
-    floors.push(new SpriteFloor(0,152,celWidth,celHeight));
-    floors.push(new SpriteFloor(1,305,celWidth,celHeight));
-    floors.push(new SpriteFloor(0,460,celWidth,celHeight));
+    floors.push(new SpriteFloor(0,2,celWidth,celHeight));   // stone
+    floors.push(new SpriteFloor(0,152,celWidth,celHeight)); // ice
+    floors.push(new SpriteFloor(1,305,celWidth,celHeight)); // wood
+    celHeight = 124
+    floors.push(new SpriteFloor(0,460,celWidth,celHeight)); // metal
     celWidth = 1036;
-    floors.push(new SpriteFloor(5,585,celWidth,celHeight));
+    celHeight = 126;
+    floors.push(new SpriteFloor(5,585,celWidth,celHeight)); //goo
     celWidth = 1019;
-    floors.push(new SpriteFloor(9,700,celWidth,celHeight));
+    floors.push(new SpriteFloor(9,700,celWidth,celHeight)); //bone
 
     return floors
 }
