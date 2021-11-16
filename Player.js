@@ -32,7 +32,6 @@ Player.prototype = new Entity();
 Player.prototype.selectCharacter = function(model = 1) {
   let player1 = model === 1;
   this.player = player1 ? g_players.player1 : g_players.player2;
-  this.player = g_players.player2;
 }
 
 Player.prototype.KEY_LEFT = 'A'.charCodeAt(0);
