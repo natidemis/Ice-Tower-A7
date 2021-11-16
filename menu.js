@@ -3,7 +3,7 @@ var menuManager = {
     menuList: {
         start: "START GAME",
         selectChar: "SELECT CHARACTER",
-        options: "OPTIONS",
+        HTP: "HOW TO PLAY",
     
     },
 
@@ -15,18 +15,18 @@ var menuManager = {
     _x_coord: 240,
     _start_coord_x: 555,
     _selectChar_coord_x: 720,
-    _options_coord_x: 465,
+    _HTP_coord_x: 465,
     _start_coord_y: 290,
     _selectChar_coord_y: 366,
-    _options_coord_y: 435,
+    _HTP_coord_y: 435,
 
     //parameters
     startGame: false,
     soundActive: true,
     _is_SelectCharMenu: false,
-    _optionsMenu: false,
+    _HTPMenu: false,
 
-    //menu Options
+    //menu HTP
     characterModel: 1, //1 if model1, 2 if model2
     _menuIdx: 0,
     _menuItemPos: [350 - 20, 350 + 55, 350 + 130],
@@ -51,7 +51,7 @@ var menuManager = {
      
         this.drawMenuItem(ctx,this.menuList.start, this._menuItemCoords_x, 350,px);
         this.drawMenuItem(ctx,this.menuList.selectChar, this._menuItemCoords_x, 350+75,px);
-        this.drawMenuItem(ctx,this.menuList.options, this._menuItemCoords_x, 350+150,px);
+        this.drawMenuItem(ctx,this.menuList.HTP, this._menuItemCoords_x, 350+150,px);
 
         //skipta model2 ut fyrir annad
         g_players.player1.playerpicker[0].drawAt(ctx,this._menuItemCoords_x - 50,this._menuItemPos[this._menuIdx],0);
@@ -70,8 +70,8 @@ var menuManager = {
         objGradient.addColorStop(3/3, 'yellow');
     
      
-        this.drawMenuItem(ctx,"GANGSTA", xpos- 50, ypos - 120,'30px');
-        this.drawMenuItem(ctx,"DISCO", xpos + bias - 50, ypos - 120,'30px');
+        this.drawMenuItem(ctx,"GANGSTA", xpos- 50, ypos - 120,pixel);
+        this.drawMenuItem(ctx,"DISCO", xpos + bias - 50, ypos - 120,pixel);
 
 
         model1.scale = 3;
@@ -86,6 +86,25 @@ var menuManager = {
         this._handleSelectMenuInputs();
 
     },
+    _drawHTPMenu: function() {
+        const bias = 100
+        const ypos = this._menuItemCoords_y + 100
+        const pixel = '30px';
+        const xpos = this._menuItemCoords_x - 100;
+        objGradient = ctx.createLinearGradient(0,g_canvas.height*0.6, 0, 0);
+        objGradient.addColorStop(0, 'blue');
+      
+        objGradient.addColorStop(1/2, 'yellow')
+        objGradient.addColorStop(3/3, 'yellow');
+    
+     
+        this.drawMenuItem(ctx,"A and D to move left and right respectively", xpos- 50, ypos - 120,pixel);
+        this.drawMenuItem(ctx,"Space bar to jump", xpos- 50, ypos + bias - 120,pixel);
+
+        if(eatKey(KEY_ENTER))
+            this._HTPMenu = false;
+
+    },
 
     renderMenu: function(ctx){
 
@@ -94,8 +113,8 @@ var menuManager = {
         ctx.drawImage(g_images.menuBackground, 40,40,800,800);
         if(this._is_SelectCharMenu){
             return this._selectCharMenu(ctx);
-        }else if (this._optionsMenu){
-            console.log("options menu")
+        }else if (this._HTPMenu){
+            return this._drawHTPMenu();
         }else{
             return this._drawMainMenu(ctx);
         }
@@ -133,7 +152,7 @@ var menuManager = {
                     this._is_SelectCharMenu = true;
                 }
                 else
-                    this._optionsMenu = true;
+                    this._HTPMenu = true;
     
     },
     _handleSelectMenuInputs: function(){
