@@ -99,6 +99,30 @@ generateBackground: function(descr) {
 
 spawncounter : 0,
 
+resetEntities(){
+    g_score = 0;
+    entityManager._speed = 0;
+    entityManager.spawncounter = 0;
+    for (var f = 0; f < this._floors.length; ++f) {
+        if(this._floors[f]._isDeadNow === false){
+            this._floors[f]._isDeadNow = true;
+        }
+    }
+    for (var f = 0; f < this._floorboards.length; ++f) {
+        if(this._floorboards[f]._isDeadNow === false){
+            this._floorboards[f]._isDeadNow = true;
+        }
+    }
+    for (var f = 0; f < this._players.length; ++f) {
+        if(this._players[f]._isDeadNow === false){
+            this._players[f]._isDeadNow = true;
+        }
+    }
+    createInitialFloors();
+    createInitialPlayer();
+    playTryAgain();
+},
+
 update: function(du) {
     
     

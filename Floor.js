@@ -23,7 +23,7 @@ Floor.prototype.update = function(du) {
     var velY = entityManager._speed;
     this.cy = this.cy + velY*du;
 
-    if(this.cy > g_canvas.height+500){
+    if(this.cy > g_canvas.height+500 || this._isDeadNow){
         return entityManager.KILL_ME_NOW;
     }
 
