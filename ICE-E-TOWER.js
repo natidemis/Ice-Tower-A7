@@ -389,6 +389,9 @@ function cutOutFloors(floors){
     floors.push(new SpriteFloor(5,585,celWidth,celHeight)); //goo
     celWidth = 1019;
     floors.push(new SpriteFloor(9,700,celWidth,celHeight)); //bone
+    celWidth = 1012;
+    celHeight = 124;
+    floors.push(new SpriteFloor(14,844,celWidth,celHeight)); //vine
 
     return floors
 }
