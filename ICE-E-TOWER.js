@@ -41,7 +41,6 @@ function createInitialFloors() {
 }
 
 function createInitialPlayer() {
-
     entityManager.generatePlayer({
         cx : 300,
         cy : 600
@@ -169,7 +168,12 @@ var KEY_A = keyCode('A');
 var KEY_S = keyCode('S');
 var KEY_D = keyCode('D');
 var KEY_F = keyCode('Z');
+
 var KEY_ENTER = 13;
+var KEY_LEFT_ARROW = 37;
+var KEY_RIGHT_ARROW = 39;
+var KEY_UP_ARROW = 38;
+var KEY_DOWN_ARROW = 40;
 
 function processDiagnostics() {
 
