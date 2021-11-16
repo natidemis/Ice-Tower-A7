@@ -163,6 +163,14 @@ var KEY_2 = keyCode('2');
 
 var KEY_K = keyCode('K');
 
+//hvar eru þessi keys defined?
+var KEY_W = keyCode('W');
+var KEY_A = keyCode('A');
+var KEY_S = keyCode('S');
+var KEY_D = keyCode('D');
+var KEY_F = keyCode('Z');
+var KEY_ENTER = 13;
+
 function processDiagnostics() {
 
     if (eatKey(KEY_MIXED))
@@ -198,7 +206,7 @@ function processDiagnostics() {
 
 function renderSimulation(ctx) {
     //TODO: setja menuManager.startGame = false þegar leikur klárast.
-    entityManager.render(ctx);
+    //entityManager.render(ctx);
     
     if(menuManager.startGame){
         entityManager.render(ctx);
