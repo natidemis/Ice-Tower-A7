@@ -106,7 +106,6 @@ Player.prototype.update = function (du) {
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79 * this.maxVelX) && (this.velX > 0.79 * (-this.maxVelX)))) {
     this.velY -= 17;
     this._isJumping = true;
-    audios.hop.play();
     this.started = true;
     playJumpNormal();
   }
@@ -114,7 +113,6 @@ Player.prototype.update = function (du) {
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8 * this.maxVelX)) {
     this.velY -= 30;
     this._isJumping = true;
-    audios.whoopdedo.play();
     this.started = true;
     playJumpHigh();
   }
@@ -122,7 +120,6 @@ Player.prototype.update = function (du) {
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8 * (-this.maxVelX))) {
     this.velY -= 30;
     this._isJumping = true;
-    audios.whoopdedo.play();
     this.started = true;
     playJumpHigh();
   }
