@@ -100,6 +100,7 @@ Player.prototype.update = function (du) {
 
   if(g_canvas.height < this.cy - this.height/2){
     playGameOver();
+    window.alert("Your score was: "+ (Math.round(g_score-(g_score % 10))));
     g_score = 0;
     entityManager._speed = 0;
     entityManager.spawncounter = 0;
