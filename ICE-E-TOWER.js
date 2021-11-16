@@ -91,15 +91,6 @@ function createInitialBackgrounds(){
 
 };
 
-// =============
-// GATHER INPUTS
-// =============
-
-function gatherInputs() {
-    // Nothing to do here!
-    // The event handlers do everything we need for now.
-}
-
 
 // =================
 // UPDATE SIMULATION
@@ -157,6 +148,7 @@ var KEY_A = keyCode('A');
 var KEY_S = keyCode('S');
 var KEY_D = keyCode('D');
 var KEY_F = keyCode('Z');
+var KEY_SPACE = ' '.charCodeAt(0);
 
 var KEY_NUMPAD_9 = 105;
 
@@ -206,8 +198,6 @@ function renderScore(){
 
 
 function renderSimulation(ctx) {
-    //TODO: setja menuManager.startGame = false þegar leikur klárast.
-    //entityManager.render(ctx);
     
     if(menuManager.startGame){
         entityManager.render(ctx);
@@ -281,7 +271,6 @@ function preloadDone() {
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
     g_sprites.floorboard = new Sprite(g_images.floorboard);
-    //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
     var celWidth  = 30;
     var celHeight  = 58;
@@ -388,6 +377,10 @@ function cutOutFloors(floors){
     floors.push(new SpriteFloor(9,700,celWidth,celHeight)); //bone
     celWidth = 1012;
     floors.push(new SpriteFloor(14,844,celWidth,celHeight)); //vine
+    celWidth = 1029;
+    celHeight = 121;
+    floors.push(new SpriteFloor(6,967,celWidth,celHeight)); //mario
+    
 
     return floors
 }
