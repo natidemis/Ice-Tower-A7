@@ -238,6 +238,7 @@ function requestPreloads() {
         wall   : "images/wall.png",
         background : "images/background.png",
         spritesheet : "images/icespreadsheet.png",
+        floorspritesheet : "images/floorspritesheet.png",
         menuBackground : "images/menuImage.png",
         floorboard : "images/floorlvl.png"
     };
@@ -273,6 +274,12 @@ var g_players = {
     playerGasp: [],
     playerpicker: []
   }
+}
+
+var g_floors = {
+    floor1: {
+        floorArray: []
+    }
 }
 
 
@@ -358,6 +365,23 @@ function cutOutPlayers(player, y) {
   player.playerpicker.push(new SpriteAnimation(620,156,celWidth,celHeight));
   
   return player;
+}
+
+function cutOutFloors(floor){
+    var celWidth = 1046;
+    var celHeight = 126;
+
+    floor.floorArray.push(new SpriteFloor(0,2,celWidth,celHeight));
+    floor.floorArray.push(new SpriteFloor(0,152,celWidth,celHeight));
+    floor.floorArray.push(new SpriteFloor(1,305,celWidth,celHeight));
+    floor.floorArray.push(new SpriteFloor(0,460,celWidth,celHeight));
+    floor.floorArray.push(new SpriteFloor(0,152,celWidth,celHeight));
+    celWidth = 1036;
+    floor.floorArray.push(new SpriteFloor(5,585,celWidth,celHeight));
+    celWidth = 1019;
+    floor.floorArray.push(new SpriteFloor(9,700,celWidth,celHeight));
+
+    return floor
 }
 
 // Kick it off
