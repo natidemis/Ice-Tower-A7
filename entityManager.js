@@ -158,7 +158,7 @@ update: function(du) {
             cx = g_canvas.width / 2;
             xScale = 1
         } else 
-          xScale = 0.32 / (1 + 0.7*Math.floor((this.spawncounter) / 100));
+          xScale = util.randRange(0.3,0.4)  / (1 + 0.1*Math.floor((this.spawncounter) / 50));
         this.generateFloor({
           cx: cx,
           cy: cy

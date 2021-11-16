@@ -9,6 +9,12 @@ function Floor(descr, idx, xScale = 0.32) {
 
     this.height = this.floor.height*this._scale;
     this.width = this.floor.width*xScale;
+
+    this.flip;
+    if (Math.random() < 0.5) {
+        this.flip = true;
+    } else
+        this.flip = false;
     
 };
 
@@ -33,6 +39,6 @@ Floor.prototype.update = function(du) {
 Floor.prototype.render = function (ctx) {
     this.floor.scale = this._scale;
     this.floor.drawAt(
-        ctx, this.cx, this.cy, 0, this._xScale
+        ctx, this.cx, this.cy, 0, this._xScale, this.flip
     );
 };
