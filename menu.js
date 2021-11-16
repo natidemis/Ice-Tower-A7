@@ -53,10 +53,11 @@ var menuManager = {
         this.drawMenuItem(ctx,this.menuList.options, this._menuItemCoords_x, 350+150,px);
 
         //skipta model2 ut fyrir annad
-        model2.drawAt(ctx,this._menuItemCoords_x - 50,this._menuItemPos[this._menuIdx],0);
+        g_players.player1.playerpicker[0].drawAt(ctx,this._menuItemCoords_x - 50,this._menuItemPos[this._menuIdx],0);
 
     },
     _selectCharMenu: function(ctx){
+        
         const bias = 250
         const ypos = this._menuItemCoords_y + 100
 
@@ -79,7 +80,7 @@ var menuManager = {
         model2.drawAt(ctx,xpos + bias,ypos,0);
         
         model2.scale = 1;
-        model2.drawAt(ctx,this._selectMenuItemPos[this._selectMenuIdx] ,ypos,0);
+        g_players.player1.playerpicker[0].drawAt(ctx,this._selectMenuItemPos[this._selectMenuIdx] ,ypos,0);
 
         this._handleSelectMenuInputs();
 

@@ -260,7 +260,8 @@ var g_players = {
     jumping: [],
     boostJump: [],
     edgeFall: [],
-    playerGasp: []
+    playerGasp: [],
+    playerpicker: []
   },
   player2: {
     stationaryArray: [],
@@ -269,7 +270,8 @@ var g_players = {
     jumping: [],
     boostJump: [],
     edgeFall: [],
-    playerGasp: []
+    playerGasp: [],
+    playerpicker: []
   }
 }
 
@@ -313,7 +315,7 @@ function preloadDone() {
 }
 
 function cutOutPlayers(player, y) {
-  var celWidth  = 30;
+  var celWidth  = 31;
   var celHeight  = 58;
   // stationary
   player.stationaryArray.push(new SpriteAnimation(5, y, celWidth, celHeight));
@@ -346,9 +348,14 @@ function cutOutPlayers(player, y) {
   player.edgeFall.push(new SpriteAnimation(533, y, celWidth, celHeight));
 
   // player gasp
-  celWidth = 38;
-  celWidth = 58;
-  player.playerGasp.push(new SpriteAnimation(583, y, celWidth, celHeight))
+  celWidth = 30;
+  celHeight = 58;
+  player.playerGasp.push(new SpriteAnimation(583, y, celWidth, celHeight));
+
+  // player point
+  celWidth = 36;
+  celHeight = 56;
+  player.playerpicker.push(new SpriteAnimation(620,156,celWidth,celHeight));
   
   return player;
 }
