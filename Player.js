@@ -163,7 +163,7 @@ var cellIdx = 0;
 var spritePlayer;
 Player.prototype.render = function (ctx) { 
   var spritePlayer = this.player.stationaryArray[0];
-  
+  21
   this.isBoostJumping();
   
   if (this.isStationary()) {
@@ -204,7 +204,7 @@ Player.prototype.render = function (ctx) {
     cellIdx += 1;
   }
   if (this._isBoostJumping) {
-    this.rotation = (this.rotation + 0.1) % (2 * Math.PI);
+    this.rotation = (this.rotation + 0.2) % (2 * Math.PI);
   }
 };
 
