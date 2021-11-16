@@ -100,6 +100,7 @@ generateBackground: function(descr) {
 spawncounter : 0,
 
 resetEntities(){
+    scoreBoard.setScore(Math.round(g_score-(g_score % 10)));
     g_score = 0;
     entityManager._speed = 0;
     entityManager.spawncounter = 0;

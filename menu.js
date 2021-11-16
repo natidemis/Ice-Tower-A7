@@ -124,7 +124,7 @@ var menuManager = {
             this.drawMenuItem(ctx,order[i] + scoreBoard.board[i], xpos, ypos + 75*(i+1),pixel);
         }
         if(eatKey(KEY_ENTER))
-            this._HTPMenu = false;
+            this._scoreBoardMenu = false;
         ctx.restore();
     },
 
