@@ -392,6 +392,10 @@ function cutOutFloors(floors){
     floors.push(new SpriteFloor(9,700,celWidth,celHeight)); //bone
     celWidth = 1012;
     floors.push(new SpriteFloor(14,844,celWidth,celHeight)); //vine
+    celWidth = 1029;
+    celHeight = 121;
+    floors.push(new SpriteFloor(6,967,celWidth,celHeight)); //mario
+    
 
     return floors
 }
