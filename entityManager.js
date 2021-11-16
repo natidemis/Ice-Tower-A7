@@ -41,17 +41,6 @@ _generateFloors : function() {
     this.generateFloor();
 },
 
-_generateFloors : function() {
-    this.generateFloor1();
-},
-
-_generateFloors : function() {
-    this.generateFloor2();
-},
-
-_generateFloors : function() {
-    this.generateFloor3();
-},
 
 _generateWalls : function() {
     this.generateWall();

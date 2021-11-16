@@ -55,6 +55,10 @@ function playGameOver(){
     if(sfxOn){audios.gameOver.play()}
 }
 
+function playTryAgain(){
+    if(sfxOn){audios.tryAgain.play()}
+}
+
 function playThemes(){
     if(musicOn){
         if(menuManager.startGame){

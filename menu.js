@@ -122,13 +122,10 @@ var menuManager = {
         ctx.restore();
     },
     _scrollUp: function(){
-        console.log(this._menuIdx)
         if(this._menuIdx === 0)
             this._menuIdx = this._menuItemPos.length -1;
         else
             this._menuIdx -= 1;
-
-        console.log(this._menuIdx)
     },
 
     _scrollDown: function(){

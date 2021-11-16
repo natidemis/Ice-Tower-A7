@@ -100,7 +100,16 @@ Player.prototype.update = function (du) {
 
   if(g_canvas.height < this.cy - this.height/2){
     playGameOver();
-    main.gameOver();
+    g_score = 0;
+    entityManager._speed = 0;
+    entityManager.spawncounter = 0;
+    createInitialFloors();
+    this.started = false;
+    this.cx = g_canvas.width/2,
+    this.cy = g_canvas.height*0.9
+    this.velX = 0;
+    this.velY = 0;
+    playTryAgain();
   }
 
   // apply acceleration
