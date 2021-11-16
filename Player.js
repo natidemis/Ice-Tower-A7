@@ -108,6 +108,7 @@ Player.prototype.update = function (du) {
     this._isJumping = true;
     audios.hop.play();
     this.started = true;
+    playJumpNormal();
   }
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8 * this.maxVelX)) {
@@ -115,6 +116,7 @@ Player.prototype.update = function (du) {
     this._isJumping = true;
     audios.whoopdedo.play();
     this.started = true;
+    playJumpHigh();
   }
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8 * (-this.maxVelX))) {
@@ -122,6 +124,7 @@ Player.prototype.update = function (du) {
     this._isJumping = true;
     audios.whoopdedo.play();
     this.started = true;
+    playJumpHigh();
   }
 
   if (this.velY < this.maxFallingVel) {
@@ -139,7 +142,7 @@ Player.prototype.update = function (du) {
       this.velY = 0;
       this.cy = floorY;
       if (this._landed) {
-        audios.landingSound.play();
+        playLand();
         this._landed = false;
 
       }

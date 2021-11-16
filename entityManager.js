@@ -125,6 +125,8 @@ update: function(du) {
         }
     }
 
+    g_score += ((entityManager._speed*du)/180)*10;
+
     var topheight = this._floors.length-1;
     var topfloor = this._floors[topheight];
 
