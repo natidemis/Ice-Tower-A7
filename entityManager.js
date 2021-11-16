@@ -170,7 +170,6 @@ update: function(du) {
                 level: this.spawncounter
             })
         }
-        console.log("spawncnt " + this.spawncounter);
     }
 
     for (var c = 0; c < this._categories.length; ++c) {

@@ -43,5 +43,5 @@ Floorboards.prototype.render = function (ctx) {
     ctx.font ="bold 14px verdana";
     ctx.textAlign = "center";
     ctx.fillStyle = "white";
-    ctx.fillText(this.level,this.cx, this.cy+10);
+    ctx.fillText(this.level,this.cx, this.cy+7);
 };
