@@ -27,17 +27,17 @@ function createInitialFloors() {
     entityManager.generateFloor({
         cx:200,
         cy:800
-    });
+    }, 0);
 
     entityManager.generateFloor({
         cx:500,
         cy:800
-    });
+    }, 0);
 
     entityManager.generateFloor({
         cx:800,
         cy:800
-    });
+    }, 0);
 }
 
 function createInitialPlayer() {
@@ -282,11 +282,7 @@ var g_players = {
   }
 }
 
-var g_floors = {
-    floor1: {
-        floorArray: []
-    }
-}
+var g_floors = [];
 
 
 function preloadDone() {
@@ -307,13 +303,13 @@ function preloadDone() {
     // for menu
     model1 = new SpriteAnimation(5, 7, celWidth, celHeight);
     model2 = new SpriteAnimation(5, 75, celWidth, celHeight);
-;
+
     var p1y = 7;
     var p2y = 75;
 
     g_players.player1 = cutOutPlayers(g_players.player1, p1y);
     g_players.player2 = cutOutPlayers(g_players.player2, p2y);
-    g_floors.floors = cutOutFloors(g_floors.floor1);
+    g_floors = cutOutFloors(g_floors);
 
     // hot fix because of hole in sprite sheet for player 2:
     g_players.player2.runningArray[0] = g_players.player2.runningArray[2]; 
@@ -377,21 +373,20 @@ function cutOutPlayers(player, y) {
   return player;
 }
 
-function cutOutFloors(floor){
+function cutOutFloors(floors){
     var celWidth = 1046;
     var celHeight = 126;
 
-    floor.floorArray.push(new SpriteFloor(0,2,celWidth,celHeight));
-    floor.floorArray.push(new SpriteFloor(0,152,celWidth,celHeight));
-    floor.floorArray.push(new SpriteFloor(1,305,celWidth,celHeight));
-    floor.floorArray.push(new SpriteFloor(0,460,celWidth,celHeight));
-    floor.floorArray.push(new SpriteFloor(0,152,celWidth,celHeight));
+    floors.push(new SpriteFloor(0,2,celWidth,celHeight));
+    floors.push(new SpriteFloor(0,152,celWidth,celHeight));
+    floors.push(new SpriteFloor(1,305,celWidth,celHeight));
+    floors.push(new SpriteFloor(0,460,celWidth,celHeight));
     celWidth = 1036;
-    floor.floorArray.push(new SpriteFloor(5,585,celWidth,celHeight));
+    floors.push(new SpriteFloor(5,585,celWidth,celHeight));
     celWidth = 1019;
-    floor.floorArray.push(new SpriteFloor(9,700,celWidth,celHeight));
+    floors.push(new SpriteFloor(9,700,celWidth,celHeight));
 
-    return floor
+    return floors
 }
 
 // Kick it off

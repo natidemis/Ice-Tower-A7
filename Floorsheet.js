@@ -6,13 +6,14 @@ function SpriteFloor(sx, sy, width, height) {
     this.image = g_images.floorspritesheet;
 }
 
-SpriteFloor.prototype.drawAt = function (ctx, cx, cy, rotation, flip) {
+SpriteFloor.prototype.drawAt = function (ctx, cx, cy, rotation, xScale,flip) {
     ctx.save();
     ctx.translate(cx, cy);
     if (flip) {
-      ctx.scale(-this.scale, this.scale)
+      ctx.scale(-xScale, this.scale)
     } else
-      ctx.scale(this.scale, this.scale);
+      ctx.scale(xScale, this.scale);
+
     ctx.rotate(rotation)
     ctx.translate(-cx,-cy);
     ctx.drawImage(this.image, this.sx, this.sy, this.width, this.height,
