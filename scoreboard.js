@@ -15,7 +15,7 @@ var scoreBoard = {
         }
         this.board.sort(function(a, b) {
             return a - b;
-          });
+          }).reverse();
         window.localStorage.setItem("scoreboard", JSON.stringify(this.board))
     }
 }
