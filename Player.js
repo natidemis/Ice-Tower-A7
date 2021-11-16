@@ -26,13 +26,6 @@ function Player(descr) {
   this.width = 30 * this._scale;
   this.height = 58 * this._scale;
 
-  this.landingSound = new Audio(
-    "sounds/domm(landing).ogg"
-  );
-
-  this.yo = new Audio(
-    "sounds/yo.ogg"
-  );
 };
 
 Player.prototype = new Entity();
@@ -137,7 +130,7 @@ Player.prototype.update = function (du) {
       this.velY = 0;
       this.cy = floorY;
       if (this._landed) {
-        this.landingSound.play();
+        audios.landingSound.play();
         this._landed = false;
 
       }
