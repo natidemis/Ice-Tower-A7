@@ -51,6 +51,10 @@ function playWallBang(){
     if(sfxOn){audios.play()}
 }
 
+function playGameOver(){
+    if(sfxOn){audios.gameOver()}
+}
+
 function playThemes(){
     if(musicOn){
         if(menuManager.startGame){

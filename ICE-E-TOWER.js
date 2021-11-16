@@ -195,6 +195,15 @@ function processDiagnostics() {
 
 // GAME-SPECIFIC RENDERING
 
+function renderScore(){
+    if(menuManager.startGame){
+        ctx.font = "40px Brush Bold";
+        ctx.fillStyle = "purple";
+        ctx.textAlign = "center";
+        ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
+    }
+}
+
 
 
 function renderSimulation(ctx) {
@@ -207,10 +216,7 @@ function renderSimulation(ctx) {
         menuManager.renderMenu(ctx);
     }
     if (g_renderSpatialDebug) spatialManager.render(ctx);
-    ctx.font = "40px Brush Bold";
-    ctx.fillStyle = "purple";
-    ctx.textAlign = "center";
-    ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95)
+    renderScore();
 }
 
 
