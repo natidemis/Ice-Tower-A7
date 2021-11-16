@@ -17,9 +17,6 @@ var g_ctx = g_canvas.getContext("2d");
 */
 
 
-// ====================
-// CREATE INITIAL SHIPS
-// ====================
 var g_sprites;
 var g_score = 0;
 
@@ -180,9 +177,6 @@ function processDiagnostics() {
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
 
-    if (eatKey(KEY_HALT)) entityManager.haltShips();
-
-    if (eatKey(KEY_RESET)) entityManager.resetShips();
 }
 
 
