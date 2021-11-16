@@ -119,6 +119,9 @@ function gatherInputs() {
 // GAME-SPECIFIC UPDATE LOGIC
 
 function updateSimulation(du) {
+    if(requestedQuit()){
+        main.init();
+    }
     updateaudio();
     processDiagnostics();
     if(menuManager.startGame){

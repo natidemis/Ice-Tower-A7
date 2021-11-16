@@ -98,6 +98,11 @@ Player.prototype.wallcollide = function (du) {
 Player.prototype.update = function (du) {
   spatialManager.unregister(this);
 
+  if(g_canvas.height < this.cy - this.height/2){
+    playGameOver();
+    main.gameOver();
+  }
+
   // apply acceleration
   this.applyAccelX(du);
   // update position

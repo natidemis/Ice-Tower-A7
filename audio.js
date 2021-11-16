@@ -20,7 +20,7 @@ var audios = {
     tryAgain: new Audio(
         "sounds/try-again.ogg"
     ),
-    gamerOver: new Audio(
+    gameOver: new Audio(
         "sounds/gameover.ogg"
     ),
     menu: new Audio(
@@ -52,7 +52,7 @@ function playWallBang(){
 }
 
 function playGameOver(){
-    if(sfxOn){audios.gameOver()}
+    if(sfxOn){audios.gameOver.play()}
 }
 
 function playThemes(){
