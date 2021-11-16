@@ -118,6 +118,9 @@ resetEntities(){
             this._players[f]._isDeadNow = true;
         }
     }
+    for (var f = 0; f < keys.length; ++f) {
+        keys[f] = false;
+    }
     createInitialFloors();
     createInitialPlayer();
     playTryAgain();
