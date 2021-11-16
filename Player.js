@@ -34,9 +34,6 @@ Player.prototype.selectCharacter = function(model = 1) {
   this.player = player1 ? g_players.player1 : g_players.player2;
 }
 
-Player.prototype.KEY_LEFT = 'A'.charCodeAt(0);
-Player.prototype.KEY_RIGHT = 'D'.charCodeAt(0);
-
 Player.prototype.KEY_JUMP = ' '.charCodeAt(0);
 
 Player.prototype.cx = 300;
@@ -65,18 +62,18 @@ Player.prototype._initState = true;
 // þarf líklegast að tweaka gildin sem eru notuð her
 Player.prototype.applyAccelX = function (du) {
 
-  if (keys[this.KEY_RIGHT]) {
+  if (keys[KEY_D] || keys[KEY_RIGHT_ARROW]) {
     if (this.velX < this.maxVelX)
       this.velX += this.accelX*du;
   }
 
-  if (keys[this.KEY_LEFT]) {
+  if (keys[KEY_A] || keys[KEY_LEFT_ARROW]) {
     if (this.velX > -this.maxVelX)
       this.velX -= this.accelX*du;
   }
   // friction if both or neither are pressed
-  if (!(keys[this.KEY_RIGHT] || keys[this.KEY_LEFT]) ||
-    (keys[this.KEY_RIGHT] && keys[this.KEY_LEFT])) {
+  if (!((keys[KEY_D] || keys[KEY_RIGHT_ARROW]) || (keys[KEY_A] || keys[KEY_LEFT_ARROW])) ||
+    ((keys[KEY_D] || keys[KEY_RIGHT_ARROW]) && (keys[KEY_A] || keys[KEY_LEFT_ARROW]))) {
     this.velX *= this.friction;
     if (Math.abs(this.velX) < 0.001) {
       this.velX = 0;
