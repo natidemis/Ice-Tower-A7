@@ -181,8 +181,12 @@ Player.prototype.render = function (ctx) {
   var spritePlayer = this.player.stationaryArray[0];
   
   this.isBoostJumping();
-  
-  if (this.isStationary()) {
+
+  if(this.isGasping()){
+    spritePlayer = this.player.playerGasp[0];
+  }
+
+  else if (this.isStationary()) {
     spritePlayer = this.player.stationaryArray[cellIdx % 3];
   }
   else if (this.isRunning()) {
@@ -248,3 +252,9 @@ Player.prototype.isBoostJumping = function () {
 Player.prototype.edgeFall = function () { 
   // held bail
 };
+
+Player.prototype.isGasping = function () {
+  if(this.started){
+    return this.cy > g_canvas.height * 0.8;
+  }
+}

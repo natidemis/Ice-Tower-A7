@@ -61,7 +61,7 @@ var menuManager = {
         
         const bias = 250
         const ypos = this._menuItemCoords_y + 100
-
+        const pixel = '30px';
         const xpos = this._menuItemCoords_x + 30
         objGradient = ctx.createLinearGradient(0,g_canvas.height*0.6, 0, 0);
         objGradient.addColorStop(0, 'blue');
