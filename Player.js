@@ -85,10 +85,12 @@ Player.prototype.applyAccelX = function (du) {
 Player.prototype.wallcollide = function (du) {
   if (this.cx+16 > 850 && 0 < this.velX) {
     this.velX *= -1;
+    this.cx = 840;
   }
 
   else if (this.cx-16 < 50 && 0 > this.velX) {
     this.velX *= -1;
+    this.cx = 60;
   }
 }
 
@@ -204,6 +206,9 @@ Player.prototype.render = function (ctx) {
   } else {
     this.rotation = 0;
   }
+  if(this.edgeFall()){
+    spritePlayer = this.player.edgeFall[celldIdx % 2];
+  }
   
   // flip the duude
   var flip = this.velX < 0;
@@ -244,7 +249,7 @@ Player.prototype.isBoostJumping = function () {
   }
 };
 Player.prototype.edgeFall = function () { 
-  // held bail
+  //return (this.cx > floorY.width- (floorY.width * 0.05));
 };
 
 Player.prototype.isGasping = function () {
