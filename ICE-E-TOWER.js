@@ -161,6 +161,8 @@ var KEY_S = keyCode('S');
 var KEY_D = keyCode('D');
 var KEY_F = keyCode('Z');
 
+var KEY_NUMPAD_9 = 105;
+
 var KEY_ENTER = 13;
 var KEY_LEFT_ARROW = 37;
 var KEY_RIGHT_ARROW = 39;

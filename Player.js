@@ -106,6 +106,10 @@ Player.prototype.update = function (du) {
   // update position
   this.cx += this.velX*du;
 
+  if (keys[KEY_NUMPAD_9]) {
+      this.velY -= 10;
+  }
+
   if (this._isBoostJumping) {
     this.rotation = (this.rotation + 0.2 * du) % (2 * Math.PI);
   }
