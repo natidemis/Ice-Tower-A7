@@ -33,7 +33,6 @@ var spatialManager = {
 
     getNewSpatialID: function () {
 
-
         return this._nextSpatialID++;
 
     },
@@ -62,7 +61,6 @@ var spatialManager = {
 
     },
 
-
     findEntityInRange: function (aX, aY, aW, aH) {
 
         aX -= aW / 2;
@@ -89,7 +87,6 @@ var spatialManager = {
         return false;
     },
 
-
     render: function (ctx) {
         var oldStyle = ctx.strokeStyle;
         ctx.strokeStyle = "red";
@@ -98,7 +95,6 @@ var spatialManager = {
             var e = this._entities[ID];
             util.strokeCircle(ctx, e.posX, e.posY, e.radius);
         }
-
 
         ctx.strokeStyle = oldStyle;
     }
