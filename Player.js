@@ -26,13 +26,6 @@ function Player(descr) {
   this.width = 30 * this._scale;
   this.height = 58 * this._scale;
 
-  this.landingSound = new Audio(
-    "sounds/domm(landing).ogg"
-  );
-
-  this.yo = new Audio(
-    "sounds/yo.ogg"
-  );
 };
 
 Player.prototype = new Entity();
@@ -137,7 +130,7 @@ Player.prototype.update = function (du) {
       this.velY = 0;
       this.cy = floorY;
       if (this._landed) {
-        this.landingSound.play();
+        audios.landingSound.play();
         this._landed = false;
 
       }
@@ -163,7 +156,7 @@ var cellIdx = 0;
 var spritePlayer;
 Player.prototype.render = function (ctx) { 
   var spritePlayer = this.player.stationaryArray[0];
-  
+  21
   this.isBoostJumping();
   
   if (this.isStationary()) {
@@ -204,7 +197,7 @@ Player.prototype.render = function (ctx) {
     cellIdx += 1;
   }
   if (this._isBoostJumping) {
-    this.rotation = (this.rotation + 0.1) % (2 * Math.PI);
+    this.rotation = (this.rotation + 0.2) % (2 * Math.PI);
   }
 };
 
