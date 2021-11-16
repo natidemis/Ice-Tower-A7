@@ -109,6 +109,10 @@ Player.prototype.update = function (du) {
   // update position
   this.cx += this.velX*du;
 
+  if (this._isBoostJumping) {
+    this.rotation = (this.rotation + 0.2 * du) % (2 * Math.PI);
+  }
+
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79 * this.maxVelX) && (this.velX > 0.79 * (-this.maxVelX)))) {
     this.velY -= 17;
     this._isJumping = true;
@@ -214,9 +218,6 @@ Player.prototype.render = function (ctx) {
       cellIdx -= 100;
     }
     cellIdx += 1;
-  }
-  if (this._isBoostJumping) {
-    this.rotation = (this.rotation + 0.2) % (2 * Math.PI);
   }
 };
 
