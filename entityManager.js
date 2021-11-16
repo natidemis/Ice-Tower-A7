@@ -153,15 +153,16 @@ update: function(du) {
         let cy =  topfloor.cy-180;
         let xScale;
         this.spawncounter++;
+        let floorIdx = Math.floor((this.spawncounter) / 100) % 6;
         if (this.spawncounter % 50 === 0) {
             cx = g_canvas.width / 2;
             xScale = 1
         } else 
-          xScale = 0.32;
+          xScale = 0.32 / (1 + 0.7*Math.floor((this.spawncounter) / 100));
         this.generateFloor({
           cx: cx,
           cy: cy
-        }, Math.floor((this.spawncounter) / 100) % 6, xScale);
+        }, floorIdx, xScale);
                 
     
         if (this.spawncounter%10 == 0){
