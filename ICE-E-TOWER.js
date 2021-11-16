@@ -368,6 +368,14 @@ function cutOutPlayers(player, y) {
   player.playerpicker.push(new SpriteAnimation(620,156,celWidth,celHeight));
 
   // Star trail
+  celWidth = 11;
+  celHeight = 10;
+  player.playerStars.push(new SpriteAnimation(682,245,celWidth,celHeight));//Yellow star
+  player.playerStars.push(new SpriteAnimation(667,214,celWidth,celHeight));//Green star
+  player.playerStars.push(new SpriteAnimation(691,204,celWidth,celHeight));//Blue star
+  player.playerStars.push(new SpriteAnimation(704,234,celWidth,celHeight));//Red star
+  player.playerStars.push(new SpriteAnimation(709,214,celWidth,celHeight));//Pink star
+  player.playerStars.push(new SpriteAnimation(773,202,celWidth,celHeight));//Purple star
 
   
   return player;
