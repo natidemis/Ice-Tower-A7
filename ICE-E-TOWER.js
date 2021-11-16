@@ -320,11 +320,15 @@ function cutOutPlayers(player, y) {
   player.runningArray.push(new SpriteAnimation(229, y, celWidth, celHeight));
 
   // jumping straight
+  celWidth = 32;
   player.jumpingStationary.push(new SpriteAnimation(268, y, celWidth, celHeight));
 
   // jumping side
-  player.jumping.push(new SpriteAnimation(307, y, celWidth, celHeight));
+  celWidth = 31;
+  player.jumping.push(new SpriteAnimation(306, y, celWidth, celHeight));
+  celWidth = 32;
   player.jumping.push(new SpriteAnimation(346, y, celWidth, celHeight));
+  celWidth = 33;
   player.jumping.push(new SpriteAnimation(387, y, celWidth, celHeight));
 
   // jumping spin
