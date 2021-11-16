@@ -91,20 +91,8 @@ generatePlayer : function(descr){
     this._players.push(new Player(descr));
 },
 
-generateFloor : function(descr) {
-    this._floors.push(new Floor(descr));
-},
-
-generateFloor1 : function(descr) {
-    this._floors.push(new Floor1(descr));
-},
-
-generateFloor2 : function(descr) {
-    this._floors.push(new Floor2(descr));
-},
-
-generateFloor3 : function(descr) {
-    this._floors.push(new Floor3(descr));
+generateFloor : function(descr, idx, xScale) {
+    this._floors.push(new Floor(descr, idx, xScale));
 },
 
 generateFloorboard : function(descr) {
@@ -136,39 +124,25 @@ update: function(du) {
 
         let cx =  g_canvas.width*(Math.random()*(0.78 - 0.22)+0.22);
         let cy =  topfloor.cy-180;
-        if(this.spawncounter+1 < 100){
-            this.generateFloor({
-                cx: cx,
-                cy: cy
-            });
-        } else if(100 <= this.spawncounter+1 && this.spawncounter+1 < 200){
-            this.generateFloor1({
-                cx: cx,
-                cy: cy
-            });
-        }
-        
-        else if(this.spawncounter+1 >= 200 && this.spawncounter+1 < 300){
-            this.generateFloor2({
-                cx: cx,
-                cy: cy
-            });
-        }
-
-        else if(this.spawncounter+1 >= 300){
-            this.generateFloor3({
-                cx: cx,
-                cy: cy
-            });
-        }
-        
+        let xScale;
         this.spawncounter++;
+        if (this.spawncounter % 50 === 0) {
+            cx = g_canvas.width / 2;
+            xScale = 1
+        } else 
+          xScale = 0.32;
+        this.generateFloor({
+          cx: cx,
+          cy: cy
+        }, Math.floor((this.spawncounter) / 100) % 6, xScale);
+                
+    
         if (this.spawncounter%10 == 0){
             this.generateFloorboard({
                 cx: cx,
                 cy: cy+10,
                 level: this.spawncounter
-            })
+            },)
         }
         console.log("spawncnt " + this.spawncounter);
     }

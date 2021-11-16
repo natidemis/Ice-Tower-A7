@@ -1,21 +1,16 @@
-function Floor(descr, idx) {
+function Floor(descr, idx, xScale = 0.32) {
 
     // Common inherited setup logic from Entity
     this.setup(descr);
-
-    this.floor = g_floors.floorArray[idx-1];
-    
+    this.floor = g_floors[idx];
     // Set normal drawing scale, and warp state off
     this._scale = 0.32;
+    this._xScale = xScale;
     
     this.height = this.floor.height*this._scale;
     this.width = this.floor.width*this._scale;
     
 };
-
-Floor.prototype.selectFloor = function(floorIdx) {
-    this.floor = g_floors.floorArray[floorIdx];
-}
 
 Floor.prototype = new Entity();
 
@@ -41,7 +36,7 @@ Floor.prototype.render = function (ctx) {
 
     this.floor.scale = this._scale;
     this.floor.drawAt(
-        ctx, this.cx, this.cy, 0
+        ctx, this.cx, this.cy, 0, this._xScale
     );
     //this.sprite.scale = origScale;
 };

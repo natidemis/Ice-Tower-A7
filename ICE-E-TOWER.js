@@ -27,17 +27,17 @@ function createInitialFloors() {
     entityManager.generateFloor({
         cx:200,
         cy:800
-    });
+    }, 0);
 
     entityManager.generateFloor({
         cx:500,
         cy:800
-    });
+    }, 0);
 
     entityManager.generateFloor({
         cx:800,
         cy:800
-    });
+    }, 0);
 }
 
 function createInitialPlayer() {
@@ -282,9 +282,7 @@ var g_players = {
   }
 }
 
-var g_floors = {
-    floorArray: []
-}
+var g_floors = [];
 
 
 function preloadDone() {
@@ -375,21 +373,20 @@ function cutOutPlayers(player, y) {
   return player;
 }
 
-function cutOutFloors(floor){
+function cutOutFloors(floors){
     var celWidth = 1046;
     var celHeight = 126;
 
-    floor.floorArray.push(new SpriteFloor(0,2,celWidth,celHeight));
-    floor.floorArray.push(new SpriteFloor(0,152,celWidth,celHeight));
-    floor.floorArray.push(new SpriteFloor(1,305,celWidth,celHeight));
-    floor.floorArray.push(new SpriteFloor(0,460,celWidth,celHeight));
-    floor.floorArray.push(new SpriteFloor(0,152,celWidth,celHeight));
+    floors.push(new SpriteFloor(0,2,celWidth,celHeight));
+    floors.push(new SpriteFloor(0,152,celWidth,celHeight));
+    floors.push(new SpriteFloor(1,305,celWidth,celHeight));
+    floors.push(new SpriteFloor(0,460,celWidth,celHeight));
     celWidth = 1036;
-    floor.floorArray.push(new SpriteFloor(5,585,celWidth,celHeight));
+    floors.push(new SpriteFloor(5,585,celWidth,celHeight));
     celWidth = 1019;
-    floor.floorArray.push(new SpriteFloor(9,700,celWidth,celHeight));
+    floors.push(new SpriteFloor(9,700,celWidth,celHeight));
 
-    return floor
+    return floors
 }
 
 // Kick it off
