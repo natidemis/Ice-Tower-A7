@@ -132,8 +132,8 @@ function gatherInputs() {
 function updateSimulation(du) {
     
     processDiagnostics();
-    
-    entityManager.update(du);
+    if(menuManager.startGame)
+        entityManager.update(du);
 
     g_score += ((entityManager._speed*du)/180)*10;
 

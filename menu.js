@@ -22,6 +22,7 @@ var menuManager = {
 
     //parameters
     startGame: false,
+    soundActive: true,
     _is_SelectCharMenu: false,
     _optionsMenu: false,
 
