@@ -112,7 +112,7 @@ spawncounter : 0,
 update: function(du) {
     if(this._players[0]){
         this._speed = 2;
-        if(entityManager._players[0].cy < g_canvas.height*0.4){
+        if(entityManager._players[0].cy < g_canvas.height*0.3){
             this._speed += ((g_canvas.height/2-entityManager._players[0].cy)/50);
         }
     }
