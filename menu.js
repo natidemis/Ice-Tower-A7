@@ -4,33 +4,29 @@ var menuManager = {
         start: "START GAME",
         selectChar: "SELECT CHARACTER",
         HTP: "HOW TO PLAY",
+        scoreboard: "SCOREBOARD",
     
     },
 
 
     //coordinates
-    _menuItemCoords_x: 250,
-    _menuItemCoords_y: 350,
-    _y_diff: 40,
-    _x_coord: 240,
-    _start_coord_x: 555,
-    _selectChar_coord_x: 720,
-    _HTP_coord_x: 465,
-    _start_coord_y: 290,
-    _selectChar_coord_y: 366,
-    _HTP_coord_y: 435,
+    _menuItemCoords_x: g_canvas.width/4,
+    _menuItemCoords_y: g_canvas.height/3,
+
+
 
     //parameters
     startGame: false,
     soundActive: true,
     _is_SelectCharMenu: false,
     _HTPMenu: false,
+    _scoreBoardMenu: false,
 
     //menu HTP
     characterModel: 1, //1 if model1, 2 if model2
     _menuIdx: 0,
-    _menuItemPos: [350 - 20, 350 + 55, 350 + 130],
-    _selectMenuItemPos: [200, 450],
+    _menuItemPos: [g_canvas.height/3 - 20, g_canvas.height/3 + 55, g_canvas.height/3 + 130, g_canvas.height/3 + 205],
+    _selectMenuItemPos: [g_canvas.width/4, g_canvas.width/1.9],
     _selectMenuIdx: 0,
     drawMenuItem: function(ctx, text, x, y, px){
         ctx.fillStyle = objGradient;
@@ -49,20 +45,21 @@ var menuManager = {
         objGradient.addColorStop(3/3, 'yellow');
         px = '50px'
      
-        this.drawMenuItem(ctx,this.menuList.start, this._menuItemCoords_x, 350,px);
-        this.drawMenuItem(ctx,this.menuList.selectChar, this._menuItemCoords_x, 350+75,px);
-        this.drawMenuItem(ctx,this.menuList.HTP, this._menuItemCoords_x, 350+150,px);
+        this.drawMenuItem(ctx,this.menuList.start, this._menuItemCoords_x, this._menuItemCoords_y,px);
+        this.drawMenuItem(ctx,this.menuList.selectChar, this._menuItemCoords_x, this._menuItemCoords_y+75,px);
+        this.drawMenuItem(ctx,this.menuList.HTP, this._menuItemCoords_x, this._menuItemCoords_y+150,px);
+        this.drawMenuItem(ctx,this.menuList.scoreboard, this._menuItemCoords_x, this._menuItemCoords_y+225,px);
 
         //skipta model2 ut fyrir annad
         g_players.player1.playerpicker[0].drawAt(ctx,this._menuItemCoords_x - 50,this._menuItemPos[this._menuIdx],0);
 
     },
     _selectCharMenu: function(ctx){
-        
+        ctx.save();
         const bias = 250
         const ypos = this._menuItemCoords_y + 100
         const pixel = '30px';
-        const xpos = this._menuItemCoords_x + 30
+        const xpos = this._selectMenuItemPos[0] + 75
         objGradient = ctx.createLinearGradient(0,g_canvas.height*0.6, 0, 0);
         objGradient.addColorStop(0, 'blue');
       
@@ -84,9 +81,11 @@ var menuManager = {
         g_players.player1.playerpicker[0].drawAt(ctx,this._selectMenuItemPos[this._selectMenuIdx] ,ypos,0);
 
         this._handleSelectMenuInputs();
+        ctx.restore();
 
     },
-    _drawHTPMenu: function() {
+    _drawHTPMenu: function(ctx) {
+        ctx.save();
         const bias = 100
         const ypos = this._menuItemCoords_y + 100
         const pixel = '30px';
@@ -103,23 +102,47 @@ var menuManager = {
 
         if(eatKey(KEY_ENTER))
             this._HTPMenu = false;
-
+        ctx.restore();
+    },
+    _drawScoreBoardMenu: function(ctx) {
+        ctx.save();
+        const bias = 100
+        const ypos = g_canvas.height/3
+        const pixel = '50px';
+        const xpos = g_canvas.width/3;
+        objGradient = ctx.createLinearGradient(0,g_canvas.height*0.6, 0, 0);
+        objGradient.addColorStop(0, 'blue');
+      
+        objGradient.addColorStop(1/2, 'yellow')
+        objGradient.addColorStop(3/3, 'yellow');
+    
+        const order = ["First: ", "Second: ", "Third: "]
+        this.drawMenuItem(ctx,"SCOREBOARD", xpos, ypos,pixel);
+        for(var i = 0; i < scoreBoard.board.length; i++){
+            score = scoreBoard.board[i];
+            
+            this.drawMenuItem(ctx,order[i] + scoreBoard.board[i], xpos, ypos + 75*(i+1),pixel);
+        }
+        if(eatKey(KEY_ENTER))
+            this._HTPMenu = false;
+        ctx.restore();
     },
 
     renderMenu: function(ctx){
 
-        ctx.save();
         
         ctx.drawImage(g_images.menuBackground, 40,40,800,800);
         if(this._is_SelectCharMenu){
             return this._selectCharMenu(ctx);
         }else if (this._HTPMenu){
-            return this._drawHTPMenu();
-        }else{
+            return this._drawHTPMenu(ctx);
+        }else if(this._scoreBoardMenu){
+            return this._drawScoreBoardMenu(ctx);
+        }
+        else{
             return this._drawMainMenu(ctx);
         }
 
-        ctx.restore();
     },
     _scrollUp: function(){
         if(this._menuIdx === 0)
@@ -147,9 +170,11 @@ var menuManager = {
                     this.startGame = true;
                 else if(this._menuIdx === 1){
                     this._is_SelectCharMenu = true;
+                }else if(this._menuIdx == 2){
+                    this._HTPMenu = true;
                 }
                 else
-                    this._HTPMenu = true;
+                    this._scoreBoardMenu = true;
     
     },
     _handleSelectMenuInputs: function(){

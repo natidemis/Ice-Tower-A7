@@ -1,8 +1,8 @@
 var scoreBoard = {
-    board: window.localStorage.getItem("scoreboard") || [],
+    board: window.localStorage.getItem("scoreboard") == null ? []  : JSON.parse(window.localStorage.getItem("scoreboard")),
     setScore(score){
         if(this.board == null){
-            window.localStorage.setItem([score])
+            window.localStorage.setItem(JSON.stringify([score]))
         }else if(this.board.length < 3){
             this.board.push(score)
         }else{
@@ -16,6 +16,6 @@ var scoreBoard = {
         this.board.sort(function(a, b) {
             return a - b;
           });
-        window.localStorage.setItem("scoreboard", this.board)
+        window.localStorage.setItem("scoreboard", JSON.stringify(this.board))
     }
 }
