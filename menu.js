@@ -86,6 +86,7 @@ var menuManager = {
     },
     _drawHTPMenu: function(ctx) {
         ctx.save();
+        ctx.textAlign = "center";
         const bias = 100
         const ypos = this._menuItemCoords_y + 100
         const pixel = '30px';
@@ -97,8 +98,12 @@ var menuManager = {
         objGradient.addColorStop(3/3, 'yellow');
     
      
-        this.drawMenuItem(ctx,"A and D to move left and right respectively", xpos- 50, ypos - 120,pixel);
-        this.drawMenuItem(ctx,"Space bar to jump", xpos- 50, ypos + bias - 120,pixel);
+        this.drawMenuItem(ctx,"A or and D, or arrow keys,", xpos- 50, ypos - 120,pixel);
+        this.drawMenuItem(ctx,"to move left and right respectively.", xpos- 50, ypos - 120 + bias*1.5 - 120,pixel);
+        this.drawMenuItem(ctx,"Use Space bar to jump.", xpos- 50, ypos + bias*1.5 - 120,pixel);
+        this.drawMenuItem(ctx,"Gain enough momentum and you will super jump!", xpos- 50, ypos + bias*1.8 - 120,pixel);
+        this.drawMenuItem(ctx,"'N' toggles SFX and 'M' toggles music.", xpos- 50, ypos + bias*3 - 120,pixel);
+        this.drawMenuItem(ctx,"'N' toggles SFX and 'M' toggles music.", xpos- 50, ypos + bias*3 - 120,pixel);
 
         if(eatKey(KEY_ENTER))
             this._HTPMenu = false;
