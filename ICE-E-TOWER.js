@@ -262,6 +262,7 @@ var g_players = {
     boostJump: [],
     edgeFall: [],
     playerGasp: [],
+    playerStars: [],
     playerpicker: []
   },
   player2: {
@@ -272,6 +273,7 @@ var g_players = {
     boostJump: [],
     edgeFall: [],
     playerGasp: [],
+    playerStars: [],
     playerpicker: []
   }
 }
@@ -307,6 +309,7 @@ function preloadDone() {
 
     g_players.player1 = cutOutPlayers(g_players.player1, p1y);
     g_players.player2 = cutOutPlayers(g_players.player2, p2y);
+    g_floors.floors = cutOutFloors(g_floors.floor1);
 
     // hot fix because of hole in sprite sheet for player 2:
     g_players.player2.runningArray[0] = g_players.player2.runningArray[2]; 
@@ -363,6 +366,9 @@ function cutOutPlayers(player, y) {
   celWidth = 36;
   celHeight = 56;
   player.playerpicker.push(new SpriteAnimation(620,156,celWidth,celHeight));
+
+  // Star trail
+
   
   return player;
 }
