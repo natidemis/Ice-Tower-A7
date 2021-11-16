@@ -283,9 +283,7 @@ var g_players = {
 }
 
 var g_floors = {
-    floor1: {
-        floorArray: []
-    }
+    floorArray: []
 }
 
 
@@ -307,13 +305,13 @@ function preloadDone() {
     // for menu
     model1 = new SpriteAnimation(5, 7, celWidth, celHeight);
     model2 = new SpriteAnimation(5, 75, celWidth, celHeight);
-;
+
     var p1y = 7;
     var p2y = 75;
 
     g_players.player1 = cutOutPlayers(g_players.player1, p1y);
     g_players.player2 = cutOutPlayers(g_players.player2, p2y);
-    g_floors.floors = cutOutFloors(g_floors.floor1);
+    g_floors = cutOutFloors(g_floors);
 
     // hot fix because of hole in sprite sheet for player 2:
     g_players.player2.runningArray[0] = g_players.player2.runningArray[2]; 
