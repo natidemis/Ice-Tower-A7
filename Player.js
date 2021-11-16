@@ -104,19 +104,19 @@ Player.prototype.update = function (du) {
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79 * this.maxVelX) && (this.velX > 0.79 * (-this.maxVelX)))) {
     this.velY -= 17;
     this._isJumping = true;
-    keys[this.KEY_JUMP] = false;
+    audios.hop.play();
   }
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8 * this.maxVelX)) {
     this.velY -= 30;
     this._isJumping = true;
-    keys[this.KEY_JUMP] = false;
+    audios.whoopdedo.play();
   }
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8 * (-this.maxVelX))) {
     this.velY -= 30;
     this._isJumping = true;
-    keys[this.KEY_JUMP] = false;
+    audios.whoopdedo.play();
   }
 
   if (this.velY < this.maxFallingVel) {

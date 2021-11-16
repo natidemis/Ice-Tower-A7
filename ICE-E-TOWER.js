@@ -242,6 +242,7 @@ function requestPreloads() {
         wall   : "images/wall.png",
         background : "images/background.png",
         spritesheet : "images/icespreadsheet.png",
+        floorspritesheet : "images/floorspritesheet.png",
         menuBackground : "images/menuImage.png",
         floorboard : "images/floorlvl.png"
     };
@@ -265,6 +266,7 @@ var g_players = {
     boostJump: [],
     edgeFall: [],
     playerGasp: [],
+    playerStars: [],
     playerpicker: []
   },
   player2: {
@@ -275,8 +277,15 @@ var g_players = {
     boostJump: [],
     edgeFall: [],
     playerGasp: [],
+    playerStars: [],
     playerpicker: []
   }
+}
+
+var g_floors = {
+    floor1: {
+        floorArray: []
+    }
 }
 
 
@@ -304,6 +313,7 @@ function preloadDone() {
 
     g_players.player1 = cutOutPlayers(g_players.player1, p1y);
     g_players.player2 = cutOutPlayers(g_players.player2, p2y);
+    g_floors.floors = cutOutFloors(g_floors.floor1);
 
     // hot fix because of hole in sprite sheet for player 2:
     g_players.player2.runningArray[0] = g_players.player2.runningArray[2]; 
@@ -360,8 +370,28 @@ function cutOutPlayers(player, y) {
   celWidth = 36;
   celHeight = 56;
   player.playerpicker.push(new SpriteAnimation(620,156,celWidth,celHeight));
+
+  // Star trail
+
   
   return player;
+}
+
+function cutOutFloors(floor){
+    var celWidth = 1046;
+    var celHeight = 126;
+
+    floor.floorArray.push(new SpriteFloor(0,2,celWidth,celHeight));
+    floor.floorArray.push(new SpriteFloor(0,152,celWidth,celHeight));
+    floor.floorArray.push(new SpriteFloor(1,305,celWidth,celHeight));
+    floor.floorArray.push(new SpriteFloor(0,460,celWidth,celHeight));
+    floor.floorArray.push(new SpriteFloor(0,152,celWidth,celHeight));
+    celWidth = 1036;
+    floor.floorArray.push(new SpriteFloor(5,585,celWidth,celHeight));
+    celWidth = 1019;
+    floor.floorArray.push(new SpriteFloor(9,700,celWidth,celHeight));
+
+    return floor
 }
 
 // Kick it off
