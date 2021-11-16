@@ -3,8 +3,6 @@ function Floor(descr) {
     // Common inherited setup logic from Entity
     this.setup(descr);
 
-
-    
     this.sprite = g_sprites.floor;
     
     // Set normal drawing scale, and warp state off
