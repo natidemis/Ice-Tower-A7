@@ -55,6 +55,8 @@ Player.prototype.jumpVel = 3;
 Player.prototype._isJumping = false;
 Player.prototype._isBoostJumping = false;
 Player.prototype.rotation = 0;
+Player.prototype.started = false;
+
 
 // sound managers
 Player.prototype._landed = false;
@@ -105,18 +107,21 @@ Player.prototype.update = function (du) {
     this.velY -= 17;
     this._isJumping = true;
     audios.hop.play();
+    this.started = true;
   }
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8 * this.maxVelX)) {
     this.velY -= 30;
     this._isJumping = true;
     audios.whoopdedo.play();
+    this.started = true;
   }
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8 * (-this.maxVelX))) {
     this.velY -= 30;
     this._isJumping = true;
     audios.whoopdedo.play();
+    this.started = true;
   }
 
   if (this.velY < this.maxFallingVel) {

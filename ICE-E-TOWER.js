@@ -25,25 +25,15 @@ var g_score = 0;
 
 function createInitialFloors() {
     entityManager.generateFloor({
-        cx:200,
-        cy:800
-    }, 0);
-
-    entityManager.generateFloor({
-        cx:500,
-        cy:800
-    }, 0);
-
-    entityManager.generateFloor({
-        cx:800,
-        cy:800
-    }, 0);
+        cx:g_canvas.width/2,
+        cy:g_canvas.height*0.95
+    }, 0, 1);
 }
 
 function createInitialPlayer() {
     entityManager.generatePlayer({
-        cx : 300,
-        cy : 600
+        cx : g_canvas.width/2,
+        cy : g_canvas.height*0.9
     })
 }
 
@@ -97,8 +87,8 @@ function createInitialWalls(){
 }
 function createInitialBackgrounds(){
     entityManager.generateBackground({
-        cx:450,
-        cy:450
+        cx: g_canvas.width/2,
+        cy: g_canvas.height/2
     });
     
 
@@ -234,10 +224,6 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        floor  : "images/floor.png",
-        floor1 : "images/floor1.png",
-        floor2 : "images/floor2.png",
-        floor3 : "images/floor3.png",
         player : "images/player.png",
         wall   : "images/wall.png",
         background : "images/background.png",
@@ -251,8 +237,8 @@ function requestPreloads() {
 }
 
 var g_sprites = {};
-// beila a thennan?
-var g_spritessheetsprite = [];
+
+
 
 var model1;
 var model2;
@@ -287,10 +273,6 @@ var g_floors = [];
 
 function preloadDone() {
 
-    g_sprites.floor = new Sprite(g_images.floor);
-    g_sprites.floor1 = new Sprite(g_images.floor1);
-    g_sprites.floor2 = new Sprite(g_images.floor2);
-    g_sprites.floor3 = new Sprite(g_images.floor3);
     g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);

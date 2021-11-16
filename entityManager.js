@@ -25,6 +25,7 @@ with suitable 'data' and 'methods'.
 
 var entityManager = {
 
+
 // "PRIVATE" DATA
 
 _floors  : [],
@@ -110,10 +111,17 @@ generateBackground: function(descr) {
 spawncounter : 0,
 
 update: function(du) {
+    
+    
     if(this._players[0]){
-        this._speed = 2;
-        if(entityManager._players[0].cy < g_canvas.height/2){
-            this._speed += ((g_canvas.height/2-entityManager._players[0].cy)/50);
+        if(!this._players[0].started){
+        this._speed = 0; // start hraði fyrir hopp
+        }
+        else{
+            this._speed = 2;  //hraði á scrolli
+            if(entityManager._players[0].cy < g_canvas.height/2){
+                this._speed += ((g_canvas.height/2-entityManager._players[0].cy)/50); 
+            }
         }
     }
 
