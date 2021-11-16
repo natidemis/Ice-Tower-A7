@@ -129,12 +129,11 @@ function gatherInputs() {
 // GAME-SPECIFIC UPDATE LOGIC
 
 function updateSimulation(du) {
-    
+    updateaudio();
     processDiagnostics();
-    if(menuManager.startGame)
+    if(menuManager.startGame){
         entityManager.update(du);
-
-    g_score += ((entityManager._speed*du)/180)*10;
+    }
 
 }
 
@@ -320,7 +319,7 @@ function preloadDone() {
     createInitialFloors();
     
     createInitialPlayer();
-    
+
     main.init();
 }
 

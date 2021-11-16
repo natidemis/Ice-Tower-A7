@@ -112,10 +112,12 @@ spawncounter : 0,
 update: function(du) {
     if(this._players[0]){
         this._speed = 2;
-        if(entityManager._players[0].cy < g_canvas.height/2){
+        if(entityManager._players[0].cy < g_canvas.height*0.4){
             this._speed += ((g_canvas.height/2-entityManager._players[0].cy)/50);
         }
     }
+
+    g_score += ((entityManager._speed*du)/180)*10;
 
     var topheight = this._floors.length-1;
     var topfloor = this._floors[topheight];
