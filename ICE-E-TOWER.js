@@ -238,6 +238,7 @@ function requestPreloads() {
         wall   : "images/wall.png",
         background : "images/background.png",
         spritesheet : "images/icespreadsheet.png",
+        floorspritesheet : "images/floorspritesheet.png",
         menuBackground : "images/menuImage.png",
         floorboard : "images/floorlvl.png"
     };
