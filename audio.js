@@ -40,11 +40,11 @@ function playJumpNormal(){
 }
 
 function playJumpHigh(){
-    if(sfxOn){audios.hop.play()}
+    if(sfxOn){audios.whoopdedo.play()}
 }
 
 function playLand(){
-    if(sfxOn){audios.hop.play()}
+    if(sfxOn){audios.landingSound.play()}
 }
 
 function playWallBang(){
