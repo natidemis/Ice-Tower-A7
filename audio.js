@@ -77,7 +77,7 @@ function updateaudio(){
     var KEY_M = keyCode('M');
     var KEY_N = keyCode('N');
     audios.theme.volume = 0.1;
-    audios.menu.volume = 0.5;
+    audios.menu.volume = 0.1;
     if(eatKey(KEY_M)){musicOn = !musicOn}
     if(eatKey(KEY_N)){sfxOn = !sfxOn}
     playThemes();
