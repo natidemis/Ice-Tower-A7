@@ -368,6 +368,9 @@ function cutOutFloors(floors){
     floors.push(new SpriteFloor(0,152,celWidth,celHeight)); // ice
     floors.push(new SpriteFloor(1,305,celWidth,celHeight)); // wood
     celHeight = 124
+    celWidth = 1029;
+    celHeight = 121;
+    floors.push(new SpriteFloor(6,967,celWidth,celHeight)); //mario
     floors.push(new SpriteFloor(0,460,celWidth,celHeight)); // metal
     celWidth = 1036;
     celHeight = 126;
@@ -377,9 +380,7 @@ function cutOutFloors(floors){
     floors.push(new SpriteFloor(9,700,celWidth,celHeight)); //bone
     celWidth = 1012;
     floors.push(new SpriteFloor(14,844,celWidth,celHeight)); //vine
-    celWidth = 1029;
-    celHeight = 121;
-    floors.push(new SpriteFloor(6,967,celWidth,celHeight)); //mario
+    
     
 
     return floors
