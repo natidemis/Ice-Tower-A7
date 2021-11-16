@@ -159,8 +159,6 @@ Player.prototype.update = function (du) {
     return entityManager.KILL_ME_NOW;
   }
   
-  // remove
-  this.velY = -20;
   this.cy += this.velY*du + entityManager._speed*du;
 
   spatialManager.register(this);
