@@ -17,9 +17,6 @@ var g_ctx = g_canvas.getContext("2d");
 */
 
 
-// ====================
-// CREATE INITIAL SHIPS
-// ====================
 var g_sprites;
 var g_score = 0;
 
@@ -94,15 +91,6 @@ function createInitialBackgrounds(){
 
 };
 
-// =============
-// GATHER INPUTS
-// =============
-
-function gatherInputs() {
-    // Nothing to do here!
-    // The event handlers do everything we need for now.
-}
-
 
 // =================
 // UPDATE SIMULATION
@@ -160,6 +148,9 @@ var KEY_A = keyCode('A');
 var KEY_S = keyCode('S');
 var KEY_D = keyCode('D');
 var KEY_F = keyCode('Z');
+var KEY_SPACE = ' '.charCodeAt(0);
+
+var KEY_NUMPAD_9 = 105;
 
 var KEY_ENTER = 13;
 var KEY_LEFT_ARROW = 37;
@@ -178,9 +169,6 @@ function processDiagnostics() {
 
     if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
 
-    if (eatKey(KEY_HALT)) entityManager.haltShips();
-
-    if (eatKey(KEY_RESET)) entityManager.resetShips();
 }
 
 
@@ -210,8 +198,6 @@ function renderScore(){
 
 
 function renderSimulation(ctx) {
-    //TODO: setja menuManager.startGame = false þegar leikur klárast.
-    //entityManager.render(ctx);
     
     if(menuManager.startGame){
         entityManager.render(ctx);
@@ -285,7 +271,6 @@ function preloadDone() {
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
     g_sprites.floorboard = new Sprite(g_images.floorboard);
-    //g_spritesheet.spritesheet = new Sprite(g_images.spritesheet);
 
     var celWidth  = 30;
     var celHeight  = 58;

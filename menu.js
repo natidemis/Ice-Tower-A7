@@ -100,7 +100,7 @@ var menuManager = {
         this.drawMenuItem(ctx,"A and D to move left and right respectively", xpos- 50, ypos - 120,pixel);
         this.drawMenuItem(ctx,"Space bar to jump", xpos- 50, ypos + bias - 120,pixel);
 
-        if(eatKey(KEY_ENTER))
+        if(eatKey(KEY_ENTER) || eatKey(KEY_SPACE))
             this._HTPMenu = false;
         ctx.restore();
     },
@@ -123,7 +123,7 @@ var menuManager = {
             
             this.drawMenuItem(ctx,order[i] + scoreBoard.board[i], xpos, ypos + 75*(i+1),pixel);
         }
-        if(eatKey(KEY_ENTER))
+        if(eatKey(KEY_ENTER) || eatKey(KEY_SPACE))
             this._scoreBoardMenu = false;
         ctx.restore();
     },
@@ -165,7 +165,7 @@ var menuManager = {
                 this._scrollUp();
             if(eatKey(KEY_S) || eatKey(KEY_DOWN_ARROW))
                 this._scrollDown();
-            if(eatKey(KEY_ENTER))
+            if(eatKey(KEY_ENTER) || eatKey(KEY_SPACE))
                 if(this._menuIdx === 0)
                     this.startGame = true;
                 else if(this._menuIdx === 1){
@@ -183,7 +183,7 @@ var menuManager = {
         if(eatKey(KEY_A) || eatKey(KEY_LEFT_ARROW))
             this._selectMenuIdx = 1 - this._selectMenuIdx;
         
-        if(eatKey(KEY_ENTER)){
+        if(eatKey(KEY_ENTER) || eatKey(KEY_SPACE)){
             this.characterModel = this._selectMenuIdx + 1
             this._is_SelectCharMenu = false;
             entityManager._players[0].selectCharacter(this.characterModel);
