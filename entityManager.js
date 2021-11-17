@@ -105,12 +105,11 @@ generateBackground: function(descr) {
     this._backgrounds.push(new Background(descr));
 },
 
-spawncounter : 0,
-
 resetEntities(){
     entityManager._players[0].selectCharacter(this.characterModel);
     scoreBoard.setScore(Math.round(g_score-(g_score % 10)));
     g_score = 0;
+    g_combo.meter = 0;
     entityManager._speed = 0;
     entityManager.spawncounter = 0;
     for (var f = 0; f < this._floors.length; ++f) {
@@ -144,12 +143,14 @@ updateGameSpeed: function(du){
         }
         else{
             this._speed = 2;  //speed of the auto scroll
-            if(entityManager._players[0].cy < g_canvas.height/2){
+            if(entityManager._players[0].cy < g_canvas.height*0.3){
                 this._speed += ((g_canvas.height/2-entityManager._players[0].cy)/50); 
             }
         }
     }
 },
+
+spawncounter : 0,
 
 generateNextPlatforms: function(du){
     var topheight = this._floors.length-1;
@@ -183,21 +184,26 @@ generateNextPlatforms: function(du){
     }
 },
 
+nextStar : 1,
+
 createStars: function(du){
     if(this._players[0] && this._players[0]._isBoostJumping){
-        var rand = Math.floor(Math.random()*5);
-        this.generateStar({
-            cx: this._players[0].cx + util.randRange(-30,30),
-            cy: this._players[0].cy + util.randRange(-30,30)
-        },rand)
+        this.nextStar += du*1;
+        if(this.nextStar >= 1){
+            var rand = Math.floor(Math.random()*5);
+            this.nextStar--;
+            this.generateStar({
+                cx: this._players[0].cx + util.randRange(-30,30),
+                cy: this._players[0].cy + util.randRange(-30,30)
+            },rand)
+        }
     }
 },
 
 update: function(du) {
     this.updateGameSpeed();
-    g_score += ((entityManager._speed*du)/180)*10;
-    this.generateNextPlatforms();
-    this.createStars();
+    this.generateNextPlatforms(du);
+    this.createStars(du);
 
     for (var c = 0; c < this._categories.length; ++c) {
 

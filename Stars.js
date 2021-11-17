@@ -23,7 +23,7 @@ Star.prototype.life = 1;
 Star.prototype.update = function(du){
     spatialManager.unregister(this);
     this.life -= 0.01*du;
-    this.cy += entityManager._speed+2*du;
+    this.cy += entityManager._speed*du+2*du;
     if(this.life <= 0){
         return entityManager.KILL_ME_NOW;
     }

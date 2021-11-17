@@ -19,6 +19,7 @@ var g_ctx = g_canvas.getContext("2d");
 
 var g_sprites;
 var g_score = 0;
+var g_combo = new Combo();
 
 function createInitialFloors() {
     entityManager.generateFloor({
@@ -115,7 +116,12 @@ function updateSimulation(du) {
     if(menuManager.startGame){
         entityManager.update(du);
     }
-
+    g_combo.update(du);
+    var scorePlus = ((entityManager._speed*du)/180)*10;
+    g_score += scorePlus;
+    if(0 < g_combo.meter){
+        g_score += scorePlus/2;
+    }
 }
 
 // GAME-SPECIFIC DIAGNOSTICS
@@ -191,12 +197,12 @@ function renderScore(){
     if(menuManager.startGame){
         ctx.save();
         ctx.font = "40px Brush Bold";
+        ctx.textAlign = "center";
         ctx.strokeStyle ="purple";
         ctx.strokeText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95);
         ctx.lineWidth="10";
         ctx.fillStyle = "yellow";
         ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95);
-        ctx.textAlign = "center";
         ctx.restore();
     }
 }
@@ -211,6 +217,7 @@ function renderSimulation(ctx) {
         menuManager.renderMenu(ctx);
     }
     if (g_renderSpatialDebug) spatialManager.render(ctx);
+    g_combo.render(ctx);
     renderScore();
 }
 
