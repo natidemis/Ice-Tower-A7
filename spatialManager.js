@@ -72,6 +72,8 @@ var spatialManager = {
             var bH = b.height;
             var bX = b.posX - (bW / 2);
             var bY = b.posY - (bH / 2);
+            bX += 0.05*bW;
+            bW = bW*0.9; 
             //check if entities collide or not
             if (aX < (bX + bW) &&
                 (aX + aW) > bX &&
