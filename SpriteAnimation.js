@@ -20,6 +20,21 @@ SpriteAnimation.prototype.drawAt = function (ctx, cx, cy, rotation, flip) {
     ctx.restore();
 }
 
+SpriteAnimation.prototype.drawAtOpac = function (ctx, cx, cy, rotation, flip, opac) {
+    ctx.save();
+    ctx.globalAlpha = opac;
+    ctx.translate(cx, cy);
+    if (flip) {
+      ctx.scale(-this.scale, this.scale)
+    } else
+      ctx.scale(this.scale, this.scale);
+    ctx.rotate(rotation)
+    ctx.translate(-cx,-cy);
+    ctx.drawImage(this.image, this.sx, this.sy, this.width, this.height,
+        cx-this.width/2 , cy-this.height/2 , this.width, this.height);
+    ctx.restore();
+}
+
 /*SpriteAnimation.prototype.drawCentredAt = function (ctx, cx, cy, rotation) {
     if (rotation === undefined) rotation = 0;
     

@@ -29,6 +29,7 @@ var entityManager = {
 // "PRIVATE" DATA
 
 _floors  : [],
+_stars  : [],
 _players : [],
 _walls   : [],
 _backgrounds : [],
@@ -41,6 +42,9 @@ _generateFloors : function() {
     this.generateFloor();
 },
 
+_generateStars : function() {
+    this.generateStar();
+},
 
 _generateWalls : function() {
     this.generateWall();
@@ -71,7 +75,7 @@ KILL_ME_NOW : -1,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._backgrounds, this._floors, this._walls, this._floorboards, this._players];
+    this._categories = [this._backgrounds, this._floors, this._walls, this._floorboards, this._stars, this._players];
 },
 
 init: function() {
@@ -79,6 +83,10 @@ init: function() {
 
 generatePlayer : function(descr){
     this._players.push(new Player(descr));
+},
+
+generateStar : function(descr, idx){
+    this._stars.push(new Star(descr, idx));
 },
 
 generateFloor : function(descr, idx, xScale) {
@@ -120,9 +128,11 @@ resetEntities(){
             this._players[f]._isDeadNow = true;
         }
     }
+    
     for (var f = 0; f < keys.length; ++f) {
         keys[f] = false;
     }
+
     createInitialFloors();
     createInitialPlayer();
 },
@@ -173,11 +183,24 @@ generateNextPlatforms: function(du){
     }
 },
 
+createStars: function(du){
+    if(this._players[0] && this._players[0]._isBoostJumping){
+        var rand = Math.floor(Math.random()*5);
+        this.generateStar({
+            cx: this._players[0].cx + util.randRange(-30,30),
+            cy: this._players[0].cy + util.randRange(-30,30)
+        },rand)
+    }
+},
+
 update: function(du) {
     this.updateGameSpeed();
     g_score += ((entityManager._speed*du)/180)*10;
-
+    if(this._stars[0]){
+        console.log(this._stars[0].cx);
+    }
     this.generateNextPlatforms();
+    this.createStars();
 
     for (var c = 0; c < this._categories.length; ++c) {
 
