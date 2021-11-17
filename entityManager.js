@@ -100,6 +100,7 @@ generateBackground: function(descr) {
 spawncounter : 0,
 
 resetEntities(){
+    entityManager._players[0].selectCharacter(this.characterModel);
     scoreBoard.setScore(Math.round(g_score-(g_score % 10)));
     g_score = 0;
     entityManager._speed = 0;

@@ -70,6 +70,12 @@ main._iterCore = function (dt) {
     //}
     
     //gatherInputs();
+    if (eatKey(KEY_ESCAPE)) {
+      menuManager.startGame = false;
+      audios.theme.pause();
+      audios.theme.currentTime = 0;
+      entityManager.resetEntities();
+    }
     update(dt);
     render(g_ctx);
 };

@@ -39,7 +39,7 @@ var menuManager = {
     _drawMainMenu: function(ctx){
         this._handleMainMenuInput();
         objGradient = ctx.createLinearGradient(0,g_canvas.height*0.6, 0, 0);
-        objGradient.addColorStop(0, 'blue');
+        objGradient.addColorStop(0, 'purple');
       
         objGradient.addColorStop(1/2, 'yellow')
         objGradient.addColorStop(3/3, 'yellow');
@@ -61,7 +61,7 @@ var menuManager = {
         const pixel = '30px';
         const xpos = this._selectMenuItemPos[0] + 75
         objGradient = ctx.createLinearGradient(0,g_canvas.height*0.6, 0, 0);
-        objGradient.addColorStop(0, 'blue');
+        objGradient.addColorStop(0, 'purple');
       
         objGradient.addColorStop(1/2, 'yellow')
         objGradient.addColorStop(3/3, 'yellow');
@@ -92,7 +92,7 @@ var menuManager = {
         const pixel = '30px';
         const xpos = this._menuItemCoords_x - 100;
         objGradient = ctx.createLinearGradient(0,g_canvas.height*0.6, 0, 0);
-        objGradient.addColorStop(0, 'blue');
+        objGradient.addColorStop(0, 'purple');
       
         objGradient.addColorStop(1/2, 'yellow')
         objGradient.addColorStop(3/3, 'yellow');
@@ -116,7 +116,7 @@ var menuManager = {
         const pixel = '50px';
         const xpos = g_canvas.width/3;
         objGradient = ctx.createLinearGradient(0,g_canvas.height*0.6, 0, 0);
-        objGradient.addColorStop(0, 'blue');
+        objGradient.addColorStop(0, 'purple');
       
         objGradient.addColorStop(1/2, 'yellow')
         objGradient.addColorStop(3/3, 'yellow');
@@ -192,6 +192,7 @@ var menuManager = {
             this.characterModel = this._selectMenuIdx + 1
             this._is_SelectCharMenu = false;
             entityManager._players[0].selectCharacter(this.characterModel);
+            entityManager.resetEntities();
         }
     }
 }

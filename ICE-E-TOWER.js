@@ -31,7 +31,7 @@ function createInitialPlayer() {
     entityManager.generatePlayer({
         cx : g_canvas.width/2,
         cy : g_canvas.height*0.9
-    })
+    }, )
 }
 
 function createInitialWalls(){
@@ -151,6 +151,7 @@ var KEY_F = keyCode('Z');
 var KEY_SPACE = ' '.charCodeAt(0);
 
 var KEY_NUMPAD_9 = 105;
+var KEY_ESCAPE = 27;
 
 var KEY_ENTER = 13;
 var KEY_LEFT_ARROW = 37;
@@ -188,13 +189,15 @@ function processDiagnostics() {
 
 function renderScore(){
     if(menuManager.startGame){
+        ctx.save();
         ctx.font = "40px Brush Bold";
         ctx.strokeStyle ="purple";
         ctx.strokeText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95);
         ctx.lineWidth="10";
         ctx.fillStyle = "yellow";
-        ctx.textAlign = "center";
         ctx.fillText(Math.round(g_score-(g_score % 10)),g_canvas.width*0.1, g_canvas.height*0.95);
+        ctx.textAlign = "center";
+        ctx.restore();
     }
 }
 
