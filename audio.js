@@ -64,8 +64,10 @@ function playThemes(){
         if(menuManager.startGame){
             audios.theme.play();
             audios.menu.pause();
-        } else{
-            audios.menu.play();
+        } else{        
+            audios.menu.play().catch(() => {
+
+            });
         }
     } else {
         audios.menu.pause();
