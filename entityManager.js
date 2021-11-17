@@ -127,9 +127,7 @@ resetEntities(){
     createInitialPlayer();
 },
 
-update: function(du) {
-    
-    
+updateGameSpeed: function(du){
     if(this._players[0]){
         if(!this._players[0].started){
         this._speed = 0; // speed before you jump for the first time
@@ -141,9 +139,9 @@ update: function(du) {
             }
         }
     }
+},
 
-    g_score += ((entityManager._speed*du)/180)*10;
-
+generateNextPlatforms: function(du){
     var topheight = this._floors.length-1;
     var topfloor = this._floors[topheight];
 
@@ -173,6 +171,13 @@ update: function(du) {
             },)
         }
     }
+},
+
+update: function(du) {
+    this.updateGameSpeed();
+    g_score += ((entityManager._speed*du)/180)*10;
+
+    this.generateNextPlatforms();
 
     for (var c = 0; c < this._categories.length; ++c) {
 

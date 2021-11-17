@@ -224,7 +224,6 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        player : "images/player.png",
         wall   : "images/wall.png",
         background : "images/background.png",
         spritesheet : "images/icespreadsheet.png",
@@ -273,7 +272,6 @@ var g_floors = [];
 
 function preloadDone() {
 
-    g_sprites.player = new Sprite(g_images.player);
     g_sprites.wall = new Sprite(g_images.wall);
     g_sprites.background = new Sprite(g_images.background);
     g_sprites.floorboard = new Sprite(g_images.floorboard);
