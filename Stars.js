@@ -3,7 +3,7 @@ function Star(descr, idx) {
     this.setup(descr);
     this.star = g_stars[idx];
     // Set normal drawing scale, and warp state off
-    this._scale = 1;
+    this._scale = 1.2;
     
 
     this.height = this.star.height*this._scale;
@@ -34,6 +34,6 @@ Star.prototype.update = function(du){
 Star.prototype.render = function (ctx) {
     this.star.scale = this._scale;
     this.star.drawAtOpac(
-        ctx,this.cx, this.cy, 0, this._scale,this.life
+        ctx,this.cx, this.cy, this.life*Math.PI*3, this._scale,this.life
     );
 };
