@@ -39,6 +39,10 @@ function playJumpNormal(){
     if(sfxOn){audios.hop.play()}
 }
 
+function playJumpMed(){
+    if(sfxOn){audios.weee.play()}
+}
+
 function playJumpHigh(){
     if(sfxOn){audios.whoopdedo.play()}
 }

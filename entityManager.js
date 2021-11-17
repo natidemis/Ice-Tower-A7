@@ -143,7 +143,7 @@ updateGameSpeed: function(du){
         }
         else{
             this._speed = 2;  //speed of the auto scroll
-            if(entityManager._players[0].cy < g_canvas.height*0.3){
+            if(entityManager._players[0].cy < g_canvas.height*0.35){
                 this._speed += ((g_canvas.height/2-entityManager._players[0].cy)/50); 
             }
         }

@@ -98,11 +98,12 @@ var menuManager = {
         objGradient.addColorStop(3/3, 'yellow');
     
      
-        this.drawMenuItem(ctx,"A or and D, or arrow keys,", xpos- 50, ypos - 120,pixel);
+        this.drawMenuItem(ctx,"Use 'A' and 'D', or arrow keys,", xpos- 50, ypos - 120,pixel);
         this.drawMenuItem(ctx,"to move left and right respectively.", xpos- 50, ypos - 120 + bias*1.5 - 120,pixel);
+        this.drawMenuItem(ctx,"Hold down both to apply friction.", xpos- 50, ypos - 120 + bias*1.8 - 120,pixel);
         this.drawMenuItem(ctx,"Use Space bar to jump.", xpos- 50, ypos + bias*1.5 - 120,pixel);
         this.drawMenuItem(ctx,"Gain enough momentum and you will super jump!", xpos- 50, ypos + bias*1.8 - 120,pixel);
-        this.drawMenuItem(ctx,"'N' toggles SFX and 'M' toggles music.", xpos- 50, ypos + bias*3 - 120,pixel);
+        this.drawMenuItem(ctx,"Super jumping activates the 1.5x score multiplier!", xpos- 50, ypos + bias*2.2 - 120,pixel);
         this.drawMenuItem(ctx,"'N' toggles SFX and 'M' toggles music.", xpos- 50, ypos + bias*3 - 120,pixel);
 
         if(eatKey(KEY_ENTER) || eatKey(KEY_SPACE))

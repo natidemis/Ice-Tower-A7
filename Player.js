@@ -118,10 +118,15 @@ Player.prototype.update = function (du) {
   }
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && ((this.velX < 0.79 * this.maxVelX) && (this.velX > 0.79 * (-this.maxVelX)))) {
-    this.velY -= 17;
     this._isJumping = true;
     this.started = true;
-    playJumpNormal();
+    if ( (this.velX > 0.5 * this.maxVelX) || (this.velX < 0.5 * (-this.maxVelX))){
+      this.velY -= 20;
+      playJumpMed();
+    }else{
+      this.velY -= 17;
+      playJumpNormal();
+    }
   }
 
   if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX > 0.8 * this.maxVelX)) {
@@ -131,7 +136,7 @@ Player.prototype.update = function (du) {
     playJumpHigh();
   }
 
-  if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8 * (-this.maxVelX))) {
+  else if ((keys[this.KEY_JUMP] && (this.velY == 0)) && (this.velX < 0.8 * (-this.maxVelX))) {
     this.velY -= 30;
     this._isJumping = true;
     this.started = true;
