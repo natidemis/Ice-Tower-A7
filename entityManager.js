@@ -125,7 +125,6 @@ resetEntities(){
     }
     createInitialFloors();
     createInitialPlayer();
-    playTryAgain();
 },
 
 update: function(du) {
