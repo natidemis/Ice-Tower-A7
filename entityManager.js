@@ -196,9 +196,6 @@ createStars: function(du){
 update: function(du) {
     this.updateGameSpeed();
     g_score += ((entityManager._speed*du)/180)*10;
-    if(this._stars[0]){
-        console.log(this._stars[0].cx);
-    }
     this.generateNextPlatforms();
     this.createStars();
 
