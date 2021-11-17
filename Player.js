@@ -198,6 +198,9 @@ Player.prototype.render = function (ctx) {
   else if (this.isJumping()) {
     spritePlayer = this.player.jumping[cellIdx % 3];
   }
+  else if(this.isFallingStationary()){
+    spritePlayer = this.player.jumpingStationary[0];
+  }
   else if (this.isFalling()) {
     spritePlayer = this.player.edgeFall[cellIdx % 2];
   }
@@ -242,6 +245,9 @@ Player.prototype.isJumping = function () {
 };
 Player.prototype.isFalling = function () {
   return (this.velY > 0);
+};
+Player.prototype.isFallingStationary = function () {
+  return ((this.velY > 0) && (this.velX <= 0.1))
 };
 Player.prototype.isBoostJumping = function () {
   if (this.velY < -20) {
