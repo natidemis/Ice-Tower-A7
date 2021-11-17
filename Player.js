@@ -101,6 +101,7 @@ Player.prototype.update = function (du) {
     playGameOver();
     window.alert("Your score was: "+ (Math.round(g_score-(g_score % 10))));
     entityManager.resetEntities();
+    playTryAgain();
   }
 
   // apply acceleration
