@@ -252,7 +252,6 @@ var g_players = {
     boostJump: [],
     edgeFall: [],
     playerGasp: [],
-    playerStars: [],
     playerpicker: []
   },
   player2: {
@@ -263,12 +262,12 @@ var g_players = {
     boostJump: [],
     edgeFall: [],
     playerGasp: [],
-    playerStars: [],
     playerpicker: []
   }
 }
 
 var g_floors = [];
+var g_stars = [];
 
 
 function preloadDone() {
@@ -291,6 +290,7 @@ function preloadDone() {
     g_players.player1 = cutOutPlayers(g_players.player1, p1y);
     g_players.player2 = cutOutPlayers(g_players.player2, p2y);
     g_floors = cutOutFloors(g_floors);
+    g_stars = cutOutStars(g_stars);
 
     // hot fix because of hole in sprite sheet for player 2:
     g_players.player2.runningArray[0] = g_players.player2.runningArray[2]; 
@@ -352,15 +352,7 @@ function cutOutPlayers(player, y) {
   celHeight = 56;
   player.playerpicker.push(new SpriteAnimation(620,156,celWidth,celHeight));
 
-  // Star trail
-  celWidth = 11;
-  celHeight = 10;
-  player.playerStars.push(new SpriteAnimation(682,245,celWidth,celHeight));//Yellow star
-  player.playerStars.push(new SpriteAnimation(667,214,celWidth,celHeight));//Green star
-  player.playerStars.push(new SpriteAnimation(691,204,celWidth,celHeight));//Blue star
-  player.playerStars.push(new SpriteAnimation(704,234,celWidth,celHeight));//Red star
-  player.playerStars.push(new SpriteAnimation(709,214,celWidth,celHeight));//Pink star
-  player.playerStars.push(new SpriteAnimation(773,202,celWidth,celHeight));//Purple star
+  
 
   
   return player;
@@ -390,6 +382,20 @@ function cutOutFloors(floors){
     
 
     return floors
+}
+
+function cutOutStars(stars){
+    // Star trail
+    celWidth = 11;
+    celHeight = 10;
+    stars.push(new SpriteAnimation(682,245,celWidth,celHeight));//Yellow star
+    stars.push(new SpriteAnimation(667,214,celWidth,celHeight));//Green star
+    stars.push(new SpriteAnimation(691,204,celWidth,celHeight));//Blue star
+    stars.push(new SpriteAnimation(704,234,celWidth,celHeight));//Red star
+    stars.push(new SpriteAnimation(709,214,celWidth,celHeight));//Pink star
+    stars.push(new SpriteAnimation(773,202,celWidth,celHeight));//Purple star
+
+    return stars
 }
 
 // Kick it off
