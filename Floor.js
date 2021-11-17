@@ -10,11 +10,7 @@ function Floor(descr, idx, xScale = 0.32) {
     this.height = this.floor.height*this._scale;
     this.width = this.floor.width*xScale;
 
-    this.flip;
-    if (Math.random() < 0.5) {
-        this.flip = true;
-    } else
-        this.flip = false;
+    this.flip = Math.random() < 0.5;
     
 };
 

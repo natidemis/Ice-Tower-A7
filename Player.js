@@ -85,10 +85,12 @@ Player.prototype.applyAccelX = function (du) {
 Player.prototype.wallcollide = function (du) {
   if (this.cx+16 > 850 && 0 < this.velX) {
     this.velX *= -1;
+    this.cx = 840;
   }
 
   else if (this.cx-16 < 50 && 0 > this.velX) {
     this.velX *= -1;
+    this.cx = 60;
   }
 }
 
@@ -196,6 +198,9 @@ Player.prototype.render = function (ctx) {
   else if (this.isJumping()) {
     spritePlayer = this.player.jumping[cellIdx % 3];
   }
+  else if(this.isFallingStationary()){
+    spritePlayer = this.player.jumpingStationary[0];
+  }
   else if (this.isFalling()) {
     spritePlayer = this.player.edgeFall[cellIdx % 2];
   }
@@ -203,6 +208,9 @@ Player.prototype.render = function (ctx) {
     spritePlayer = this.player.boostJump[0];
   } else {
     this.rotation = 0;
+  }
+  if(this.edgeFall()){
+    spritePlayer = this.player.edgeFall[celldIdx % 2];
   }
   
   // flip the duude
@@ -238,13 +246,16 @@ Player.prototype.isJumping = function () {
 Player.prototype.isFalling = function () {
   return (this.velY > 0);
 };
+Player.prototype.isFallingStationary = function () {
+  return ((this.velY > 0) && (this.velX <= 0.1))
+};
 Player.prototype.isBoostJumping = function () {
   if (this.velY < -20) {
     this._isBoostJumping = true;
   }
 };
 Player.prototype.edgeFall = function () { 
-  // held bail
+  //return (this.cx > floorY.width- (floorY.width * 0.05));
 };
 
 Player.prototype.isGasping = function () {

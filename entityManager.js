@@ -2,7 +2,7 @@
 
 entityManager.js
 
-A module which handles arbitrary entity-management for "Asteroids"
+A module which handles arbitrary entity-management for "ICE-E-TOWER"
 
 
 We create this module as a single global object, and initialise it
@@ -132,10 +132,10 @@ update: function(du) {
     
     if(this._players[0]){
         if(!this._players[0].started){
-        this._speed = 0; // start hraði fyrir hopp
+        this._speed = 0; // speed before you jump for the first time
         }
         else{
-            this._speed = 2;  //hraði á scrolli
+            this._speed = 2;  //speed of the auto scroll
             if(entityManager._players[0].cy < g_canvas.height/2){
                 this._speed += ((g_canvas.height/2-entityManager._players[0].cy)/50); 
             }
