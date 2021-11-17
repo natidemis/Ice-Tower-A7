@@ -70,7 +70,7 @@ main._iterCore = function (dt) {
     //}
     
     //gatherInputs();
-    if (eatKey(KEY_ESCAPE)) {
+    if (eatKey(KEY_ESCAPE) && menuManager.startGame === true) {
       menuManager.startGame = false;
       audios.theme.pause();
       audios.theme.currentTime = 0;
